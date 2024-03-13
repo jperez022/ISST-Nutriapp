@@ -1,5 +1,5 @@
 exports.index = (req, res, next) => {
-  res.render("index");
+  res.render("index", { layout: false });
 };
 
 exports.calc = (req, res, next) => {

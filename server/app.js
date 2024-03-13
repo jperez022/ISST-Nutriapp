@@ -1,13 +1,15 @@
 const express = require("express");
 const session = require("express-session");
+const expressPartials = require("express-partials");
 const Keycloak = require("keycloak-connect");
 const keycloakConfig = require("./keycloak.json");
 const app = express();
 const port = 3000;
 
 // Configuración de EJS como motor de plantillas
-app.set("view engine", "ejs");
+app.use(expressPartials());
 app.set("views", "./views");
+app.set("view engine", "ejs");
 
 // Configura a partir del fichero public
 app.use(express.static("public"));
