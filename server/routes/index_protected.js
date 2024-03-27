@@ -20,4 +20,6 @@ router.get("/premium", Controller.premium);
 
 router.get("/seguimiento", Controller.seg);
 
+router.get("/logo", Controller.logout);
+
 module.exports = router

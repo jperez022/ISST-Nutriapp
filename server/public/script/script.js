@@ -37,3 +37,7 @@ function login() {
   function seg() { 
     window.location.href = "http://localhost:3000/seguimiento";
   }
+
+  function logout() {
+    window.location.href = "http://localhost:3000/logo";
+  }
