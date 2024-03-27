@@ -7,7 +7,7 @@ async function acc(req) {
       var keycloakToken = JSON.parse(req.session["keycloak-token"]);
       var accessToken = keycloakToken.access_token;
       const usersResponse = await axios.get(
-        "http://localhost:8080/realms/" +
+        keycloakConfig["auth-server-url"]+"/realms/" +
           keycloakConfig.realm +
           "/protocol/openid-connect/userinfo",
         {
