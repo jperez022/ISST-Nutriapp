@@ -21,12 +21,16 @@ Este es el github para el proyecto d ela aplicación NutriApp del grupo 18 de la
     - Web origins -> "http://localhost:3000" (asi solo se puede acceder a la pagina de logueo desde nuestra web).<br>
 
 > [!NOTE]
-> Si el despliegue se realiza en el servidor externo sustituir **localhost** por **LA IP**
+> Si el despliegue se realiza en el servidor externo sustituir **localhost** por **LA IP**.
 
 - Una vez realizado esto seleccionamos nuestro cliente y le damos al boton que pone action. Luego le damos a donde pone “donwload adapter config” y copiamos todo el texto y lo pegamos en nuestra fichero keycloak.json (en caso de que no exista lo creamos dentro de la carpeta server) de forma que solo aparezca lo que hemos pegado.
 - Crear un usuario y ponerle credenciales.
 - Parar docker-compose e incluir en docker-compose.yml la imagen del servidor node.
 - Levantar nuevamente docker-compose y ya solo se podrá acceder a la página logged mediante el usuario creado.
+
+> [!NOTE]
+> Si el despliegue se realiza en el servidor externo utilizar el fichero **script.py** para modificar **script.js**.
+> Para más información ejecutar el fichero sguido de la palabra help (python3 script.py help).
 
 ### DESHABILITAR SSL PETICIONES EXTERNAS
 Ejecutar:
