@@ -30,7 +30,7 @@ Este es el github para el proyecto d ela aplicación NutriApp del grupo 18 de la
 
 > [!NOTE]
 > Si el despliegue se realiza en el servidor externo utilizar el fichero **script.py** para modificar **script.js**.
-> Para más información ejecutar el fichero sguido de la palabra help (python3 script.py help).
+> Para más información ejecutar el fichero seguido de la palabra help (python3 script.py help).
 
 ### DESHABILITAR SSL PETICIONES EXTERNAS
 Ejecutar:
