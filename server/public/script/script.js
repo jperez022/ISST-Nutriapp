@@ -1,43 +1,44 @@
 function login() {
-    // Redirigir al servidor de autorización de Keycloak     
-    window.location.href = "http://localhost:3000/calendario";
-  }
-  function calculadora() { 
-    window.location.href = "http://localhost:3000/calculadora";
-  }
+  // Redirigir al servidor de autorización de Keycloak     
+  window.location.href = "http://localhost:3000/calendario";
+}
 
-  function calculadoratot() { 
-    window.location.href = "http://localhost:3000/calculadoratotal";
-  }
+function calculadora() { 
+  window.location.href = "http://localhost:3000/calculadora";
+}
+
+function calculadoratot() { 
+  window.location.href = "http://localhost:3000/calculadoratotal";
+}
   
-  function calendario() { 
-    window.location.href = "http://localhost:3000/calendario";
-  }
+function calendario() { 
+  window.location.href = "http://localhost:3000/calendario";
+}
 
-  function educacion() { 
-    window.location.href = "http://localhost:3000/educacion";
-  }
+function educacion() { 
+  window.location.href = "http://localhost:3000/educacion";
+}
 
-  function objetivos() { 
-    window.location.href = "http://localhost:3000/objetivos";
-  }
+function objetivos() { 
+  window.location.href = "http://localhost:3000/objetivos";
+}
 
-  function perfil() { 
-    window.location.href = "http://localhost:3000/perfil";
-  }
+function perfil() { 
+  window.location.href = "http://localhost:3000/perfil";
+}
 
-  function plato() { 
-    window.location.href = "http://localhost:3000/plato";
-  }
+function plato() { 
+  window.location.href = "http://localhost:3000/plato";
+}
 
-  function premium() { 
-    window.location.href = "http://localhost:3000/premium";
-  }
+function premium() { 
+  window.location.href = "http://localhost:3000/premium";
+}
 
-  function seg() { 
-    window.location.href = "http://localhost:3000/seguimiento";
-  }
+function seg() { 
+  window.location.href = "http://localhost:3000/seguimiento";
+}
 
-  function logout() {
-    window.location.href = "http://localhost:3000/logo";
-  }
+function logout() {
+  window.location.href = "http://localhost:3000/logo";
+}

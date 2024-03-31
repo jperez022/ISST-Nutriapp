@@ -1,5 +1,6 @@
 const keycloakConfig = require("./../keycloak.json");
 const axios = require("axios");
+var app = express();
 
 async function acc(req) {
   if (!req.session.user) {
@@ -40,6 +41,19 @@ exports.calc2 = async (req, res, next) => {
 
 exports.calendario = async (req, res, next) => {
   await acc(req);
+  const xhr = new XMLHttpRequest();
+  var http = "https://localhost/api/isst/calendario/crear/" + req.session.user;
+  xhr.open("GET", http);
+  xhr.send();
+  xhr.responseType = "json";
+  xhr.onload = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      const data = xhr.response;
+      app.locals.myJson = data;
+    } else {
+      app.locals.myJson = "error";
+    }
+  };
   res.render("calendario");
 };
 
