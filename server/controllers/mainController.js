@@ -1,6 +1,8 @@
 const keycloakConfig = require("./../keycloak.json");
 const axios = require("axios");
+var express = require('express');
 var app = express();
+var XMLHttpRequest = require('xhr2');
 
 async function acc(req) {
   if (!req.session.user) {
