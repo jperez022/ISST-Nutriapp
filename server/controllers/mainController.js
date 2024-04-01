@@ -48,7 +48,7 @@ exports.calc2 = async (req, res, next) => {
 exports.calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";
-  var http = "http://34.175.4.111:5000/api/isst/calendario/crear/" + req.session.user;
+  var http = "http://localhost:5000/api/isst/calendario/crear/" + req.session.user;
   axios.get(http).then((response) => myJson = response);
   res.render("calendario", {myJson: myJson});
 };
