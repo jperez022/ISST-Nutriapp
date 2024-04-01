@@ -46,7 +46,5 @@ function logout() {
 }
 
 function inicio() {
-  var http = "http://localhost:5000/api/isst/nuevo_usuario/" + req.session.user;
-  axios.get(http);
   window.location.href = "http://localhost:3000/calendario";
 }

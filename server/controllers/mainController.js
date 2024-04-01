@@ -24,7 +24,10 @@ async function acc(req) {
   }
 }
 
-exports.inicio = (req, res, next) => {
+exports.inicio = async (req, res, next) => {
+  await acc(req);
+  var http = "http://localhost:5000/api/isst/nuevo_usuario/" + req.session.user;
+  axios.get(http);
   res.render("inicio", { layout: false});
 }
 

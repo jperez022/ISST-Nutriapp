@@ -38,7 +38,7 @@ def bbdd_init():
 
     class Dia(db.Model):
         id = db.Column(db.Integer, primary_key = True)
-        usuario = db.Column(db.String(500), nullable = False, unique = True)
+        usuario = db.Column(db.String(500), nullable = False)
         dia = db.Column(db.Integer, nullable = False)
         mes = db.Column(db.Integer, nullable = False)
         platos = db.relationship("Plato", secondary = dia_platos, back_populates = "dias")
