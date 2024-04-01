@@ -24,6 +24,10 @@ async function acc(req) {
   }
 }
 
+exports.inicio = (req, res, next) => {
+  res.render("inicio", { layout: false});
+}
+
 exports.index = (req, res, next) => {
   res.render("index", { layout: false });
 };

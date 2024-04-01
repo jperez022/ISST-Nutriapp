@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 const Controller = require("../controllers/mainController")
 
+router.get("/inicio", Controller.inicio);
+
 router.get("/calculadora", Controller.calc);
 
 router.get("/calculadoratotal", Controller.calc2);

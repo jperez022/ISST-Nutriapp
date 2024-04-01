@@ -124,6 +124,15 @@ def get_platos_en_dia(usuario, mes, dia):
         resp = {'usuario': user, 'dia': day, 'mes': month}
         return Response(json.dumps(resp),200)
 
+@app.route('/api/isst/nuevo_usuario/<string:usuario>', methods = ['GET', 'POST'])
+def nuevo_usuario(usuario):
+    elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
+    if elem == None:
+        entry = Usuarios(usuario = usuario)
+        db.session.add(entry)
+        db.session.commit()
+    return Response(None,200)
+
 if __name__ == "__main__":
     bbdd_init()
     app.run(host='0.0.0.0',port=port,debug=True)
