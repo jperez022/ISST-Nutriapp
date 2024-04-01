@@ -32,7 +32,30 @@ Este es el github para el proyecto d ela aplicación NutriApp del grupo 18 de la
 > Si el despliegue se realiza en el servidor externo utilizar el fichero **script.py** para modificar **script.js**.
 > Para más información ejecutar el fichero seguido de la palabra help (python3 script.py help).
 
+### INICIALIZAR BASES DE DATOS
+
+Previamente a la inicialización habrá que instalar mysql en caso de que no este instalado previamente donde alojemos el servicio. En caso de desplegarlo en un sistema que utilice Debian 10 los pasos a seguir son los siguientes:
+
+- wget https://dev.mysql.com/get/mysql-apt-config_0.8.29-1_all.deb
+- sudo dpkg -i ./mysql-apt-config_0.8.29-1_all.deb
+- Seleccionar la opción OK en el menú que se despliegue.
+- sudo apt update
+- sudo apt install mysql-server
+- Introducir la contraseña que se quiera y seleccionar posteriormente la opción "Use Strong Password Encryption".
+
+Para poder inicializar las bases de datos hay que ejecutar los siguientes comandos si el entorno en el que se corre es gestionado externamente (por ejemplo si usamos los servicios de Google Cloud para desplegar nuestro servicio):
+
+- apt install python3.11-venv
+- python3 -m venv .venv
+- source .venv/bin/activate
+- python3 -m pip install -r requirements.txt
+
+En el resto de casos sirve con correr el comando:
+
+- pip install -r requirements.txt
+
 ### DESHABILITAR SSL PETICIONES EXTERNAS
+
 Ejecutar:
 
 ```bash

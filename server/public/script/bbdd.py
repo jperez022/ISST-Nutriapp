@@ -57,7 +57,7 @@ def bbdd_init():
         cantidades = db.Column(db.String(500))
         calorias = db.Column(db.String(500))
         calorias_total = db.Column(db.Integer, nullable = False)
-        platos = db.relationship("Dia", secondary = dia_platos, back_populates = "platos")
+        dias = db.relationship("Dia", secondary = dia_platos, back_populates = "platos")
     
     db.create_all()
 
