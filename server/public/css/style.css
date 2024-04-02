@@ -214,8 +214,11 @@ h2 {
 }
 
 .calendar-body .calendar-dates li {
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
   position: relative;
+  align-items: center;
+  justify-content: center;
   z-index: 1;
   cursor: pointer;
 }
@@ -246,4 +249,30 @@ h2 {
 
 .calendar-dates li:not(.active):hover::before {
   background: #e4e1e1;
+}
+
+.calendar-navigation {
+    display: flex;
+    text-align: center;
+}
+
+.calendar-navigation span {
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    line-height: 38px;
+    border-radius: 50%;
+    user-select: none;
+    color: #aeabab;
+    font-size: 1.9rem;
+}
+
+.calendar-navigation span:hover {
+    background: #f2f2f2;
+}
+
+.calendar-current-date {
+    font-weight: 500;
+    font-size: 1.45rem;
 }
