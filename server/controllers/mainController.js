@@ -56,6 +56,9 @@ exports.calendario = async (req, res, next) => {
 exports.dia = async (req, res, next) => {
   await acc(req);
   const dia = req.params.dia;
+  if (dia == 0) {
+    dia = "error";
+  }
   res.render("dia", { dia: dia });
 };
 

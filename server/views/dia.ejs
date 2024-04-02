@@ -1,5 +1,9 @@
 <section>
-  <% const dia_mes = dia.split('1001') %>
+  <% if (dia == "error") { %>
+    La fecha que usted está intentando cargar no esta disponible todavía.
+    Pruebe con una fecha del año 2024.
+  <% } else { const dia_mes = dia.split('1001');%>
   Dia: <%= dia_mes[0] %>
   Mes: <%= dia_mes[1] %>
+  <% } %>
 </section>
