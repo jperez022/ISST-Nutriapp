@@ -220,7 +220,7 @@ h2 {
 }
 
 .calendar-dates li.active::before {
-    background: #6332c5;
+    background: grey;
 }
 
 .calendar-dates li:not(.active):hover::before {
