@@ -3,7 +3,7 @@ services:
     server:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile_server
         container_name: server
         ports:
         - "3000:3000"
@@ -17,6 +17,24 @@ services:
         command:
         - start-dev
         container_name: keycloak
+    db:
+        image: mysql:latest
+        restart: always
+        environment:
+        MYSQL_ROOT_PASSWORD: isstmolamogollon
+        MYSQL_DATABASE: nutriapp
+        ports:
+        - "4000:4000"
+        volumes:
+        - ./data:/var/lib/mysql
 
-        
+    api:
+        build:
+            context: .
+            dockerfile: Dockerfile_py
+        ports:
+        - "5000:5000"
+        depends_on:
+        - db
+            
         
