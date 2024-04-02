@@ -50,6 +50,6 @@ function inicio() {
 }
 
 function ir_al_dia(dia,mes) {
-  let url = "http://localhost:3000/calendario/" + dia + "-" + mes;
+  let url = "http://localhost:3000/calendario/" + dia + "1001" + mes;
   window.location.href = url;
 }
