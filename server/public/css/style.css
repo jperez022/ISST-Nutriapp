@@ -20,6 +20,12 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.botones-calendario {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
 .botones-meni {
   background-color: #4caf50;
   color: #fff;
