@@ -49,8 +49,11 @@ function inicio() {
   window.location.href = "http://localhost:3000/calendario";
 }
 
-function ir_al_dia(dia,mes) {
-  let url = "http://localhost:3000/calendario/" + dia + "1001" + mes;
+function ir_al_dia(dia,mes,año) {
+  if (año == 2024) {
+    let url = "http://localhost:3000/calendario/" + dia + "1001" + mes;
+  }
+  let url = "http://localhost:3000/calendario/0";
   window.location.href = url;
 }
 
@@ -93,7 +96,7 @@ function realizar_calendario() {
         && year === new Date().getFullYear()
         ? "active"
         : "";
-      lit += `<li class="${isToday}"><button class="botones-calendario" onclick="ir_al_dia(${i},${month})">${i}</button></li>`;
+      lit += `<li class="${isToday}"><button class="botones-calendario" onclick="ir_al_dia(${i},${month},${year})">${i}</button></li>`;
     }
     for (let i = dayend; i < 6; i++) {
       lit += `<li class="inactive">${i - dayend + 1}</li>`
