@@ -39,7 +39,7 @@ nav {
   ); /*156px es por las alturas de footer y header*/
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -49,10 +49,12 @@ h1 {
 
 h2 {
   padding: 8px;
+  background-color: #eee;
 }
 
 #welcome {
   /* BIENVENIDO INICIO*/
+  background-color: #eee;
   font-size: 5em;
   padding: 8px;
 }
@@ -157,7 +159,6 @@ h2 {
 
 .my-calendar-div {
   display: flex;
-  min-height: 100vh;
   padding: 0 10px;
   align-items: center;
   justify-content: center;
@@ -165,6 +166,7 @@ h2 {
 
 .calendar-container {
   background: #fff;
+  height: 65vh;
   width: 450px;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
@@ -213,8 +215,8 @@ h2 {
 }
 
 .calendar-body .calendar-dates li {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
   position: relative;
   align-items: center;
   justify-content: center;
