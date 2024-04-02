@@ -195,6 +195,11 @@ h2 {
 
 .calendar-body .calendar-dates {
   margin-bottom: 20px;
+  padding: 0;
+}
+
+.calendar-body .calendar-weekdays {
+  padding: 0;
 }
 
 .calendar-body li {
