@@ -48,3 +48,8 @@ function logout() {
 function inicio() {
   window.location.href = "http://localhost:3000/calendario";
 }
+
+function ir_al_dia(k) {
+  let url = "http://localhost:3000/calendario/" + k;
+  window.location.href = url;
+}
