@@ -267,10 +267,6 @@ h2 {
     font-size: 1.9rem;
 }
 
-.calendar-navigation span:hover {
-    background: #f2f2f2;
-}
-
 .calendar-current-date {
     font-weight: 500;
     font-size: 1.45rem;
