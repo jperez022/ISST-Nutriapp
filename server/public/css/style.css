@@ -118,10 +118,7 @@ h2 {
   width: 150px;
 }
 
-
-
-
-.login-container {
+.login-container { /* CONTENEDOR LOGIN INDEX*/
   background-color: #eee;
   width: 200px;
   padding: 20px;
@@ -133,7 +130,7 @@ h2 {
   align-items: center;
 }
 
-#but_ind {/* BOTON HEADER INDIVIDUAL*/
+#but_ind {/* BOTON INDEX*/
   margin-left: 10px; 
   padding:  10px;
   width: 100px;
@@ -248,4 +245,3 @@ REVISAR ESTOS ESTILOS
 
 .calendar-dates li:not(.active):hover::before {
   background: #e4e1e1;
-}

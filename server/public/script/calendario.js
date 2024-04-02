@@ -37,7 +37,7 @@ function realizar_calendario() {
         && year === new Date().getFullYear()
         ? "active"
         : "";
-      lit += `<li class="${isToday}"><button onclick="ir_al_dia(${i})">${i}</button></li>`;
+      lit += `<li class="${isToday}"><button class="botones-calendario" onclick="ir_al_dia(${i},${month})">${i}</button></li>`;
     }
     for (let i = dayend; i < 6; i++) {
       lit += `<li class="inactive">${i - dayend + 1}</li>`
