@@ -1,50 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NUTRI-APP</title>
-  <link rel="stylesheet" href="/css/style.css" />
-  <script src="/script/calendario.js"></script>
-</head>
-
-<body>
-  <% if (myJson == "error") { %>
-    <section>
-      <h2>Ha ocurrido un error</h2>
-    </section>
-  <% } else { %>
-    <section>
-      <h2>Calendario</h2>
-      <div class="my-calendar-div">
-        <div class="calendar-container">
-          <header class="calendar-header">
-            <p class="calendar-current-date"></p>
-            <div class="calendar-navigation">
-              <span id="calendar-prev" class="material-symbols-rounded">
-                <
-              </span>
-              <span id="calendar-next" class="material-symbols-rounded">
-                >
-              </span>
-            </div>
-          </header>
-          <div class="calendar-body">
-            <ul class="calendar-weekdays">
-              <li>Sun</li>
-              <li>Mon</li>
-              <li>Tue</li>
-              <li>Wed</li>
-              <li>Thu</li>
-              <li>Fri</li>
-              <li>Sat</li>
-            </ul>
-            <ul class="calendar-dates"></ul>
+<% if (myJson == "error") { %>
+  <section>
+    <h2>Ha ocurrido un error</h2>
+  </section>
+<% } else { %>
+  <section>
+    <h2>Calendario</h2>
+    <div class="my-calendar-div">
+      <div class="calendar-container">
+        <header class="calendar-header">
+          <p class="calendar-current-date"></p>
+          <div class="calendar-navigation">
+            <span id="calendar-prev" class="material-symbols-rounded">
+              <
+            </span>
+            <span id="calendar-next" class="material-symbols-rounded">
+              >
+            </span>
           </div>
+        </header>
+        <div class="calendar-body">
+          <ul class="calendar-weekdays">
+            <li>Sun</li>
+            <li>Mon</li>
+            <li>Tue</li>
+            <li>Wed</li>
+            <li>Thu</li>
+            <li>Fri</li>
+            <li>Sat</li>
+          </ul>
+          <ul class="calendar-dates"></ul>
         </div>
       </div>
-      <script>realizar_calendario();</script>
-    </section>
-  <% } %>
-</body>
+    </div>
+    <script>realizar_calendario();</script>
+  </section>
+<% } %>
