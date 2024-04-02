@@ -53,6 +53,12 @@ exports.calendario = async (req, res, next) => {
   res.render("calendario", {myJson: myJson});
 };
 
+exports.dia = async (req, res, next) => {
+  await acc(req);
+  const dia = req.params.dia;
+  res.render("dia", { dia: dia });
+};
+
 exports.educacion = async (req, res, next) => {
   await acc(req);
   res.render("edu");

@@ -10,6 +10,8 @@ router.get("/calculadoratotal", Controller.calc2);
 
 router.get("/calendario", Controller.calendario);
 
+router.get("/calendario/:dia(\\d+)", Controller.dia);
+
 router.get("/educacion", Controller.educacion);
 
 router.get("/objetivos", Controller.objetivos);
