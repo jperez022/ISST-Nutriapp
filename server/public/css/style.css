@@ -61,8 +61,8 @@ h2 {
   /* BOTON PAGINA INICIO*/
   padding: 5px 150px;
   font-size: 2em;
-  background-color: #eee;
-  color: #333;
+  background-color: #4caf50;
+  color: #eee;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -73,7 +73,7 @@ h2 {
 
 #bot_welc:hover {
   /* BOTON PAGINA INICIO*/
-  background-color: #aaa;
+  background-color: #2e7d30;
 }
 
 .botones-calendario {
@@ -265,10 +265,6 @@ h2 {
     user-select: none;
     color: #aeabab;
     font-size: 1.9rem;
-}
-
-.calendar-navigation span:hover {
-    background: #f2f2f2;
 }
 
 .calendar-current-date {
