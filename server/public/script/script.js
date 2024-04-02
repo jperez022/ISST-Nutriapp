@@ -49,7 +49,7 @@ function inicio() {
   window.location.href = "http://localhost:3000/calendario";
 }
 
-function ir_al_dia(k) {
-  let url = "http://localhost:3000/calendario/" + k;
+function ir_al_dia(dia,mes) {
+  let url = "http://localhost:3000/calendario/" + dia + "-" + mes;
   window.location.href = url;
 }

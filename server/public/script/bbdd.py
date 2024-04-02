@@ -109,7 +109,7 @@ def crear_calendario(usuario):
     else:
         return Response(None,200)
 
-@app.route('/api/isst/calendario/formar/<string:usuario>/<string:mes>/<string:dia>', methods = ['GET', 'POST'])
+@app.route('/api/isst/calendario/dia/<string:usuario>/<string:mes>/<string:dia>', methods = ['GET', 'POST'])
 def get_platos_en_dia(usuario, mes, dia):
     elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
     if elem == None:
