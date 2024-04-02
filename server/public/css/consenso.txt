@@ -1,0 +1,4 @@
+El background color header o footer siempre #333
+El color de estos siempre #eee
+BASICAMENTE NO TOCAR EL CSS!
+IMPORTANTE

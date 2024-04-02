@@ -11,23 +11,30 @@
 
 <body>
   <header>
-    <h1>NUTRI-APP</h1>
-    <button class="botones-meni" onclick="perfil()">Perfil</button> &nbsp; &nbsp;
-    <button class="botones-meni" onclick="logout()">Logout</button>
+    <div id="ocupa_header"></div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
   </header>
 
-  <%- body %>
-
-  <nav>
-    <button class="botones-meni" onclick="calculadora()">calculadora</button>
-    <button class="botones-meni" onclick="calculadoratot()">calculadora2</button>
-    <button class="botones-meni" onclick="calendario()">calendario</button>
-    <button class="botones-meni" onclick="educacion()">educacion</button>
-    <button class="botones-meni" onclick="objetivos()">objetivos</button>
-    <button class="botones-meni" onclick="plato()">plato</button>
-    <button class="botones-meni" onclick="premium()">premium</button>
-    <button class="botones-meni" onclick="seg()">seguimiento</button>
-  </nav>
+  <div id="foto">
+    <%- body %>
+    <nav>
+      <button class="but_norm" onclick="calculadora()">calculadora</button>
+      <button class="but_norm" onclick="calculadoratot()">calculadora2</button>
+      <button class="but_norm" onclick="calendario()">calendario</button>
+      <button class="but_norm" onclick="educacion()">educacion</button>
+      <button class="but_norm" onclick="objetivos()">objetivos</button>
+      <button class="but_norm" onclick="plato()">plato</button>
+      <button class="but_norm" onclick="premium()">premium</button>
+      <button class="but_norm" onclick="seg()">seguimiento</button>
+    </nav>
+  </div>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
 </body>
 
 </html>
