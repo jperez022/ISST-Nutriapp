@@ -1,88 +1,159 @@
+/* NO TOCAR ESTA PARTE DE CSS, HAY AVISO A PARTIR DE CUANDO SE PUEDE TOCAR */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  height: 100vh;
-  margin: 30;
-}
-
-#gen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-}
-
-
-.login-container {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.botones-meni {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 header {
-  background-color: #333;
-  color: white;
-  padding: 10px;
+  height: 50px;
   display: flex;
+  justify-content: space-between;
   align-items: center; 
-  justify-content: space-between; 
+  background-color: #333;
+  color: #eee;
+  padding: 15px;
 }
 
-header h1 {
-  margin: 0; 
-  flex: 1; 
-  text-align: center; 
+#ocupa{ /* ESTE ES PARA QUE LA SECCION BODY OCUPE TODA LA VISTA*/
+  min-height: calc(100vh - 138px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-header button {
-  background-color: #f0f0f0; 
-  color: #333; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  cursor: pointer; 
-  border-radius: 50%; 
-  transition: background-color 0.3s ease; 
-}
-
-header button:hover {
-  background-color: #ccc; 
+footer {
+  height: 56px;
+  background-color: #333;
+  color: #eee;
+  padding: 1px;
+  text-align: center;
 }
 
 nav {
-  background-color: #222;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
+  position: absolute; 
+  bottom: 60px; 
 }
 
-nav button {
-  margin: 5px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
+
+#foto { /* ESTO ES PA LA FOTO INICIAL*/
+  background-image: url("./../images/ini.jpg");
+  background-repeat: repeat;
+  background-size: auto;
+  min-height: calc(100vh - 138px); /*156px es por las alturas de footer y header*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  padding: 8px;
+}
+
+#welcome { /* BIENVENIDO INICIO*/
+  font-size: 5em;
+  padding: 8px;
+}
+
+#bot_welc { /* BOTON PAGINA INICIO*/
+  padding: 5px 150px; 
+  font-size: 2em;
+  background-color: #eee; 
+  color: #333; 
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  position: absolute; 
+  bottom: 65px; 
+  transition: background-color 0.3s;
 }
 
-nav button:hover {
-  background-color: #45a049;
+#bot_welc:hover { /* BOTON PAGINA INICIO*/
+  background-color: #aaa; 
 }
+
+
+.but_norm { /* BOTON LAYOUT*/
+  background-color: #eee; 
+  color: #333; 
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+  width: 150px;
+  transition: background-color 0.3s;
+}
+
+.but_norm:hover { /* BOTON LAYOUT*/
+  background-color: #aaa; 
+}
+
+.header-buttons { /* BOTONES HEADERs*/
+  display: flex;
+  align-items: center; 
+}
+
+.but_head {/* BOTON HEADER INDIVIDUAL*/
+  margin-left: 10px; 
+  padding:  5px;
+  width: 60px;
+  border-radius: 2px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none; /* Quita el borde */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  outline: none; /* Quita el contorno al enfocar */
+}
+
+#ocupa_header { /* SIRVE PA QUE EL HEADER ESTE CENTRADO*/
+  width: 150px;
+}
+
+
+
+
+.login-container {
+  background-color: #eee;
+  width: 200px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#but_ind {/* BOTON HEADER INDIVIDUAL*/
+  margin-left: 10px; 
+  padding:  10px;
+  width: 100px;
+  border-radius: 4px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  border: none; /* Quita el borde */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  outline: none; /* Quita el contorno al enfocar */
+}
+
+
+/*YA SE PUEDE TOCAR*/
+
+
+
+/*
+
+REVISAR ESTOS ESTILOS
+
 
 .my-calendar-div {
   display: flex;
@@ -94,106 +165,87 @@ nav button:hover {
 }
 
 .calendar-container {
-    background: #fff;
-    width: 450px;
-    border-radius: 10px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  background: #fff;
+  width: 450px;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
- 
+
 .calendar-container header {
-    display: flex;
-    align-items: center;
-    padding: 25px 30px 10px;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
 }
- 
-header .calendar-navigation {
-    display: flex;
-}
- 
-header .calendar-navigation span {
-    height: 38px;
-    width: 38px;
-    margin: 0 1px;
-    cursor: pointer;
-    text-align: center;
-    line-height: 38px;
-    border-radius: 50%;
-    user-select: none;
-    color: #aeabab;
-    font-size: 1.9rem;
-}
- 
+
+
+
+
 .calendar-navigation span:last-child {
-    margin-right: -10px;
+  margin-right: -10px;
 }
- 
-header .calendar-navigation span:hover {
-    background: #f2f2f2;
-}
- 
-header .calendar-current-date {
-    font-weight: 500;
-    font-size: 1.45rem;
-}
- 
+
+
+
+
+
 .calendar-body {
-    padding: 20px;
+  padding: 20px;
 }
- 
+
 .calendar-body ul {
-    list-style: none;
-    flex-wrap: wrap;
-    display: flex;
-    text-align: center;
+  list-style: none;
+  flex-wrap: wrap;
+  display: flex;
+  text-align: center;
 }
- 
+
 .calendar-body .calendar-dates {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
- 
+
 .calendar-body li {
-    width: calc(100% / 7);
-    font-size: 1.07rem;
-    color: #414141;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+  color: #414141;
 }
- 
+
 .calendar-body .calendar-weekdays li {
-    cursor: default;
-    font-weight: 500;
+  cursor: default;
+  font-weight: 500;
 }
- 
+
 .calendar-body .calendar-dates li {
-    margin-top: 30px;
-    position: relative;
-    z-index: 1;
-    cursor: pointer;
+  margin-top: 30px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
 }
- 
+
 .calendar-dates li.inactive {
-    color: #aaa;
+  color: #aaa;
 }
- 
+
 .calendar-dates li.active {
-    color: #fff;
+  color: #fff;
 }
- 
+
 .calendar-dates li::before {
-    position: absolute;
-    content: "";
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  content: "";
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
- 
+
 .calendar-dates li.active::before {
-    background: #6332c5;
+  background: #6332c5;
 }
- 
+
 .calendar-dates li:not(.active):hover::before {
-    background: #e4e1e1;
+  background: #e4e1e1;
 }
