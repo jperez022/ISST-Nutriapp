@@ -14,14 +14,6 @@ header {
   padding: 15px;
 }
 
-#ocupa{ /* ESTE ES PARA QUE LA SECCION BODY OCUPE TODA LA VISTA*/
-  min-height: calc(100vh - 138px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 footer {
   height: 56px;
   background-color: #333;
@@ -37,7 +29,6 @@ nav {
   position: absolute; 
   bottom: 60px; 
 }
-
 
 #foto { /* ESTO ES PA LA FOTO INICIAL*/
   background-image: url("./../images/ini.jpg");
@@ -79,7 +70,6 @@ h2 {
 #bot_welc:hover { /* BOTON PAGINA INICIO*/
   background-color: #aaa; 
 }
-
 
 .but_norm { /* BOTON LAYOUT*/
   background-color: #eee; 
@@ -143,7 +133,8 @@ h2 {
 }
 
 
-/*YA SE PUEDE TOCAR*/
+/*YA SE PUEDE TOCAR
+NO TOCAR NADA DE LO QUE VA ANTES*/
 
 
 
