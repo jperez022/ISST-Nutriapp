@@ -1,3 +1,43 @@
-<section>
-  <h2>Calculadora Calórica 2nda parte</h2>
+<section class="grideito2">
+
+  <div class="grid_elem2">
+    <div class="despl">
+      <h2 id="semi2">&nbsp; <%= suma %> kcal</h2>
+      <div class="mostro">
+        <% if (lista) {%>
+          <ul>
+            <% for (let elem of lista) { %>
+            <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
+            <% } %>
+          </ul>
+          <% } else { %>
+          <div class="kk">Añade algún ingrediente para poder guardar el plato!</div>
+          <% } %>
+      </div>
+    </div>
+
+  </div>
+  <div class="grid_elem2">
+    <div class="despl">
+      <h2 id="semi2">&nbsp; Crea el plato</h2>
+      <div id="mostro2">
+        <form class="todo" action="http://localhost:3000/calculadora/save/plato" method="POST">
+          <div class="med">Nombre del plato</div>
+          <input type="text" name="nombre" placeholder="Nombre" />
+          <br />
+          <div class="med">Preparación</div>
+          <textarea name="prep" rows="14" cols="40" placeholder="Preparación del plato..."></textarea>
+          <br>
+          <div class="bot23">
+            <div class="bot2">
+              <button class="calc_but" type="button" onclick="calculadora()">Volver</button>
+              <button class="calc_but" type="submit">Crear</button>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
 </section>
