@@ -53,7 +53,7 @@ exports.calc2 = async (req, res, next) => {
   await acc(req);
   let lista = req.session.plato ? req.session.plato : false;
   let suma = req.session.total ? req.session.total : 0;
-  res.render("calc2",{ lista: lista, suma: suma });
+  res.render("calc2", { lista: lista, suma: suma });
 };
 
 exports.calendario = async (req, res, next) => {
@@ -104,7 +104,7 @@ exports.objetivos = async (req, res, next) => {
 
 exports.perfil = async (req, res, next) => {
   await acc(req);
-  res.render("perfil");
+  res.render("perfil", { user: req.session.user });
 };
 
 exports.plato = async (req, res, next) => {
@@ -156,15 +156,16 @@ exports.save = async (req, res, next) => {
 exports.saveplat = async (req, res, next) => {
   const nombre = req.body.nombre;
   const prep = req.body.prep;
+  const fecha = req.body.fecha;
   const inges = req.session.plato;
   const calo = req.session.total;
 
   if (nombre && inges && calo) {
-    let plato_global = [nombre, prep, inges, calo];
+    let plato_global = [nombre, prep, fecha, inges, calo];
     req.session.plato_global = plato_global;
-    delete req.session.plato
-    delete req.session.total
+    delete req.session.plato;
+    delete req.session.total;
   }
   //COMPLETAR PETICION A LA API
-  res.redirect("/ESTAPORVER"); 
+  res.redirect("/ESTAPORVER");
 };
