@@ -19,6 +19,8 @@ async function acc(req) {
         }
       );
       req.session.user = usersResponse.data.preferred_username;
+      req.session.inicio_iniciado = false;
+      req.session.calendario_created = false;
     } catch (error) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
@@ -27,11 +29,11 @@ async function acc(req) {
 
 exports.inicio = async (req, res, next) => {
   await acc(req);
-  if (!req.session.inicio_iniziado) {
+  if (!req.session.inicio_iniciado) {
     var http =
-      "http://34.175.4.111:5000/api/isst/nuevo_usuario/" + req.session.user;
+      "http://34.175.19.24:5000/api/isst/nuevo_usuario/" + req.session.user;
     axios.get(http);
-    req.session.inicio_iniziado = true;
+    req.session.inicio_iniciado = true;
   }
   res.render("inicio", { layout: false });
 };
@@ -57,11 +59,13 @@ exports.calendario = async (req, res, next) => {
   var myJson = "error";
   if (!req.session.calendario_created) {
     var http =
-      "http://34.175.4.111:5000/api/isst/calendario/crear/" + req.session.user;
+      "http://34.175.19.24:5000/api/isst/calendario/crear/" + req.session.user;
     await axios.get(http).then((response) => {
       myJson = response;
     });
     req.session.calendario_created = true;
+  } else {
+    myJson = "meni";
   }
   res.render("calendario", { myJson: myJson });
 };
@@ -74,7 +78,7 @@ exports.dia = async (req, res, next) => {
     dia_mes = "error";
   }
   var http =
-    "http://34.175.4.111:5000/api/isst/calendario/dia/" +
+    "http://34.175.19.24:5000/api/isst/calendario/dia/" +
     req.session.user +
     "/" +
     dia_mes[1] +
