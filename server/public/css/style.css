@@ -33,7 +33,6 @@ nav {
 }
 
 #ocupa {
-  /* ESTO ES PA LA FOTO INICIAL*/
   min-height: calc(
     100vh - 184px
   ); /*156px es por las alturas de footer y header*/
@@ -41,15 +40,28 @@ nav {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin: 0;
 }
 
-h1 {
+#ocupa1 {
+  /* ESTO ES PAL LOGIN*/
+  min-height: calc(
+    100vh - 184px
+  ); /*156px es por las alturas de footer y header*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin: 0;
 }
 
 h2 {
   padding: 8px;
   background-color: #eee;
+}
+
+#good_h2{
+  align-items: center;
 }
 
 #welcome {
@@ -166,8 +178,8 @@ h2 {
 
 .calendar-container {
   background: #fff;
-  height: 65vh;
-  width: 450px;
+  height: 60vh;
+  width: 90vw;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
@@ -215,8 +227,8 @@ h2 {
 }
 
 .calendar-body .calendar-dates li {
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   position: relative;
   align-items: center;
   justify-content: center;
