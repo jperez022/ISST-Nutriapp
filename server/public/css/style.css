@@ -182,6 +182,7 @@ h2 {
   background: #fff;
   height: 60vh;
   width: 90vw;
+  min-height: 558px;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
@@ -199,7 +200,7 @@ h2 {
 
 .calendar-body {
   padding: 20px;
-  height: calc(100% - 40px);
+  height: calc(100% - 125px);
 }
 
 .calendar-body ul {
@@ -212,6 +213,7 @@ h2 {
 .calendar-body .calendar-dates {
   margin-bottom: 20px;
   padding: 0;
+  height: calc(100% - 125px);
 }
 
 .calendar-body .calendar-weekdays {
@@ -238,6 +240,7 @@ h2 {
   justify-content: center;
   z-index: 1;
   cursor: pointer;
+  display: flex;
 }
 
 .calendar-dates li.inactive {
