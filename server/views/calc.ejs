@@ -1,3 +1,37 @@
-<section>
-  <h2>Calculadora Calórica</h2>
+<section class="grideito">
+
+  <h2 class="grid_elem">Calculadora Calórica</h2>
+  <h3 class="grid_elem">Total: <%= suma %>kcal</h3>
+  <div class="grid3">
+    <form class="todo" action="http://localhost:3000/calculadora/save" method="POST">
+      <div class="big">Ingrediente</div>
+      <input type="text" name="ing" placeholder="Ingrediente" />
+      <br />
+      <div class="med">Descripción</div>
+      <input type="text" class="desc" name="desc" />
+      <br />
+      <div class="med">KiloCalorías</div>
+      <input type="text" class="calo" name="calo" />
+      <br>
+      <div class="bot2">
+        <button class="calc_but" onclick="calendario()">Volver</button>
+        <button class="calc_but" type="submit">Añadir</button>
+      </div>
+
+
+    </form>
+
+  </div>
+  <div class="grid4">
+    <% if (lista) {%>
+    <ul>
+      <% for (let elem of lista) { %>
+      <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
+      <% } %>
+    </ul>
+    <% } else { %>
+    <div class="kk">Añade algun ingrediente!</div>
+    <% } %>
+  </div>
+
 </section>

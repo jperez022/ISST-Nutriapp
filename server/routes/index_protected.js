@@ -26,4 +26,6 @@ router.get("/seguimiento", Controller.seg);
 
 router.get("/logo", Controller.logout);
 
+router.post("/calculadora/save", Controller.save);
+
 module.exports = router
