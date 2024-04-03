@@ -213,7 +213,7 @@ h2 {
 .calendar-body .calendar-dates {
   margin-bottom: 20px;
   padding: 0;
-  height: calc(100% - 125px);
+  height: calc(100% - 45px);
 }
 
 .calendar-body .calendar-weekdays {
