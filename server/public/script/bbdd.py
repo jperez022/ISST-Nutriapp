@@ -12,7 +12,7 @@ app = Flask(__name__)
 my_database = ('isst',)
 
 def bbdd_init():
-    global db, my_cursor, mydb, Dia, Platos_Sugeridos, Plato, Usuarios
+    global db, my_cursor, mydb, dia_platos, Dia, Platos_Sugeridos, Plato, Usuarios
     mydb = mysql.connector.connect(host = host, user = my_user, password = my_password)
     my_cursor = mydb.cursor()
     my_cursor.execute('SHOW DATABASES')
@@ -54,8 +54,7 @@ def bbdd_init():
         id = db.Column(db.Integer, primary_key = True)
         nombre = db.Column(db.String(500), nullable = False)
         ingredientes = db.Column(db.String(500), nullable = False)
-        cantidades = db.Column(db.String(500))
-        calorias = db.Column(db.String(500))
+        calorias = db.Column(db.String(500), nullable = False)
         calorias_total = db.Column(db.Integer, nullable = False)
         dias = db.relationship("Dia", secondary = dia_platos, back_populates = "platos")
     
@@ -136,6 +135,22 @@ def nuevo_usuario(usuario):
         entry = Usuarios(usuario = usuario)
         db.session.add(entry)
         db.session.commit()
+    return Response(None,200)
+
+@app.route('/api/isst/agregar_plato/<string:usuario>/<string:nombre>/<path:ingredientes>/<path:calorias>/<int:calorias_total>/<string:dia_mes>', methods = ['GET', 'POST'])
+def agregar_plato(usuario,nombre,ingredientes,calorias,calorias_total,dia_mes):
+    ingredientes = ingredientes.replace('_',' ').replace('-','/')
+    calorias = calorias.replace('_',' ').replace('-','/')
+    entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
+    db.session.add(entry)
+    db.session.commit()
+    if dia_mes != "no":
+        dia_mes = dia_mes.split('_')
+        elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == dia_mes[1], Dia.dia == dia_mes[0]).first()
+        elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+        statement = dia_platos.insert().values(dia_id= elem.id, plato_id= elem2.id)
+        db.session.execute(statement)
+    db.session.commit()
     return Response(None,200)
 
 if __name__ == "__main__":
