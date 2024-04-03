@@ -1,6 +1,6 @@
-from flask import Flask, request, Response
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
-import mysql.connector, json
+import mysql.connector
 
 host = 'localhost'
 my_user = 'root'
@@ -65,7 +65,7 @@ def bbdd_init():
 def crear_calendario(usuario):
     elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
     if elem == None:
-        return Response(None,400)
+        return jsonify(None,status = 400)
     elem = Dia.query.filter(Dia.usuario == usuario).first()
     if elem == None:
         for i in range(1,32):
@@ -105,18 +105,18 @@ def crear_calendario(usuario):
             entry = Dia(usuario = usuario, dia = i ,mes = 12)
             db.session.add(entry)
         db.session.commit()
-        return Response(None,200)
+        return jsonify(None,status = 200)
     else:
-        return Response(None,200)
+        return jsonify(None,status = 200)
 
 @app.route('/api/isst/calendario/dia/<string:usuario>/<string:mes>/<string:dia>', methods = ['GET', 'POST'])
 def get_platos_en_dia(usuario, mes, dia):
     elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
     if elem == None:
-        return Response(None,400)
+        return jsonify(None,400)
     elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == mes, Dia.dia == dia).first()
     if elem == None:
-        return Response(None,400)
+        return jsonify(None,400)
     else:
         aux = elem.platos
         if (len(aux) == 0):
@@ -127,7 +127,7 @@ def get_platos_en_dia(usuario, mes, dia):
             for elem in aux:   
                 resp[str(num)] = [elem.nombre,elem.ingredientes,elem.calorias_total]
                 num += 1
-        return Response(json.dumps(resp),200)
+        return jsonify(resp,status = 200)
 
 @app.route('/api/isst/nuevo_usuario/<string:usuario>', methods = ['GET', 'POST'])
 def nuevo_usuario(usuario):
@@ -136,7 +136,7 @@ def nuevo_usuario(usuario):
         entry = Usuarios(usuario = usuario)
         db.session.add(entry)
         db.session.commit()
-    return Response(None,200)
+    return jsonify(None,200)
 
 if __name__ == "__main__":
     bbdd_init()
