@@ -3,6 +3,7 @@ const session = require("express-session");
 const expressPartials = require("express-partials");
 const Keycloak = require("keycloak-connect");
 const keycloakConfig = require("./keycloak.json");
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
@@ -10,6 +11,12 @@ const port = 3000;
 app.use(expressPartials());
 app.set("views", "./views");
 app.set("view engine", "ejs");
+
+// Configura body-parser para analizar solicitudes con cuerpo JSON
+app.use(bodyParser.json());
+
+// Configura body-parser para analizar solicitudes con cuerpo de formulario
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configura a partir del fichero public
 app.use(express.static("public"));
@@ -34,6 +41,7 @@ var indexRouterProtected = require("./routes/index_protected");
 var indexRouter = require("./routes/index");
 app.get("/", indexRouter);
 app.get("/*", keycloak.protect(), indexRouterProtected);
+app.post("/*", keycloak.protect(), indexRouterProtected);
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

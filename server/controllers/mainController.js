@@ -7,7 +7,8 @@ async function acc(req) {
       var keycloakToken = JSON.parse(req.session["keycloak-token"]);
       var accessToken = keycloakToken.access_token;
       const usersResponse = await axios.get(
-        keycloakConfig["auth-server-url"]+"/realms/" +
+        keycloakConfig["auth-server-url"] +
+          "/realms/" +
           keycloakConfig.realm +
           "/protocol/openid-connect/userinfo",
         {
@@ -28,8 +29,8 @@ exports.inicio = async (req, res, next) => {
   await acc(req);
   var http = "http://localhost:5000/api/isst/nuevo_usuario/" + req.session.user;
   axios.get(http);
-  res.render("inicio", { layout: false});
-}
+  res.render("inicio", { layout: false });
+};
 
 exports.index = (req, res, next) => {
   res.render("index", { layout: false });
@@ -37,7 +38,9 @@ exports.index = (req, res, next) => {
 
 exports.calc = async (req, res, next) => {
   await acc(req);
-  res.render("calc");
+  let lista = req.session.plato ? req.session.plato : false;
+  let suma = req.session.total ? req.session.total : 0;
+  res.render("calc", { lista: lista, suma: suma });
 };
 
 exports.calc2 = async (req, res, next) => {
@@ -48,9 +51,12 @@ exports.calc2 = async (req, res, next) => {
 exports.calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";
-  var http = "http://localhost:5000/api/isst/calendario/crear/" + req.session.user;
-  await axios.get(http).then((response) => {myJson = response;});
-  res.render("calendario", {myJson: myJson});
+  var http =
+    "http://localhost:5000/api/isst/calendario/crear/" + req.session.user;
+  await axios.get(http).then((response) => {
+    myJson = response;
+  });
+  res.render("calendario", { myJson: myJson });
 };
 
 exports.dia = async (req, res, next) => {
@@ -105,4 +111,21 @@ exports.logout = (req, res, next) => {
   );
   // res.redirect("http://34.175.236.187:8080/realms/" + keycloakConfig.realm + "/protocol/openid-connect/logout");
   // PONER IP SI SE HACE EN SERVIDOR EXTERNO
+};
+
+exports.save = async (req, res, next) => {
+  const ingrediente = req.body.ing;
+  const descripcion = req.body.desc;
+  const calorias = req.body.calo;
+
+  if (ingrediente && calorias && !isNaN(calorias)) {
+    let ing_overall = [ingrediente, descripcion, calorias];
+    let plato = req.session.plato ? req.session.plato : [];
+    plato.push(ing_overall);
+    req.session.plato = plato;
+    let tot = req.session.total ? (parseInt(req.session.total) + parseInt(calorias)) : calorias;
+    req.session.total = tot;
+  }
+
+  res.redirect("/calculadora");
 };

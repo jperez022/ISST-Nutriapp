@@ -60,7 +60,7 @@ h2 {
   background-color: #eee;
 }
 
-#good_h2{
+#good_h2 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -234,7 +234,7 @@ h2 {
 .calendar-body .calendar-dates li {
   margin-top: 2vh;
   margin-bottom: 2vh;
-  max-height: calc((100% - 54px)/6);
+  max-height: calc((100% - 54px) / 6);
   position: relative;
   align-items: center;
   justify-content: center;
@@ -303,3 +303,97 @@ h2 {
   margin: 15px;
 }
 
+.grid_elem {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.grid3 {
+  padding: 30px;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 8px;
+}
+
+.grideito {
+  display: grid;
+  grid-template-columns: 400px 200px;
+  grid-template-rows: 90px 500px;
+  gap: 10px;
+  height: 100%;
+}
+
+.big {
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.med {
+  margin-top: 10px;
+  font-size: 15px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.todo {
+  height: 100%;
+  width: 95%;
+}
+
+.desc {
+  height: 50%;
+  width: 100%;
+}
+
+.calc_but {
+  margin-top: 10px;
+  padding: 5px;
+  width: 60px;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.calc_but:hover {
+  background-color: #2e7d30;
+}
+
+.bot2{
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid4 {
+  background-color: #eee;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 8px;
+  overflow-y: auto;
+}
+
+.bol{
+  font-weight: bold;
+}
+
+.kk{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
