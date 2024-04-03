@@ -27,8 +27,12 @@ async function acc(req) {
 
 exports.inicio = async (req, res, next) => {
   await acc(req);
-  var http = "http://34.175.4.111:5000/api/isst/nuevo_usuario/" + req.session.user;
-  axios.get(http);
+  if (!req.session.inicio_iniziado) {
+    var http =
+      "http://34.175.4.111:5000/api/isst/nuevo_usuario/" + req.session.user;
+    axios.get(http);
+    req.session.inicio_iniziado = true;
+  }
   res.render("inicio", { layout: false });
 };
 
@@ -51,23 +55,34 @@ exports.calc2 = async (req, res, next) => {
 exports.calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";
-  var http =
-    "http://34.175.4.111:5000/api/isst/calendario/crear/" + req.session.user;
-  await axios.get(http).then((response) => {
-    myJson = response;
-  });
+  if (!req.session.calendario_created) {
+    var http =
+      "http://34.175.4.111:5000/api/isst/calendario/crear/" + req.session.user;
+    await axios.get(http).then((response) => {
+      myJson = response;
+    });
+    req.session.calendario_created = true;
+  }
   res.render("calendario", { myJson: myJson });
 };
 
 exports.dia = async (req, res, next) => {
   await acc(req);
   var dia = req.params.dia;
-  var dia_mes = dia.split('1001');
+  var dia_mes = dia.split("1001");
   if (dia == 0) {
     dia_mes = "error";
   }
-  var http = "http://34.175.4.111:5000/api/isst/calendario/dia/" + req.session.user + "/" + dia_mes[1] + "/" + dia_mes[0];
-  await axios.get(http).then((response) => {myJson = response.data;});
+  var http =
+    "http://34.175.4.111:5000/api/isst/calendario/dia/" +
+    req.session.user +
+    "/" +
+    dia_mes[1] +
+    "/" +
+    dia_mes[0];
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+  });
   res.render("dia", { dia_mes: dia_mes, myJson: myJson });
 };
 
@@ -123,7 +138,9 @@ exports.save = async (req, res, next) => {
     let plato = req.session.plato ? req.session.plato : [];
     plato.push(ing_overall);
     req.session.plato = plato;
-    let tot = req.session.total ? (parseInt(req.session.total) + parseInt(calorias)) : calorias;
+    let tot = req.session.total
+      ? parseInt(req.session.total) + parseInt(calorias)
+      : calorias;
     req.session.total = tot;
   }
 
