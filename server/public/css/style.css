@@ -182,7 +182,7 @@ h2 {
   background: #fff;
   height: 60vh;
   width: 90vw;
-  min-height: 400px;
+  min-height: 558px;
   border-radius: 10px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
@@ -325,7 +325,7 @@ h2 {
 .grideito {
   display: grid;
   grid-template-columns: 400px 200px;
-  grid-template-rows: 90px 400px;
+  grid-template-rows: 90px 500px;
   gap: 10px;
   height: 100%;
 }
