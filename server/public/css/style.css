@@ -199,6 +199,7 @@ h2 {
 
 .calendar-body {
   padding: 20px;
+  height: calc(100% - 40px);
 }
 
 .calendar-body ul {
@@ -229,8 +230,9 @@ h2 {
 }
 
 .calendar-body .calendar-dates li {
-  margin-top: auto;
-  margin-bottom: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  max-height: calc((100% - 54px)/6);
   position: relative;
   align-items: center;
   justify-content: center;
