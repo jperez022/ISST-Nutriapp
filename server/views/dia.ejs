@@ -8,7 +8,7 @@
       Dia: <%= dia_mes[0] %>
       Mes: <%= dia_mes[1] %>
       <br>
-      <% if (myJson == {}) { %>
+      <% if (myJson["resp"] == "vacio") { %>
         No hay platos añadidos este dia.
       <% } else { %>
         <% for (let i = 0; i < Object.keys(myJson).length; i++) { %>
