@@ -27,7 +27,7 @@ async function acc(req) {
 
 exports.inicio = async (req, res, next) => {
   await acc(req);
-  var http = "http://localhost:5000/api/isst/nuevo_usuario/" + req.session.user;
+  var http = "http://34.175.4.111:5000/api/isst/nuevo_usuario/" + req.session.user;
   axios.get(http);
   res.render("inicio", { layout: false });
 };
@@ -52,7 +52,7 @@ exports.calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";
   var http =
-    "http://localhost:5000/api/isst/calendario/crear/" + req.session.user;
+    "http://34.175.4.111:5000/api/isst/calendario/crear/" + req.session.user;
   await axios.get(http).then((response) => {
     myJson = response;
   });
@@ -66,9 +66,9 @@ exports.dia = async (req, res, next) => {
   if (dia == 0) {
     dia_mes = "error";
   }
-  var http = "http://localhost:5000/api/isst/calendario/dia/" + req.session.user + "/" + dia_mes[1] + "/" + dia_mes[0];
-  await axios.get(http).then((response) => {myJson = response;});
-  res.render("dia", { dia: dia_mes, myJson: myJson });
+  var http = "http://34.175.4.111:5000/api/isst/calendario/dia/" + req.session.user + "/" + dia_mes[1] + "/" + dia_mes[0];
+  await axios.get(http).then((response) => {myJson = response.data;});
+  res.render("dia", { dia_mes: dia_mes, myJson: myJson });
 };
 
 exports.educacion = async (req, res, next) => {
