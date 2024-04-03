@@ -22,16 +22,18 @@
     </form>
 
   </div>
-  <div class="grid4">
-    <% if (lista) {%>
-    <ul>
-      <% for (let elem of lista) { %>
-      <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
+  <div class="pp">
+    <div class="grid4">
+      <% if (lista) {%>
+      <ul>
+        <% for (let elem of lista) { %>
+        <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
+        <% } %>
+      </ul>
+      <% } else { %>
+      <div class="kk">Añade algun ingrediente!</div>
       <% } %>
-    </ul>
-    <% } else { %>
-    <div class="kk">Añade algun ingrediente!</div>
-    <% } %>
+      <button class="calc_but2" onclick="calculadoratot()">Crear Plato</button>
+    </div>
   </div>
-
 </section>
