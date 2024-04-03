@@ -50,10 +50,11 @@ function inicio() {
 }
 
 function ir_al_dia(dia,mes,año) {
-  if (año == 2024) {
-    let url = "http://localhost:3000/calendario/" + dia + "1001" + mes;
-  }
   let url = "http://localhost:3000/calendario/0";
+  if (año == 2024) {
+    mes = mes + 1;
+    url = "http://localhost:3000/calendario/" + dia + "1001" + mes;  
+  }
   window.location.href = url;
 }
 
