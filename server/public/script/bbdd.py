@@ -52,7 +52,7 @@ def bbdd_init():
 
     class Plato(db.Model):
         id = db.Column(db.Integer, primary_key = True)
-        nombre = db.Column(db.Integer, nullable = False)
+        nombre = db.Column(db.String(500), nullable = False)
         ingredientes = db.Column(db.String(500), nullable = False)
         cantidades = db.Column(db.String(500))
         calorias = db.Column(db.String(500))
@@ -118,10 +118,15 @@ def get_platos_en_dia(usuario, mes, dia):
     if elem == None:
         return Response(None,400)
     else:
-        user = elem.usuario
-        day = elem.dia
-        month = elem.mes
-        resp = {'usuario': user, 'dia': day, 'mes': month}
+        aux = elem.platos
+        if (len(aux) == 0):
+            resp = {"resp": "vacio"}
+        else:
+            num = 0
+            resp = {}
+            for elem in aux:   
+                resp[str(num)] = [elem.nombre,elem.ingredientes,elem.calorias_total]
+                num += 1
         return Response(json.dumps(resp),200)
 
 @app.route('/api/isst/nuevo_usuario/<string:usuario>', methods = ['GET', 'POST'])

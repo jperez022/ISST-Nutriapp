@@ -56,10 +56,13 @@ exports.calendario = async (req, res, next) => {
 exports.dia = async (req, res, next) => {
   await acc(req);
   var dia = req.params.dia;
+  var dia_mes = dia.split('1001');
   if (dia == 0) {
-    dia = "error";
+    dia_mes = "error";
   }
-  res.render("dia", { dia: dia });
+  var http = "http://localhost:5000/api/isst/calendario/dia/" + req.session.user + "/" + dia_mes[1] + "/" + dia_mes[0];
+  await axios.get(http).then((response) => {myJson = response;});
+  res.render("dia", { dia: dia_mes, myJson: myJson });
 };
 
 exports.educacion = async (req, res, next) => {
