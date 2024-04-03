@@ -269,23 +269,34 @@ h2 {
 }
 
 .calendar-navigation {
-    display: flex;
-    text-align: center;
+  display: flex;
+  text-align: center;
 }
 
 .calendar-navigation span {
-    height: 38px;
-    width: 38px;
-    margin: 0 1px;
-    cursor: pointer;
-    line-height: 38px;
-    border-radius: 50%;
-    user-select: none;
-    color: #aeabab;
-    font-size: 1.9rem;
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  line-height: 38px;
+  border-radius: 50%;
+  user-select: none;
+  color: #aeabab;
+  font-size: 1.9rem;
 }
 
 .calendar-current-date {
-    font-weight: 500;
-    font-size: 1.45rem;
+  font-weight: 500;
+  font-size: 1.45rem;
 }
+
+.my_dia_div {
+  height: 80vh;
+  width: 80vw;
+  border-radius: 15px;
+  background-color: white;
+  text-align: center;
+  padding: 15px;
+  margin: 15px;
+}
+
