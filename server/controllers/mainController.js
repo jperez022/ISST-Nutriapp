@@ -162,10 +162,48 @@ exports.saveplat = async (req, res, next) => {
 
   if (nombre && inges && calo) {
     let plato_global = [nombre, prep, fecha, inges, calo];
-    req.session.plato_global = plato_global;
     delete req.session.plato;
     delete req.session.total;
+    if (plato_global[1] == '') {
+      plato_global[1] = '_';
+    }
+    var new_fecha = plato_global[2].split('-');
+    var mi_dia = parseInt(new_fecha[2]);
+    var mi_mes = parseInt(new_fecha[1]);
+    plato_global[2] = mi_dia.toString() + "_" + mi_mes.toString();
+    var mis_ingredientes = "";
+    var mis_descripciones = "";
+    var mis_calorias = "";
+    var mi_aux = "";
+    for (let i = 0; i < plato_global[3].legth(); i++) {
+      mis_ingredientes = mis_ingredientes + plato_global[i][0].replace(' ','_') + "-";
+      mis_descripciones = mis_descripciones + plato_global[i][1].replace(' ','_') + "-";
+      mis_calorias = mis_calorias + plato_global[i][2].replace(' ','_') + "-";
+      mi_aux = mi_aux + "-"
+    }
+    if (mis_descripciones == mi_aux) {
+      mis_descripciones = "_"
+    }
+    req.session.plato_global = plato_global;
+    var http =
+      "http://localhost:5000/api/isst/agregar_plato/" +
+      req.session.user +
+      "/" +
+      req.session.plato_global[0].replace(' ','_') +
+      "/" +
+      req.session.plato_global[1] + 
+      "/" +
+      mis_ingredientes + 
+      "/" +
+      mis_descripciones + 
+      "/" +
+      mis_calorias + 
+      "/" +
+      req.session.plato_global[4] + 
+      "/" +
+      mis_calorias;
+    await axios.get(http);
   }
   //COMPLETAR PETICION A LA API
-  res.redirect("/ESTAPORVER");
+  res.redirect("/calendario");
 };

@@ -141,27 +141,34 @@ def nuevo_usuario(usuario):
 
 @app.route('/api/isst/agregar_plato/<string:usuario>/<string:nombre>/<string:preparacion>/<path:ingredientes>/<path:descripcion>/<path:calorias>/<int:calorias_total>/<string:dia_mes>', methods = ['GET', 'POST'])
 def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,calorias_total,dia_mes):
+    nombre = nombre.replace('_',' ')
+    preparacion = preparacion.replace('_',' ')
     ingredientes = ingredientes.replace('_',' ').replace('-','/')
-    calorias = calorias.replace('_',' ').replace('-','/')
     descripcion = descripcion.replace('_',' ').replace('-','/')
-    if preparacion == "_" and descripcion.replace(' ','').replace('/','') == "":
+    calorias = calorias.replace('_',' ').replace('-','/')
+    print("hola")
+    if preparacion == " " and descripcion == " ":
         entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
-    elif preparacion == "_":
+        print("hola1")
+    elif preparacion == " ":
         entry = Plato(nombre = nombre, ingredientes = ingredientes, descripcion = descripcion, calorias = calorias, calorias_total = calorias_total)
-    elif descripcion.replace(' ','').replace('/','') == "":
+        print("hola2")
+    elif descripcion == " ":
         entry = Plato(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
+        print("hola3")
     else:        
-        entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
+        entry = Plato(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, descripcion = descripcion, calorias = calorias, calorias_total = calorias_total)
+        print("hola4")
     db.session.add(entry)
     db.session.commit()
     if dia_mes != "no":
         dia_mes = dia_mes.split('_')
         elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == dia_mes[1], Dia.dia == dia_mes[0]).first()
-        if preparacion == "_" and descripcion.replace(' ','').replace('/','') == "":
+        if preparacion == " " and descripcion == " ":
             elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
-        elif preparacion == "_":
+        elif preparacion == " ":
             elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
-        elif descripcion.replace(' ','').replace('/','') == "":
+        elif descripcion == " ":
             elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
         else:
             elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
