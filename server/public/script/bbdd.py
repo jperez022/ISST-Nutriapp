@@ -53,7 +53,9 @@ def bbdd_init():
     class Plato(db.Model):
         id = db.Column(db.Integer, primary_key = True)
         nombre = db.Column(db.String(500), nullable = False)
+        preparacion = db.Column(db.String(500))
         ingredientes = db.Column(db.String(500), nullable = False)
+        descripcion = db.Column(db.String(500))
         calorias = db.Column(db.String(500), nullable = False)
         calorias_total = db.Column(db.Integer, nullable = False)
         dias = db.relationship("Dia", secondary = dia_platos, back_populates = "platos")
@@ -137,17 +139,32 @@ def nuevo_usuario(usuario):
         db.session.commit()
     return Response(None,200)
 
-@app.route('/api/isst/agregar_plato/<string:usuario>/<string:nombre>/<path:ingredientes>/<path:calorias>/<int:calorias_total>/<string:dia_mes>', methods = ['GET', 'POST'])
-def agregar_plato(usuario,nombre,ingredientes,calorias,calorias_total,dia_mes):
+@app.route('/api/isst/agregar_plato/<string:usuario>/<string:nombre>/<string:preparacion>/<path:ingredientes>/<path:descripcion>/<path:calorias>/<int:calorias_total>/<string:dia_mes>', methods = ['GET', 'POST'])
+def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,calorias_total,dia_mes):
     ingredientes = ingredientes.replace('_',' ').replace('-','/')
     calorias = calorias.replace('_',' ').replace('-','/')
-    entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
+    descripcion = descripcion.replace('_',' ').replace('-','/')
+    if preparacion == "_" and descripcion.replace(' ','').replace('/','') == "":
+        entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
+    elif preparacion == "_":
+        entry = Plato(nombre = nombre, ingredientes = ingredientes, descripcion = descripcion, calorias = calorias, calorias_total = calorias_total)
+    elif descripcion.replace(' ','').replace('/','') == "":
+        entry = Plato(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
+    else:        
+        entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
     db.session.add(entry)
     db.session.commit()
     if dia_mes != "no":
         dia_mes = dia_mes.split('_')
         elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == dia_mes[1], Dia.dia == dia_mes[0]).first()
-        elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+        if preparacion == "_" and descripcion.replace(' ','').replace('/','') == "":
+            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+        elif preparacion == "_":
+            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+        elif descripcion.replace(' ','').replace('/','') == "":
+            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+        else:
+            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
         statement = dia_platos.insert().values(dia_id= elem.id, plato_id= elem2.id)
         db.session.execute(statement)
     db.session.commit()
