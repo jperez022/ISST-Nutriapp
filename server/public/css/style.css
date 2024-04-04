@@ -617,3 +617,16 @@ input {
   transition: width 3s ease-in-out;
 }
 
+.perfil_peso_t {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.perfil_ejer_t {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

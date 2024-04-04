@@ -12,18 +12,30 @@
     <div class="grid_elem3">
       <h3>Tus Objetivos</h3>
       <div class="peso">
-        <h4>Peso actual <%= peso[1] %>kg</h4>
-        <div>Inicial (<%= peso[0] %>) &nbsp; &nbsp;Objetivo (<%= peso[3] %>)</div>
-        <div id="prog_bar_cont">
-          <div id="prog_bar_peso" style="width: 0;"></div>
-        </div>
+        <% if (peso == "error") { %>
+          <div class="perfil_peso_t">
+            No existen datos relativos a sus objetivos de peso en nuestras bases de datos.
+          </div>
+        <% } else { %>
+          <h4>Peso actual <%= peso[1] %>kg</h4>
+          <div>Inicial (<%= peso[0] %>) &nbsp; &nbsp;Objetivo (<%= peso[3] %>)</div>
+          <div id="prog_bar_cont">
+            <div id="prog_bar_peso" style="width: 0;"></div>
+          </div>
+        <% } %>
       </div>
       <div class="exer">
-        <h4>Ejercicio realizado esta semana<%= ejer[0] %></h4>
-        <div> Objetivo (<%= ejer[1] %>)</div>
-        <div id="prog_bar_cont">
-          <div id="prog_bar_ej" style="width: 0;"></div>
-        </div>
+        <% if (ejer == "error") { %>
+          <div class="perfil_ejer_t">
+            No existen datos relativos a sus objetivos de ejercicio en nuestras bases de datos.
+          </div>
+        <% } else { %>
+          <h4>Ejercicio realizado esta semana<%= ejer[0] %></h4>
+          <div> Objetivo (<%= ejer[1] %>)</div>
+          <div id="prog_bar_cont">
+            <div id="prog_bar_ej" style="width: 0;"></div>
+          </div>
+        <% } %>
       </div>
       <div class="obj_but">
         <button class="but_perf" onclick="cuenta()">Actualiza tus ojetivos</button>
