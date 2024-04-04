@@ -12,7 +12,7 @@ app = Flask(__name__)
 my_database = ('isst',)
 
 def bbdd_init():
-    global db, my_cursor, mydb, dia_platos, Dia, Platos_Sugeridos, Plato, Usuarios
+    global db, my_cursor, mydb, dia_platos, Dia, Platos_Sugeridos, Plato, Usuarios, Objetivos
     mydb = mysql.connector.connect(host = host, user = my_user, password = my_password)
     my_cursor = mydb.cursor()
     my_cursor.execute('SHOW DATABASES')
@@ -35,6 +35,7 @@ def bbdd_init():
     class Usuarios(db.Model):
         id = db.Column(db.Integer, primary_key = True)
         usuario = db.Column(db.String(500), nullable = False, unique = True)
+        objetivos = db.relationship("Objetivos", backref = "usuarios")
 
     class Dia(db.Model):
         id = db.Column(db.Integer, primary_key = True)
@@ -59,8 +60,26 @@ def bbdd_init():
         calorias = db.Column(db.String(500), nullable = False)
         calorias_total = db.Column(db.Integer, nullable = False)
         dias = db.relationship("Dia", secondary = dia_platos, back_populates = "platos")
+
+    class Objetivos(db.Model):
+        id = db.Column(db.Integer, primary_key = True)
+        usuario = db.Column(db.Integer, db.ForeignKey("usuarios.id"))
+        peso_ini = db.Column(db.String(10), nullable = False)
+        peso_act = db.Column(db.String(10), nullable = False)
+        peso_obj = db.Column(db.String(10), nullable = False)
+        ejercicio_act = db.Column(db.Integer, nullable = False)
+        ejercicio_obj = db.Column(db.Integer, nullable = False)
     
     db.create_all()
+
+@app.route('/api/isst/nuevo_usuario/<string:usuario>', methods = ['GET', 'POST'])
+def nuevo_usuario(usuario):
+    elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
+    if elem == None:
+        entry = Usuarios(usuario = usuario)
+        db.session.add(entry)
+        db.session.commit()
+    return Response(None,200)
 
 @app.route('/api/isst/calendario/crear/<string:usuario>', methods = ['GET', 'POST'])
 def crear_calendario(usuario):
@@ -130,17 +149,11 @@ def get_platos_en_dia(usuario, mes, dia):
                 num += 1
         return Response(json.dumps(resp),200)
 
-@app.route('/api/isst/nuevo_usuario/<string:usuario>', methods = ['GET', 'POST'])
-def nuevo_usuario(usuario):
-    elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
-    if elem == None:
-        entry = Usuarios(usuario = usuario)
-        db.session.add(entry)
-        db.session.commit()
-    return Response(None,200)
-
 @app.route('/api/isst/agregar_plato/<string:usuario>/<string:nombre>/<string:preparacion>/<path:ingredientes>/<path:descripcion>/<path:calorias>/<int:calorias_total>/<string:dia_mes>', methods = ['GET', 'POST'])
 def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,calorias_total,dia_mes):
+    elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
+    if elem == None:
+        return Response(None,400)
     nombre = nombre.replace('_',' ')
     preparacion = preparacion.replace('_',' ')
     ingredientes = ingredientes.replace('_',' ').replace('-','/')
@@ -171,6 +184,33 @@ def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,c
         db.session.execute(statement)
     db.session.commit()
     return Response(None,200)
+
+@app.route('/api/isst/crear_objetivos/<string:usuario>/<path:peso>/<path:ejercicio>', methods = ['GET', 'POST'])
+def crear_objetivos(usuario,peso,ejercicio):
+    user = Usuarios.query.filter(Usuarios.usuario == usuario).first()
+    if user == None:
+        return Response(None,400)
+    elem = Objetivos.query.filter(Objetivos.usuario == user.id).first()
+    if elem != None:
+        db.session.delete(elem)
+        db.session.commit()
+    peso = peso.split('-')
+    ejercicio = ejercicio.split('-')
+    entry = Objetivos(usuario = user.id, peso_ini = peso[0], peso_act = peso[1], peso_obj = peso[2], ejercicio_act = ejercicio[0], ejercicio_obj = ejercicio[1])
+    db.session.add(entry)
+    db.session.commit()
+    return Response(None,200)
+
+@app.route('/api/isst/obtener_objetivos/<string:usuario>', methods = ['GET', 'POST'])
+def obtener_objetivos(usuario):
+    user = Usuarios.query.filter(Usuarios.usuario == usuario).first()
+    if user == None:
+        return Response(None,400)
+    elem = Objetivos.query.filter(Objetivos.usuario == user.id).first()
+    if elem == None:
+        return Response(None,400)
+    resp = {"peso_ini": elem.peso_ini, "peso_act": elem.peso_act, "peso_obj": elem.peso_act, "ejercicio_act": elem.ejercicio_act, "ejercicio_obj": elem.ejercicio_obj}
+    return Response(json.dumps(resp),200)
 
 if __name__ == "__main__":
     bbdd_init()
