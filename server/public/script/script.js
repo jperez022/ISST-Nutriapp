@@ -51,12 +51,8 @@ function inicio() {
 }
 
 function cuenta() {
-  let url =
-    keycloakConfig["auth-server-url"] +
-    "/realms/" +
-    keycloakConfig.realm +
-    "/account";
-  window.location.href = url;
+
+  window.location.href = " http://localhost:8080/realms/ISST/account/#/personal-info";
 }
 
 function ir_al_dia(dia, mes, año) {
