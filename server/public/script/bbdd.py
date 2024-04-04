@@ -209,7 +209,7 @@ def obtener_objetivos(usuario):
     elem = Objetivos.query.filter(Objetivos.usuario == user.id).first()
     if elem == None:
         return Response(None,400)
-    resp = {"peso_ini": elem.peso_ini, "peso_act": elem.peso_act, "peso_obj": elem.peso_act, "ejercicio_act": elem.ejercicio_act, "ejercicio_obj": elem.ejercicio_obj}
+    resp = {"peso_ini": elem.peso_ini, "peso_act": elem.peso_act, "peso_obj": elem.peso_obj, "ejercicio_act": elem.ejercicio_act, "ejercicio_obj": elem.ejercicio_obj}
     return Response(json.dumps(resp),200)
 
 if __name__ == "__main__":

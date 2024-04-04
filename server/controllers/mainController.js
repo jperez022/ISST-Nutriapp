@@ -104,14 +104,21 @@ exports.objetivos = async (req, res, next) => {
 
 exports.perfil = async (req, res, next) => {
   await acc(req);
-  // HACER LLAMADA A LA API PARA OBTENER
-  let peso_ini = 100;
-  let peso_obj = 60;
-  let peso_act = 80;
-  let ejer_act = 1;
-  let ejer_obj = 4;
-  let peso = [peso_ini, peso_act, peso_obj];
-  let ejer = [ejer_act, ejer_obj];
+  var http =
+    "http://34.175.19.24:5000/api/isst/obtener_objetivos/" + req.session.user;
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+    peso_ini = myJson["peso_ini"].toString();
+    peso_obj = myJson["peso_obj"].toString();
+    peso_act = myJson["peso_act"].toString();
+    ejer_act = myJson["ejercicio_act"].toString();
+    ejer_obj = myJson["ejercicio_obj"].toString();
+    peso = [peso_ini, peso_act, peso_obj];
+    ejer = [ejer_act, ejer_obj];
+  }).catch((error) => {
+    peso = "error";
+    ejer = "error";
+  });
   res.render("perfil", { user: req.session.user, peso: peso, ejer: ejer });
 };
 
@@ -212,6 +219,5 @@ exports.saveplat = async (req, res, next) => {
       req.session.plato_global[2];
     await axios.get(http);
   }
-  //COMPLETAR PETICION A LA API
   res.redirect("/calendario");
 };
