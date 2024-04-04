@@ -566,3 +566,54 @@ input {
 .but_perf:hover {
   background-color: #2e7d30;
 }
+
+.peso {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.exer {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.obj_but {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#prog_bar_cont {
+  width: 80%;
+  height: 10px;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+}
+
+#prog_bar_peso {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 5px;
+  transition: width 2s ease-in;
+}
+
+#prog_bar_ej {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 5px;
+  transition: width 3s ease-in-out;
+}
+

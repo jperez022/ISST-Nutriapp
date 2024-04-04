@@ -104,7 +104,15 @@ exports.objetivos = async (req, res, next) => {
 
 exports.perfil = async (req, res, next) => {
   await acc(req);
-  res.render("perfil", { user: req.session.user });
+  // HACER LLAMADA A LA API PARA OBTENER
+  let peso_ini = 100;
+  let peso_obj = 60;
+  let peso_act = 80;
+  let ejer_act = 1;
+  let ejer_obj = 4;
+  let peso = [peso_ini, peso_act, peso_obj];
+  let ejer = [ejer_act, ejer_obj];
+  res.render("perfil", { user: req.session.user, peso: peso, ejer: ejer });
 };
 
 exports.plato = async (req, res, next) => {

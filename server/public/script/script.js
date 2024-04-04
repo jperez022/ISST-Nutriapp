@@ -51,8 +51,56 @@ function inicio() {
 }
 
 function cuenta() {
+  window.location.href =
+    " http://localhost:8080/realms/ISST/account/#/personal-info";
+}
 
-  window.location.href = " http://localhost:8080/realms/ISST/account/#/personal-info";
+function gradea(prog) {
+  let gradientColor = 0;
+  if (prog < 33) {
+    gradientColor = `
+    linear-gradient(to right,
+      red 0%, 
+      red 100%
+    )
+  `;
+  } else {
+    if (prog < 66) {
+      gradientColor = `
+        linear-gradient(to right,
+          red 0%, 
+          orange 100%
+        )
+      `;
+    } else {
+      gradientColor = `
+          linear-gradient(to right,
+            red 0%, 
+            orange 50%, 
+            lime 100% 
+          )
+        `;
+    }
+  }
+  return gradientColor;
+}
+
+function ponlobonito(pini, pact, pobj) {
+  let a = pact - pini;
+  let b = pobj - pini;
+  let c = a*100/b;
+  const progressBar = document.getElementById("prog_bar_peso");
+  let gradiente = gradea(c);
+  progressBar.style.width = `${c}%`;
+  progressBar.style.background = gradiente;
+}
+
+function ponlobonito2(eact, eobj) {
+  let c = eact*100/eobj;
+  const progressBar = document.getElementById("prog_bar_ej");
+  let gradiente = gradea(c);
+  progressBar.style.width = `${c}%`;
+  progressBar.style.background = gradiente;
 }
 
 function ir_al_dia(dia, mes, año) {
