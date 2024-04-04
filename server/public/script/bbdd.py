@@ -146,19 +146,14 @@ def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,c
     ingredientes = ingredientes.replace('_',' ').replace('-','/')
     descripcion = descripcion.replace('_',' ').replace('-','/')
     calorias = calorias.replace('_',' ').replace('-','/')
-    print("hola")
     if preparacion == " " and descripcion == " ":
         entry = Plato(nombre = nombre, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
-        print("hola1")
     elif preparacion == " ":
         entry = Plato(nombre = nombre, ingredientes = ingredientes, descripcion = descripcion, calorias = calorias, calorias_total = calorias_total)
-        print("hola2")
     elif descripcion == " ":
         entry = Plato(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, calorias = calorias, calorias_total = calorias_total)
-        print("hola3")
     else:        
         entry = Plato(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, descripcion = descripcion, calorias = calorias, calorias_total = calorias_total)
-        print("hola4")
     db.session.add(entry)
     db.session.commit()
     if dia_mes != "no":

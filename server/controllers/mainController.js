@@ -175,10 +175,10 @@ exports.saveplat = async (req, res, next) => {
     var mis_descripciones = "";
     var mis_calorias = "";
     var mi_aux = "";
-    for (let i = 0; i < plato_global[3].legth(); i++) {
-      mis_ingredientes = mis_ingredientes + plato_global[i][0].replace(' ','_') + "-";
-      mis_descripciones = mis_descripciones + plato_global[i][1].replace(' ','_') + "-";
-      mis_calorias = mis_calorias + plato_global[i][2].replace(' ','_') + "-";
+    for (let num = 0; num < plato_global[3].length; num++) {
+      mis_ingredientes = mis_ingredientes + plato_global[3][num][0].replace(' ','_') + "-";
+      mis_descripciones = mis_descripciones + plato_global[3][num][1].replace(' ','_') + "-";
+      mis_calorias = mis_calorias + plato_global[3][num][2].replace(' ','_') + "-";
       mi_aux = mi_aux + "-"
     }
     if (mis_descripciones == mi_aux) {
@@ -186,7 +186,7 @@ exports.saveplat = async (req, res, next) => {
     }
     req.session.plato_global = plato_global;
     var http =
-      "http://localhost:5000/api/isst/agregar_plato/" +
+      "http://34.175.4.111:5000/api/isst/agregar_plato/" +
       req.session.user +
       "/" +
       req.session.plato_global[0].replace(' ','_') +
@@ -201,7 +201,7 @@ exports.saveplat = async (req, res, next) => {
       "/" +
       req.session.plato_global[4] + 
       "/" +
-      mis_calorias;
+      req.session.plato_global[2];
     await axios.get(http);
   }
   //COMPLETAR PETICION A LA API
