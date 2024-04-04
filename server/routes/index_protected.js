@@ -28,4 +28,6 @@ router.get("/logo", Controller.logout);
 
 router.post("/calculadora/save", Controller.save);
 
+router.post("/calculadora/save/plato", Controller.saveplat);
+
 module.exports = router
