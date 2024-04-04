@@ -14,8 +14,15 @@
         <% for (let i = 0; i < Object.keys(myJson).length; i++) { %>
           <% var elems = myJson[aux.toString()].toString().split(',') %>
           Nombre: <%= elems[0] %>
-          Ingredientes: <%= elems[1] %>
-          Calorias: <%= elems[2] %>
+          <% if (elems[1] != null) { %>
+            Preparación: <%= elems[1] %>
+          <% } %>
+          Ingredientes: <%= elems[2] %>
+          <% if (elems[3] != null) { %>
+            Descripcion: <%= elems[3] %>
+          <% } %>
+          Calorias: <%= elems[4] %>
+          Calorias totales: <%= elems[5] %>
           <br>
           <% aux++ %>
         <% } %>

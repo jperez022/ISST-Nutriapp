@@ -126,7 +126,7 @@ def get_platos_en_dia(usuario, mes, dia):
             num = 0
             resp = {}
             for elem in aux:   
-                resp[str(num)] = [elem.nombre,elem.ingredientes,elem.calorias_total]
+                resp[str(num)] = [elem.nombre,elem.preparacion,elem.ingredientes,elem.descripcion,elem.calorias,elem.calorias_total]
                 num += 1
         return Response(json.dumps(resp),200)
 
