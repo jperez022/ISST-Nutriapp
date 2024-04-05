@@ -24,66 +24,32 @@
   <div id="ocupa_dia">
     <div class="my_dia_div">
       <h2 id="dia_tit"> <%= dia_mes[0] %> de <%= dia_mes[1] %> de 2024</h2>
+      <% for (let plat of platos ) { %>
       <div class="cosa">
-        <h3 id="nomarg">Macarrones con tomatico</h3>
+        <h3 id="nomarg"><%=plat[0]%> <%=plat[5]%>Kcal </h3>
         <div class="grideito4">
           <div class="grid_elem4">
             <h4 id="nomarg2">- Ingredientes:</h4>
-           <div class="sobra">
-            <ul>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-
-            </ul>
-           </div>
+            <div class="sobra">
+              <ul>
+                <% let ings = plat[2].split("/"); %>
+                <% let cals = plat[4].split("/"); %>
+                <% let desc = plat[2].split("/"); %>
+                <% for (let k = 0; k < ings.length; k++ ) { %>
+                <li><%= cals[k] %>kcal - <%= ings[k] %> (<%= desc[k] %>) </li>
+                <% } %>
+              </ul>
+            </div>
           </div>
           <div class="grid_elem4">
             <h4 id="nomarg3">- Preparación:</h4>
             <div class="sobra2">
-              hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holaholahola hola holaholahola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola
+              <%= plat[1] %>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="cosa">
-        <h3 id="nomarg">Macarrones con tomatico</h3>
-        <div class="grideito4">
-          <div class="grid_elem4">
-            <h4 id="nomarg2">- Ingredientes:</h4>
-           <div class="sobra">
-            <ul>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-              <li>Macarrones</li>
-              <li>Farlopa</li>
-
-            </ul>
-           </div>
-          </div>
-          <div class="grid_elem4">
-            <h4 id="nomarg3">- Preparación:</h4>
-            <div class="sobra2">
-              hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holaholahola hola holaholahola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <% } %>
       <div class="anade">
         Añade algún plato más!
         <button class="anade_but" onclick="calculadora()">Añadir</button>
