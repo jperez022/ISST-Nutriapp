@@ -26,6 +26,7 @@
       <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
       <% for (let plat of platos ) { %>
       <div class="cosa">
+        <% plat = plat.split(',')%>
         <h3 id="nomarg"><%=plat[0]%> <%=plat[5]%>Kcal </h3>
         <div class="grideito4">
           <div class="grid_elem4">
@@ -34,9 +35,9 @@
               <ul>
                 <% let ings = plat[2].split("/"); %>
                 <% let cals = plat[4].split("/"); %>
-                <% let desc = plat[2].split("/"); %>
-                <% for (let k = 0; k < ings.length; k++ ) { %>
-                <li><%= cals[k] %>kcal - <%= ings[k] %> (<%= desc[k] %>) </li>
+                <% let desc = plat[3].split("/"); %>
+                <% for (let k = 0; k < ings.length - 1; k++ ) { %>
+                <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc[k] != '') { %> (<%= desc[k] %>) <% } %></li>
                 <% } %>
               </ul>
             </div>
@@ -44,7 +45,12 @@
           <div class="grid_elem4">
             <h4 id="nomarg3">- Preparación:</h4>
             <div class="sobra2">
-              <%= plat[1] %>
+              <% if (plat[1] == '') { %>
+                <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
+                <button class="anade_but">Añadela!!!</button>
+              <% } else { %>
+                <%= plat[1] %>
+              <% } %>
             </div>
           </div>
         </div>
