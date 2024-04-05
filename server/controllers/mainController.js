@@ -197,7 +197,9 @@ exports.saveplat = async (req, res, next) => {
   const fecha = req.body.fecha;
   const inges = req.session.plato;
   const calo = req.session.total;
-
+  if (!fecha) {
+    fecha = "no";
+  }
   if (nombre && inges && calo) {
     let plato_global = [nombre, prep, fecha, inges, calo];
     delete req.session.plato;
