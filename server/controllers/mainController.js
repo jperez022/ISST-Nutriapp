@@ -93,9 +93,11 @@ exports.dia = async (req, res, next) => {
   if (myJson["resp"] == "vacio") {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
+    var aux = 0;
     var elems = []
     for (let i = 0; i < Object.keys(myJson).length; i++) {
       elems[aux.toString()] = myJson[aux.toString()].toString();
+      aux++;
     }
     res.render("dia", {
       layout: false,
