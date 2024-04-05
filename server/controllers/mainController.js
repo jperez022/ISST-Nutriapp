@@ -280,7 +280,9 @@ exports.preparacion = async (req, res, next) => {
     plat[1] + 
     "/" + 
     plat[2].replace(' ','_').replace('/','-') + 
+    "/" +
     plat[4].replace('/','-') + 
+    "/" +
     plat[5] + 
     "/" + 
     fecha.split(',')[0] + "_" + fecha.split(',')[1];
