@@ -194,7 +194,7 @@ exports.save = async (req, res, next) => {
 exports.saveplat = async (req, res, next) => {
   const nombre = req.body.nombre;
   const prep = req.body.prep;
-  const fecha = req.body.fecha;
+  var fecha = req.body.fecha;
   const inges = req.session.plato;
   const calo = req.session.total;
   if (!fecha) {
@@ -207,10 +207,12 @@ exports.saveplat = async (req, res, next) => {
     if (plato_global[1] == "") {
       plato_global[1] = "_";
     }
-    var new_fecha = plato_global[2].split("-");
-    var mi_dia = parseInt(new_fecha[2]);
-    var mi_mes = parseInt(new_fecha[1]);
-    plato_global[2] = mi_dia.toString() + "_" + mi_mes.toString();
+    if (plato_global[2] != "no") {
+      var new_fecha = plato_global[2].split("-");
+      var mi_dia = parseInt(new_fecha[2]);
+      var mi_mes = parseInt(new_fecha[1]);
+      plato_global[2] = mi_dia.toString() + "_" + mi_mes.toString();
+    }
     var mis_ingredientes = "";
     var mis_descripciones = "";
     var mis_calorias = "";
