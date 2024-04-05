@@ -94,7 +94,7 @@ exports.dia = async (req, res, next) => {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
     var aux = 0;
-    var elems = []
+    var elems = [];
     for (let i = 0; i < Object.keys(myJson).length; i++) {
       elems[aux.toString()] = myJson[aux.toString()].toString();
       aux++;
@@ -114,7 +114,7 @@ exports.educacion = async (req, res, next) => {
 
 exports.objetivos = async (req, res, next) => {
   await acc(req);
-  res.render("objetivos");
+  res.render("objetivos", { layout: false });
 };
 
 exports.perfil = async (req, res, next) => {
@@ -157,7 +157,7 @@ exports.premium = async (req, res, next) => {
 
 exports.seg = async (req, res, next) => {
   await acc(req);
-  res.render("seg");
+  res.render("seg", { layout: false });
 };
 
 exports.logout = (req, res, next) => {
