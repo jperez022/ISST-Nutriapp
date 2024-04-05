@@ -227,7 +227,7 @@ exports.saveplat = async (req, res, next) => {
     }
     req.session.plato_global = plato_global;
     var http =
-      "http://34.175.4.111:5000/api/isst/agregar_plato/" +
+      "http://localhost:5000/api/isst/agregar_plato/" +
       req.session.user +
       "/" +
       req.session.plato_global[0].replace(" ", "_") +

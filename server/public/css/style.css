@@ -350,6 +350,7 @@ h2 {
   grid-template-rows: 90px 400px;
   gap: 10px;
   height: 100%;
+  margin-bottom: 20px;
 }
 
 .big {
@@ -542,6 +543,7 @@ input {
   grid-template-rows: 450px;
   gap: 10px;
   height: 100%;
+  margin-bottom: 20px;
 }
 
 .grid_elem3 {
