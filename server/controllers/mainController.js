@@ -46,14 +46,14 @@ exports.calc = async (req, res, next) => {
   await acc(req);
   let lista = req.session.plato ? req.session.plato : false;
   let suma = req.session.total ? req.session.total : 0;
-  res.render("calc", { lista: lista, suma: suma });
+  res.render("calc", { layout: false, lista: lista, suma: suma });
 };
 
 exports.calc2 = async (req, res, next) => {
   await acc(req);
   let lista = req.session.plato ? req.session.plato : false;
   let suma = req.session.total ? req.session.total : 0;
-  res.render("calc2", { lista: lista, suma: suma });
+  res.render("calc2", { layout: false, lista: lista, suma: suma });
 };
 
 exports.calendario = async (req, res, next) => {
@@ -93,14 +93,14 @@ exports.dia = async (req, res, next) => {
   if (myJson["resp"] == "vacio") {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
-    var elems = []
+    var elems = [];
     for (let i = 0; i < Object.keys(myJson).length; i++) {
       elems[aux.toString()] = myJson[aux.toString()].toString();
     }
     res.render("dia", {
       layout: false,
       dia_mes: dia_mes,
-      platos: elems
+      platos: elems,
     });
   }
 };

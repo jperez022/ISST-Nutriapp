@@ -1,41 +1,69 @@
-<section class="grideito">
+<!DOCTYPE html>
+<html lang="en">
 
-  <h2 class="grid_elem">Calculadora Calórica</h2>
-  <h3 class="grid_elem">Total: <%= suma %>kcal</h3>
-  <div class="grid3">
-    <form class="todo" action="http://localhost:3000/calculadora/save" method="POST">
-      <div class="big">Ingrediente</div>
-      <input type="text" name="ing" placeholder="Ingrediente" />
-      <br />
-      <div class="med">Descripción (opcional)</div>
-      <textarea name="desc" rows="8" cols="40" placeholder="Descripcion del ingrediente, pesos, cantidades..."></textarea>
-      <br />
-      <div class="med">KiloCalorías</div>
-      <input type="text" class="calo" name="calo" />
-      <br>
-      <div class="bot2">
-        <button class="calc_but" onclick="calendario()">Volver</button>
-        <button class="calc_but" type="submit">Añadir</button>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUTRI-APP</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/script/script.js"></script>
+</head>
 
-
-    </form>
-
-  </div>
-  <div class="pp">
-    <div class="grid4">
-      <% if (lista) {%>
-      <ul class="mini">
-        <% for (let elem of lista) { %>
-        <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
-        <% } %>
-      </ul>
-      <% } else { %>
-      <div class="kk">Añade algún ingrediente!</div>
-      <% } %>
-      <div class="centr">
-        <button class="calc_but2" onclick="calculadoratot()">Crear Plato</button>
-      </div>
+<body>
+  <header>
+    <div id="ocupa_header">
+      <button class="but_head" onclick="calendario()">Volver</button>
     </div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
+  </header>
+
+  <div id="ocupa">
+    <section class="grideito">
+
+      <h2 class="grid_elem">Calculadora Calórica</h2>
+      <h3 class="grid_elem">Total: <%= suma %>kcal</h3>
+      <div class="grid3">
+        <form class="todo" action="http://localhost:3000/calculadora/save" method="POST">
+          <div class="big">Ingrediente</div>
+          <input type="text" name="ing" placeholder="Ingrediente" />
+          <br />
+          <div class="med">Descripción (opcional)</div>
+          <textarea name="desc" rows="8" cols="40" placeholder="Descripcion del ingrediente, pesos, cantidades..."></textarea>
+          <br />
+          <div class="med">KiloCalorías</div>
+          <input type="text" class="calo" name="calo" />
+          <br>
+          <div class="bot2">
+            <button class="calc_but" type="submit">Añadir</button>
+          </div>
+        </form>
+    
+      </div>
+      <div class="pp">
+        <div class="grid4">
+          <% if (lista) {%>
+          <ul class="mini">
+            <% for (let elem of lista) { %>
+            <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
+            <% } %>
+          </ul>
+          <% } else { %>
+          <div class="kk">Añade algún ingrediente!</div>
+          <% } %>
+          <div class="centr">
+            <button class="calc_but2" onclick="calculadoratot()">Crear Plato</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>

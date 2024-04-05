@@ -315,7 +315,7 @@ h2 {
   height: calc(100% - 88px);
   width: calc(100% - 61px);
   border-radius: 8px;
-  background-color: white;
+  background-color: #eee;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -539,7 +539,7 @@ input {
 .grideito3 {
   display: grid;
   grid-template-columns: 400px 400px;
-  grid-template-rows: 500px;
+  grid-template-rows: 450px;
   gap: 10px;
   height: 100%;
 }
@@ -553,10 +553,12 @@ input {
   border-radius: 8px;
 }
 
-.centraoo {
+.centraooo {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .brd {
@@ -706,20 +708,25 @@ input {
   outline: none;
 }
 
-#nomarg{
+#nomarg {
   margin: 0px;
   margin-left: 10px;
 }
 
-#nomarg2{
+#nomarg2 {
   margin-top: 4px;
   margin-bottom: 4px;
   margin-left: 15px;
 }
 
-#nomarg3{
+#nomarg3 {
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+#nomarg4 {
+  margin: 0px;
+  padding: 5px;
 }
 
 .grideito4 {
@@ -730,7 +737,7 @@ input {
   height: 100%;
 }
 
-.grid_elem4{
+.grid_elem4 {
   background-color: #fff;
   display: flex;
   flex-direction: column;
@@ -738,15 +745,26 @@ input {
   align-items: flex-start;
 }
 
-.sobra{
+.sobra {
   overflow-y: auto;
   width: 100%;
 }
 
-.sobra2{
+.sobra2 {
   overflow-y: auto;
   width: 98%;
   padding: 10px;
-
 }
 
+.rr {
+  min-height: calc(100vh - 284px);
+  padding: 20px;
+  margin: 30px;
+  width: 80%;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-radius: 8px;
+}
