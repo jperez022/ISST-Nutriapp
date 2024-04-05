@@ -91,7 +91,7 @@ exports.dia = async (req, res, next) => {
   });
 
   if (myJson["resp"] == "vacio") {
-    res.render("dia_vac", { layout: false });
+    res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
     let elems = myJson[aux.toString()].toString().split(",");
     let plato = elems[0];
@@ -101,6 +101,7 @@ exports.dia = async (req, res, next) => {
     let cal = elems[4];
     let cal_tot = elems[5];
     res.render("dia", {
+      layout: false,
       dia_mes: dia_mes,
       plato: plato,
       prep: prep,

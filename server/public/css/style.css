@@ -298,7 +298,7 @@ h2 {
 }
 
 .my_dia_div {
-  height: calc( 100vh - 198px );
+  height: calc(100vh - 198px);
   width: 80vw;
   border-radius: 8px;
   background-color: white;
@@ -311,9 +311,9 @@ h2 {
   overflow-y: auto;
 }
 
-.my_dia_div_vac{
-  height: calc( 100vh - 198px );
-  width: 80vw;
+.my_dia_div_vac {
+  height: calc(100% - 88px);
+  width: calc(100% - 61px);
   border-radius: 8px;
   background-color: white;
   display: flex;
@@ -649,7 +649,7 @@ input {
   align-items: center;
 }
 
-#ocupa_dia{
+#ocupa_dia {
   min-height: calc(
     100vh - 138px
   ); /*156px es por las alturas de footer y header*/
@@ -660,18 +660,18 @@ input {
   margin: 0;
 }
 
-.cosa{
+.cosa {
   min-height: 300px;
   height: 300px;
   background-color: #fff;
   margin: 10px;
   padding: 15px;
-  width: calc(100% - 50px);
+  width: calc(100% - 55px);
   border-radius: 8px;
   border: 1px solid #333;
 }
 
-.anade{
+.anade {
   max-height: 100px;
   background-color: #fff;
   margin: 10px;
@@ -683,7 +683,7 @@ input {
   align-items: center;
 }
 
-.anade_vac{
+.anade_vac {
   max-height: 100px;
   background-color: #fff;
   margin: 10px;
@@ -705,4 +705,8 @@ input {
   border: none;
   cursor: pointer;
   outline: none;
+}
+
+#dia_tit {
+  background-color: white;
 }
