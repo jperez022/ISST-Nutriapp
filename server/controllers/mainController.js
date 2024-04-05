@@ -218,13 +218,23 @@ exports.saveplat = async (req, res, next) => {
     var mis_calorias = "";
     var mi_aux = "";
     for (let num = 0; num < plato_global[3].length; num++) {
-      mis_ingredientes =
-        mis_ingredientes + plato_global[3][num][0].replace(" ", "_") + "-";
-      mis_descripciones =
-        mis_descripciones + plato_global[3][num][1].replace(" ", "_") + "-";
-      mis_calorias =
-        mis_calorias + plato_global[3][num][2].replace(" ", "_") + "-";
-      mi_aux = mi_aux + "-";
+      if (num == plato_global[3].length - 1) {
+        mis_ingredientes =
+          mis_ingredientes + plato_global[3][num][0].replace(" ", "_");
+        mis_descripciones =
+          mis_descripciones + plato_global[3][num][1].replace(" ", "_");
+        mis_calorias =
+          mis_calorias + plato_global[3][num][2].replace(" ", "_");
+        mi_aux = mi_aux + "-";
+      } else {
+        mis_ingredientes =
+          mis_ingredientes + plato_global[3][num][0].replace(" ", "_") + "-";
+        mis_descripciones =
+          mis_descripciones + plato_global[3][num][1].replace(" ", "_") + "-";
+        mis_calorias =
+          mis_calorias + plato_global[3][num][2].replace(" ", "_") + "-";
+        mi_aux = mi_aux + "-";
+      }
     }
     if (mis_descripciones == mi_aux) {
       mis_descripciones = "_";
@@ -253,25 +263,27 @@ exports.saveplat = async (req, res, next) => {
 };
 
 exports.preparacion = async (req, res, next) => {
+  let fecha = req.body.dia_mes;
   let plat = req.body.plat;
   plat = plat.split(',');
-  if (plat[1] == "") {
+  if (!req.body.prep) {
     plat[1] = "_";
+  } else {
+    plat[1] = req.body.prep;
   }
   var http = 
     "http://34.175.19.24:5000/api/isst/modificar_plato/" + 
+    req.session.user +
+    "/" +
     plat[0] + 
     "/" + 
     plat[1] + 
     "/" + 
-    plat[2].replace(' ','_').replace('/','_') + 
-    "/" + 
-    plat[4].replace('/','_') + 
-    "/" + 
+    plat[2].replace(' ','_').replace('/','-') + 
+    plat[4].replace('/','-') + 
     plat[5] + 
     "/" + 
     fecha.split(',')[0] + "_" + fecha.split(',')[1];
   await axios.get(http);
-  fecha = req.body.dia_mes;
   res.redirect("/calendario/" + fecha.split(',')[0] + "1001" + fecha.split(',')[1]);
 }
