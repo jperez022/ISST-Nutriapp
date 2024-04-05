@@ -1,32 +1,98 @@
-<section>
-  <div class="my_dia_div">
-    <% var aux = 0 %>
-    <% if (dia_mes == "error") { %>
-      La fecha que usted está intentando cargar no esta disponible todavía.
-      Pruebe con una fecha del año 2024.
-    <% } else { %>
-      Dia: <%= dia_mes[0] %>
-      Mes: <%= dia_mes[1] %>
-      <br>
-      <% if (myJson["resp"] == "vacio") { %>
-        No hay platos añadidos este dia.
-      <% } else { %>
-        <% for (let i = 0; i < Object.keys(myJson).length; i++) { %>
-          <% var elems = myJson[aux.toString()].toString().split(',') %>
-          Nombre: <%= elems[0] %>
-          <% if (elems[1] != null) { %>
-            Preparación: <%= elems[1] %>
-          <% } %>
-          Ingredientes: <%= elems[2] %>
-          <% if (elems[3] != null) { %>
-            Descripcion: <%= elems[3] %>
-          <% } %>
-          Calorias: <%= elems[4] %>
-          Calorias totales: <%= elems[5] %>
-          <br>
-          <% aux++ %>
-        <% } %>
-      <% } %>
-    <% } %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUTRI-APP</title>
+  <link rel="stylesheet" href="./server/public/css/style.css" />
+  <script src="/script/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div id="ocupa_header">
+      <button class="but_head" onclick="calendario()">Volver</button>
+    </div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
+  </header>
+
+  <div id="ocupa_dia">
+    <div class="my_dia_div">
+      <h2 id="dia_tit"> <%= dia_mes[0] %> de <%= dia_mes[1] %> de 2024</h2>
+      <div class="cosa">
+        <h3 id="nomarg">Macarrones con tomatico</h3>
+        <div class="grideito4">
+          <div class="grid_elem4">
+            <h4 id="nomarg2">- Ingredientes:</h4>
+           <div class="sobra">
+            <ul>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+
+            </ul>
+           </div>
+          </div>
+          <div class="grid_elem4">
+            <h4 id="nomarg3">- Preparación:</h4>
+            <div class="sobra2">
+              hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holaholahola hola holaholahola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cosa">
+        <h3 id="nomarg">Macarrones con tomatico</h3>
+        <div class="grideito4">
+          <div class="grid_elem4">
+            <h4 id="nomarg2">- Ingredientes:</h4>
+           <div class="sobra">
+            <ul>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+              <li>Macarrones</li>
+              <li>Farlopa</li>
+
+            </ul>
+           </div>
+          </div>
+          <div class="grid_elem4">
+            <h4 id="nomarg3">- Preparación:</h4>
+            <div class="sobra2">
+              hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holaholahola hola holaholahola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola hola hola holahola
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="anade">
+        Añade algún plato más!
+        <button class="anade_but" onclick="calculadora()">Añadir</button>
+      </div>
+    </div>
   </div>
-</section>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>
