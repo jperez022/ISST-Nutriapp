@@ -172,3 +172,21 @@ function realizar_calendario() {
     });
   });
 }
+
+async function añadir_preparacion(datos) {
+  console.log(datos)
+  var http =
+    "http://localhost:5000/api/isst/modificar_plato/" +
+    req.session.user +
+    "/" +
+    dia_mes[1] +
+    "/" +
+    dia_mes[0];
+  //await axios.get(http);
+  //let url = "http://localhost:3000/calendario/0";
+  if (año == 2024) {
+    mes = mes + 1;
+    url = "http://localhost:3000/calendario/" + dia + "1001" + mes;
+  }
+  //window.location.href = url;
+}

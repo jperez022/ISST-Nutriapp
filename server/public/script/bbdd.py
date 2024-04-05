@@ -47,8 +47,10 @@ def bbdd_init():
     class Platos_Sugeridos(db.Model):
         id = db.Column(db.Integer, primary_key = True)
         nombre = db.Column(db.Integer, nullable = False)
+        preparacion = db.Column(db.String(500), nullable = False)
         ingredientes = db.Column(db.String(500), nullable = False)
         cantidades = db.Column(db.String(500), nullable = False)
+        calorias = db.Column(db.String(500), nullable = False)
         calorias_total = db.Column(db.Integer, nullable = False)
 
     class Plato(db.Model):
@@ -185,6 +187,23 @@ def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,c
     db.session.commit()
     return Response(None,200)
 
+@app.route('/api/isst/modificar_plato/<string:usuario>/<string:nombre>/<string:preparacion>/<path:ingredientes>/<path:calorias>/<int:calorias_total>/<string:dia_mes>', methods = ['GET', 'POST'])
+def modificar_plato(usuario,nombre,preparacion,ingredientes,calorias,calorias_total,dia_mes):
+    elem = Usuarios.query.filter(Usuarios.usuario == usuario).first()
+    if elem == None:
+        return Response(None,400)
+    nombre = nombre.replace('_',' ')
+    ingredientes = ingredientes.replace('_',' ').replace('-','/')
+    calorias = calorias.replace('_',' ').replace('-','/')
+    dia_mes = dia_mes.split('_')
+    elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == dia_mes[1], Dia.dia == dia_mes[0]).first()
+    elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == None, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total, Plato.dias.any(id = elem.id)).first()    
+    if elem2 == None:
+        return Response(None,400)
+    elem2.preparacion = preparacion
+    db.session.commit()
+    return Response(None,200)
+
 @app.route('/api/isst/crear_objetivos/<string:usuario>/<path:peso>/<path:ejercicio>', methods = ['GET', 'POST'])
 def crear_objetivos(usuario,peso,ejercicio):
     user = Usuarios.query.filter(Usuarios.usuario == usuario).first()
@@ -211,6 +230,10 @@ def obtener_objetivos(usuario):
         return Response(None,400)
     resp = {"peso_ini": elem.peso_ini, "peso_act": elem.peso_act, "peso_obj": elem.peso_obj, "ejercicio_act": elem.ejercicio_act, "ejercicio_obj": elem.ejercicio_obj}
     return Response(json.dumps(resp),200)
+
+@app.route('/api/isst/agregar_plato_sugerido/<string:usuario>/<string:preparacion>/<path:ingredientes>/<path:cantidad>/<path:calorias>/<int:calorias_total>', methods = ['GET', 'POST'])
+def agregar_plato_sugerido(usuario):
+    return Response()
 
 if __name__ == "__main__":
     bbdd_init()

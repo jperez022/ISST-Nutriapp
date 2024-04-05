@@ -47,7 +47,7 @@
             <div class="sobra2">
               <% if (plat[1] == '') { %>
                 <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
-                <button class="anade_but">Añadela!!!</button>
+                <button class="anade_but" onclick="añadir_preparacion('<%= plat %>')">Añadela!!!</button>
               <% } else { %>
                 <%= plat[1] %>
               <% } %>
