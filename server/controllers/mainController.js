@@ -93,22 +93,14 @@ exports.dia = async (req, res, next) => {
   if (myJson["resp"] == "vacio") {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
-    let elems = myJson[aux.toString()].toString().split(",");
-    let plato = elems[0];
-    let prep = elems[1];
-    let ing = elems[2];
-    let desc = elems[3];
-    let cal = elems[4];
-    let cal_tot = elems[5];
+    var elems = []
+    for (let i = 0; i < Object.keys(myJson).length; i++) {
+      elems[aux.toString()] = myJson[aux.toString()].toString();
+    }
     res.render("dia", {
       layout: false,
       dia_mes: dia_mes,
-      plato: plato,
-      prep: prep,
-      ing: ing,
-      desc: desc,
-      cal: cal,
-      cal_tot: cal_tot,
+      platos: elems
     });
   }
 };
