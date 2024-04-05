@@ -253,6 +253,25 @@ exports.saveplat = async (req, res, next) => {
 };
 
 exports.preparacion = async (req, res, next) => {
-  fecha = req.session.temp_date;
+  let plat = req.body.plat;
+  plat = plat.split(',');
+  if (plat[1] == "") {
+    plat[1] = "_";
+  }
+  var http = 
+    "http://34.175.19.24:5000/api/isst/modificar_plato/" + 
+    plat[0] + 
+    "/" + 
+    plat[1] + 
+    "/" + 
+    plat[2].replace(' ','_').replace('/','_') + 
+    "/" + 
+    plat[4].replace('/','_') + 
+    "/" + 
+    plat[5] + 
+    "/" + 
+    fecha.split(',')[0] + "_" + fecha.split(',')[1];
+  await axios.get(http);
+  fecha = req.body.dia_mes;
   res.redirect("/calendario/" + fecha.split(',')[0] + "1001" + fecha.split(',')[1]);
 }
