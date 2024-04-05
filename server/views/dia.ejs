@@ -46,8 +46,11 @@
             <h4 id="nomarg3">- Preparación:</h4>
             <div class="sobra2">
               <% if (plat[1] == '') { %>
-                <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
-                <button class="anade_but" onclick="añadir_preparacion('<%= plat %>')">Añadela!!!</button>
+                <form class="todo" action="http://34.175.19.24:3000/calendario/preparacion" method="POST"></form>
+                  <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
+                  <button class="anade_but" type="submit">Añadela!!!</button>
+                  <script>req.session.temp_date = '<%= dia_mes %>'</script>
+                </form>
               <% } else { %>
                 <%= plat[1] %>
               <% } %>

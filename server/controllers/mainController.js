@@ -251,3 +251,8 @@ exports.saveplat = async (req, res, next) => {
   }
   res.redirect("/calendario");
 };
+
+exports.preparacion = async (req, res, next) => {
+  fecha = req.session.temp_date;
+  res.redirect("/calendario/" + fecha.split(',')[0] + "1001" + fecha.split(',')[1]);
+}

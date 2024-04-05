@@ -30,4 +30,6 @@ router.post("/calculadora/save", Controller.save);
 
 router.post("/calculadora/save/plato", Controller.saveplat);
 
+rputer.post("/calendario/preparacion", Controller.preparacion)
+
 module.exports = router
