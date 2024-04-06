@@ -120,7 +120,7 @@ exports.objetivos = async (req, res, next) => {
 exports.perfil = async (req, res, next) => {
   await acc(req);
   var http =
-    "http://34.175.19.24:5000/api/isst/obtener_objetivos/" + req.session.user;
+    "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
   await axios
     .get(http)
     .then((response) => {
@@ -282,7 +282,7 @@ exports.preparacion = async (req, res, next) => {
     plat[1] = req.body.prep;
   }
   var http = 
-    "http://34.175.19.24:5000/api/isst/modificar_plato/" + 
+    "http://localhost:5000/api/isst/modificar_plato/" + 
     req.session.user +
     "/" +
     plat[0] + 
