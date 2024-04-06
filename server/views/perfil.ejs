@@ -32,33 +32,33 @@
           </div>
           <button class="but_perf" onclick="cuenta()">Tu cuenta</button>
         </div>
-    
+
         <div class="grid_elem3">
           <h3>Tus Objetivos</h3>
           <div class="peso">
             <% if (peso == "error") { %>
-              <div class="perfil_peso_t">
-                No existen datos relativos a sus objetivos de peso en nuestras bases de datos.
-              </div>
+            <div class="perfil_peso_t">
+              No existen datos relativos a sus objetivos de peso en nuestras bases de datos.
+            </div>
             <% } else { %>
-              <h4>Peso actual <%= peso[1] %>kg</h4>
-              <div>Inicial (<%= peso[0] %>) &nbsp; &nbsp;Objetivo (<%= peso[2] %>)</div>
-              <div id="prog_bar_cont">
-                <div id="prog_bar_peso" style="width: 0;"></div>
-              </div>
+            <h4>Peso actual <%= peso[1] %>kg</h4>
+            <div>Inicial (<%= peso[0] %>) &nbsp; &nbsp;Objetivo (<%= peso[2] %>)</div>
+            <div id="prog_bar_cont">
+              <div id="prog_bar_peso" style="width: 0;"></div>
+            </div>
             <% } %>
           </div>
           <div class="exer">
             <% if (ejer == "error") { %>
-              <div class="perfil_ejer_t">
-                No existen datos relativos a sus objetivos de ejercicio en nuestras bases de datos.
-              </div>
+            <div class="perfil_ejer_t">
+              No existen datos relativos a sus objetivos de ejercicio en nuestras bases de datos.
+            </div>
             <% } else { %>
-              <h4>Ejercicio realizado esta semana <%= ejer[0] %></h4>
-              <div> Objetivo (<%= ejer[1] %>)</div>
-              <div id="prog_bar_cont">
-                <div id="prog_bar_ej" style="width: 0;"></div>
-              </div>
+            <h4>Ejercicio realizado esta semana <%= ejer[0] %></h4>
+            <div> Objetivo (<%= ejer[1] %>)</div>
+            <div id="prog_bar_cont">
+              <div id="prog_bar_ej" style="width: 0;"></div>
+            </div>
             <% } %>
           </div>
           <div class="obj_but">
@@ -66,23 +66,24 @@
           </div>
         </div>
       </div>
-      <script>
-        let pini = <%= peso[0] %>;
-        let pact = <%= peso[1] %>;
-        let pobj = <%= peso[2] %>;
-        let eact = <%= ejer[0] %>;
-        let eobj = <%= ejer[1] %>;
-        document.addEventListener('DOMContentLoaded', function() {
-          ponlobonito(pini, pact, pobj);
-          ponlobonito2(eact, eobj);
-        });
-      </script>
+
     </section>
-    
+
   </div>
   <footer>
     <p>© 2024 NutriApp. Todos los derechos reservados.</p>
   </footer>
+  <script>
+    let pini = <%= peso[0] %>;
+    let pact = <%= peso[1] %>;
+    let pobj = <%= peso[2] %>;
+    let eact = <%= ejer[0] %>;
+    let eobj = <%= ejer[1] %>;
+    document.addEventListener('DOMContentLoaded', function() {
+      ponlobonito(pini, pact, pobj);
+      ponlobonito2(eact, eobj);
+    });
+  </script>
 </body>
 
 </html>

@@ -55,6 +55,10 @@ function cuenta() {
     " http://localhost:8080/realms/ISST/account/#/personal-info";
 }
 
+function segchan() {
+  window.location.href = "http://localhost:3000/seg/mod";
+}
+
 function gradea(prog) {
   let gradientColor = 0;
   if (prog < 33) {
@@ -88,7 +92,7 @@ function gradea(prog) {
 function ponlobonito(pini, pact, pobj) {
   let a = pact - pini;
   let b = pobj - pini;
-  let c = a*100/b;
+  let c = (a * 100) / b;
   const progressBar = document.getElementById("prog_bar_peso");
   let gradiente = gradea(c);
   progressBar.style.width = `${c}%`;
@@ -96,7 +100,7 @@ function ponlobonito(pini, pact, pobj) {
 }
 
 function ponlobonito2(eact, eobj) {
-  let c = eact*100/eobj;
+  let c = (eact * 100) / eobj;
   const progressBar = document.getElementById("prog_bar_ej");
   let gradiente = gradea(c);
   progressBar.style.width = `${c}%`;

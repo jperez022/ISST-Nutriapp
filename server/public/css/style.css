@@ -43,6 +43,17 @@ nav {
   margin: 0;
 }
 
+#ocupa2 {
+  min-height: calc(
+    100vh - 138px
+  ); /*156px es por las alturas de footer y header*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+}
+
 .mini {
   min-height: 250px;
 }
@@ -369,7 +380,16 @@ h2 {
 
 .todo {
   height: 100%;
-  width: 95%;
+  width: 100%;
+}
+
+.todo2 {
+  height: calc(100% - 100px);
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 
 .desc {
@@ -769,4 +789,68 @@ input {
   justify-content: flex-start;
   align-items: flex-start;
   border-radius: 8px;
+}
+
+#seg {
+  min-height: calc(
+    100vh - 138px
+  ); /*156px es por las alturas de footer y header*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 30px;
+}
+
+
+.grid_elem5 {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+}
+
+
+.grideito5 {
+  display: grid;
+  grid-template-columns: 400px 400px;
+  grid-template-rows: 500px;
+  gap: 10px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.seg{
+  width: calc(100% - 40px);
+  padding: 20px;
+  height: calc(100% - 103px);
+}
+
+.grid_elem6 {
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+}
+
+
+.calc_but3{
+  margin: auto;
+  margin-top: 10px;
+  padding: 5px;
+  width: 150px;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="range"] {
+  width: 250px; /* Establece el ancho deseado */
 }

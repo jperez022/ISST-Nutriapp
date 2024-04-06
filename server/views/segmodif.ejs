@@ -27,15 +27,15 @@
         <div class="grid_elem5">
           <h3 class="centraooo"> Seguimiento </h3>
           <div class="seg">
-            <div class="todo">
+            <form class="todo" action="http://localhost:3000/seg/save" method="POST">
               <div class="todo2">
-                <h4>Peso actual</h4>
+                <h4>Establece tu peso actual</h4>
                 <br>
-                <div><%= peso.act%> kgs</div>
+                <div><input type="number" id="cantidad" name="peso" min="0" max="100" value="<%= peso.act%>">kgs </div>
                 <br>
-                <h4 class="med">Ejercicio realizado esta semana</h4>
+                <h4 class="med">Cuanto ejercicio llevas esta semana?</h4>
                 <br>
-                <div><%= ejer.act %> horas </div>
+                <div> <input type="time" id="tiempo" name="tiempo"> horas </div>
                 <br>
 
                 <br>
@@ -44,9 +44,9 @@
               <div class="centraooo">
                 <div>Animo!</div>
                 <br>
-                <button class="calc_but3" onclick="segchan()">Realizar cambios</button>
+                <button class="calc_but3" onclick="segchan()">Guardar cambios</button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
 

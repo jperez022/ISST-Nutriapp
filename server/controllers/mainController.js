@@ -157,6 +157,16 @@ exports.premium = async (req, res, next) => {
 
 exports.seg = async (req, res, next) => {
   await acc(req);
+  // LLAMADA A LA API
+  let peso_act; //pasar estos parametros a la vista
+  let peso_obj;
+  let ejer_act;
+  let ejer_obj;
+  // Guardados en memoria para no tener que realizar otra peticion
+  req.session.peso_act = peso_act;
+  req.session.peso_obj = peso_obj;
+  req.session.ejer_act = ejer_act;
+  req.session.ejer_obj = ejer_obj;
   res.render("seg", { layout: false });
 };
 
@@ -254,5 +264,34 @@ exports.saveplat = async (req, res, next) => {
 
 exports.preparacion = async (req, res, next) => {
   fecha = req.session.temp_date;
-  res.redirect("/calendario/" + fecha.split(',')[0] + "1001" + fecha.split(',')[1]);
+  res.redirect(
+    "/calendario/" + fecha.split(",")[0] + "1001" + fecha.split(",")[1]
+  );
+};
+
+exports.segmod = async (req, res, next) => {
+  req.session.peso_act = peso_act;
+  req.session.peso_obj = peso_obj;
+  req.session.ejer_act = ejer_act;
+  req.session.ejer_obj = ejer_obj;
+
+  res.render("segmodif", { layout: false });
+};
+
+exports.objchan = async (req, res, next) => {
+  let peso_obj = req.body.valor;
+  let ejer_obj = req.body.cantidad;
+
+  //Realizar llamada a la api para guardarlos
+  res.redirect("/ESTAPORVER")
 }
+
+exports.segsav = async (req, res, next) => {
+  let peso_act = req.body.peso;
+  let ejer_act = req.body.tiempo;
+  // El tiempo lo guardaba en minutos
+  //Realizar llamada a la api para guardarlos
+  res.redirect("/ESTAPORVER")
+}
+
+segsav

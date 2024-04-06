@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-const Controller = require("../controllers/mainController")
+const Controller = require("../controllers/mainController");
 
 router.get("/inicio", Controller.inicio);
 
@@ -24,12 +24,19 @@ router.get("/premium", Controller.premium);
 
 router.get("/seguimiento", Controller.seg);
 
+router.get("/seg/mod", Controller.segmod);
+
 router.get("/logo", Controller.logout);
 
 router.post("/calculadora/save", Controller.save);
 
 router.post("/calculadora/save/plato", Controller.saveplat);
 
-rputer.post("/calendario/preparacion", Controller.preparacion)
+router.post("/calendario/preparacion", Controller.preparacion);
 
-module.exports = router
+router.post("/obj/change", Controller.objchan);
+
+router.post("/seg/save", Controller.segsav);
+
+
+module.exports = router;
