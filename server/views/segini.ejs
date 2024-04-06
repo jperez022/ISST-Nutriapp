@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUTRI-APP</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/script/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div id="ocupa_header">
+      <button class="but_head" onclick="calendario()">Volver</button>
+    </div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
+  </header>
+
+  <div id="ocupa_dia">
+    <div class="my_dia_div">
+      <h2 id="dia_tit">Establece tus datos y objetivos!!</h2>
+      <div class="my_dia_div_vac2">
+        <form class="todo" action="http://localhost:3000/seg/inisave" method="POST">
+          <div class="todo2">
+            <div class="junta">
+              <h4>Peso inicial: &nbsp;</h4>
+              <input type="number" id="cantidad" name="pesoini" min="0" max="200" value="80"> &nbsp;kgs
+            </div>
+            <div class="junta">
+              <h4>Peso actual: &nbsp;</h4>
+              <input type="number" id="cantidad" name="peso" min="0" max="200" value="80"> &nbsp;kgs
+            </div>
+            
+            <div class="junta">
+              <h4>Peso objetivo: &nbsp;</h4> 
+              <output for="valor" id="output"> 80kgs </output>
+            </div>
+            <div>50kgs&nbsp; <input type="range" id="valor" name="pesojb" min="50" max="150" value=" 80">&nbsp;150kgs</div>
+            <div class="junta">
+              <h4>Ejercicio Semanal Objetivo: &nbsp;</h4>
+              <input type="time" id="cantidad" name="cantidad" min="0" max="100" value="05:00">&nbsp; horas
+            </div>
+            <br>
+          </div>
+
+          <div class="centraooo">
+
+            <br>
+            <button class="calc_but4" type="submit">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('valor').addEventListener('input', function() {
+      let kk = "" + this.value + "kgs";
+      document.getElementById('output').textContent = kk;
+    });
+  </script>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>

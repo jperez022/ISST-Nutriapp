@@ -40,4 +40,6 @@ router.post("/obj/change", Controller.objchan);
 
 router.post("/seg/save", Controller.segsav);
 
+router.post("/seg/inisave", Controller.segsaveini);
+
 module.exports = router;

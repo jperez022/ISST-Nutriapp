@@ -336,6 +336,20 @@ h2 {
   overflow-y: auto;
 }
 
+.my_dia_div_vac2 {
+  height: calc(100% - 88px);
+  width: calc(100% - 61px);
+  border-radius: 8px;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  margin: 15px;
+  overflow-y: auto;
+}
+
 .grid_elem {
   background-color: #eee;
   display: flex;
@@ -389,7 +403,6 @@ h2 {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
 }
 
 .desc {
@@ -860,5 +873,43 @@ input {
 }
 
 input[type="range"] {
-  width: 250px; /* Establece el ancho deseado */
+  width: 250px;
+}
+
+.separa{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.junta{
+  display: flex;
+  align-items: center;
+}
+
+.todo3 {
+  height: calc(100% - 100px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.calc_but4 {
+  margin-top: 10px;
+  padding: 5px;
+  height: 50px;
+  width: 400px;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  font-size: 2em;
+}
+
+.calc_but4:hover {
+  background-color: #2e7d30;
 }

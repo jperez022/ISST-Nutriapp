@@ -179,8 +179,7 @@ exports.seg = async (req, res, next) => {
       ejer = [ejer_act, ejer_obj];
     })
     .catch((error) => {
-      peso = "error";
-      ejer = "error";
+      res.render("segini", { layout: false });
     });
   res.render("seg", { layout: false, peso: peso, ejer: ejer });
 };
@@ -380,6 +379,19 @@ exports.segsav = async (req, res, next) => {
     "/" + 
     ejer;
   await axios.get(http);
+  // El tiempo lo guardaba en minutos
+  //Realizar llamada a la api para guardarlos
+  res.redirect("/ESTAPORVER");
+};
+
+exports.segsaveini = async (req, res, next) => {
+  let peso_ini = req.body.pesoini;
+  let peso_act = req.body.peso;
+  let peso_obj = req.body.pesojb;
+  let ejer_act = 0;
+  let ejer_obj = req.body.cantidad; //Esto viene en formato raro
+  let peso = [peso_ini, peso_act, peso_obj];
+  let ejer = [ejer_act, ejer_obj];
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
   res.redirect("/ESTAPORVER");
