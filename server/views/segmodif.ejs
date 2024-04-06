@@ -31,7 +31,10 @@
               <div class="todo2">
                 <h4>Establece tu peso actual</h4>
                 <br>
-                <div><input type="number" id="cantidad" name="peso" min="0" max="100" value="<%= peso.act%>">kgs </div>
+                <div><input type="number" id="cantidad" name="peso" min="0" max="100" value="<%= peso[1] %>">kgs </div>
+                <input name="peso_ini" type="hidden" value="<%= peso[0] %>" />
+                <input name="peso_obj" type="hidden" value="<%= peso[2] %>" />
+                <input name="ejer_obj" type="hidden" value="<%= ejer[1] %>" />
                 <br>
                 <h4 class="med">Cuanto ejercicio llevas esta semana?</h4>
                 <br>
@@ -56,13 +59,16 @@
             <form class="todo" action="http://localhost:3000/obj/change" method="POST">
               <div class="todo2">
                 <h4>Peso objetivo:</h4>
-                <output for="valor" id="output"> <%= peso.obj %> </output>
+                <output for="valor" id="output"> <%= peso[2] %> </output>
                 <div>
-                  50kgs <input type="range" id="valor" name="valor" min="50" max="150" value=" <%= peso.obj %>"> 150kgs
+                  50kgs <input type="range" id="valor" name="valor" min="50" max="150" value=" <%= peso[2] %>"> 150kgs
                 </div>
                 <br>
                 <h4>Horas de ejercicio semanales</h4>
-                <input type="number" id="cantidad" name="cantidad" min="0" max="100" value="<%= ejer_obj %>">
+                <input type="number" id="cantidad" name="cantidad" min="0" max="100" value="<%= ejer[1] %>">
+                <input name="peso_ini" type="hidden" value="<%= peso[0] %>" />
+                <input name="peso_act" type="hidden" value="<%= peso[1] %>" />
+                <input name="ejer_act" type="hidden" value="<%= ejer[0] %>" />
 
               </div>
               <div class="centraooo">

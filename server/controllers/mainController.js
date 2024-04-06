@@ -164,17 +164,25 @@ exports.premium = async (req, res, next) => {
 
 exports.seg = async (req, res, next) => {
   await acc(req);
-  // LLAMADA A LA API
-  let peso_act; //pasar estos parametros a la vista
-  let peso_obj;
-  let ejer_act;
-  let ejer_obj;
-  // Guardados en memoria para no tener que realizar otra peticion
-  req.session.peso_act = peso_act;
-  req.session.peso_obj = peso_obj;
-  req.session.ejer_act = ejer_act;
-  req.session.ejer_obj = ejer_obj;
-  res.render("seg", { layout: false });
+  var http =
+    "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
+  await axios
+    .get(http)
+    .then((response) => {
+      myJson = response.data;
+      peso_ini = myJson["peso_ini"].toString();
+      peso_obj = myJson["peso_obj"].toString();
+      peso_act = myJson["peso_act"].toString();
+      ejer_act = myJson["ejercicio_act"].toString();
+      ejer_obj = myJson["ejercicio_obj"].toString();
+      peso = [peso_ini, peso_act, peso_obj];
+      ejer = [ejer_act, ejer_obj];
+    })
+    .catch((error) => {
+      peso = "error";
+      ejer = "error";
+    });
+  res.render("seg", { layout: false, peso: peso, ejer: ejer });
 };
 
 exports.logout = (req, res, next) => {
@@ -311,18 +319,45 @@ exports.preparacion = async (req, res, next) => {
 };
 
 exports.segmod = async (req, res, next) => {
-  req.session.peso_act = peso_act;
-  req.session.peso_obj = peso_obj;
-  req.session.ejer_act = ejer_act;
-  req.session.ejer_obj = ejer_obj;
-
-  res.render("segmodif", { layout: false });
+  var http =
+    "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
+  await axios
+    .get(http)
+    .then((response) => {
+      myJson = response.data;
+      peso_ini = myJson["peso_ini"].toString();
+      peso_obj = myJson["peso_obj"].toString();
+      peso_act = myJson["peso_act"].toString();
+      ejer_act = myJson["ejercicio_act"].toString();
+      ejer_obj = myJson["ejercicio_obj"].toString();
+      peso = [peso_ini, peso_act, peso_obj];
+      ejer = [ejer_act, ejer_obj];
+    })
+    .catch((error) => {
+      peso = "error";
+      ejer = "error";
+    });
+  res.render("segmodif", { layout: false, peso: peso, ejer: ejer });
 };
 
 exports.objchan = async (req, res, next) => {
   let peso_obj = req.body.valor;
   let ejer_obj = req.body.cantidad;
-
+  let peso_ini = req.body.peso_ini;
+  let peso_act = req.body.peso_act;
+  let ejer_act = req.body.ejer_act;
+  let peso = [peso_ini, peso_act, peso_obj];
+  let ejer = [ejer_act, ejer_obj];
+  peso = peso.join('-');
+  ejer = ejer.join('-');
+  var http =
+    "http://localhost:5000/api/isst/crear_objetivos/" + 
+    req.session.user + 
+    "/" + 
+    peso + 
+    "/" + 
+    ejer;
+  await axios.get(http);
   //Realizar llamada a la api para guardarlos
   res.redirect("/ESTAPORVER");
 };
@@ -330,6 +365,21 @@ exports.objchan = async (req, res, next) => {
 exports.segsav = async (req, res, next) => {
   let peso_act = req.body.peso;
   let ejer_act = req.body.tiempo;
+  let peso_ini = req.body.peso_ini;
+  let peso_obj = req.body.peso_obj;
+  let ejer_obj = req.body.ejer_obj;
+  let peso = [peso_ini, peso_act, peso_obj];
+  let ejer = [ejer_act, ejer_obj];
+  peso = peso.join('-');
+  ejer = ejer.join('-');
+  var http =
+    "http://localhost:5000/api/isst/crear_objetivos/" + 
+    req.session.user + 
+    "/" + 
+    peso + 
+    "/" + 
+    ejer;
+  await axios.get(http);
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
   res.redirect("/ESTAPORVER");
