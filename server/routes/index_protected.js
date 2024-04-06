@@ -20,6 +20,8 @@ router.get("/perfil", Controller.perfil);
 
 router.get("/plato", Controller.plato);
 
+router.get("/plato/gen", Controller.platogen);
+
 router.get("/premium", Controller.premium);
 
 router.get("/seguimiento", Controller.seg);

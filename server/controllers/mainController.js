@@ -151,6 +151,12 @@ exports.plato = async (req, res, next) => {
   res.render("plato", { layout: false, dia_mes: dia_mes, platos: elems });
 };
 
+exports.platogen = async (req, res, next) => {
+  await acc(req);
+  // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS RECOMENDADOS AL USUARIO
+  res.render("platogen", { layout: false, platos: elems });
+};
+
 exports.premium = async (req, res, next) => {
   await acc(req);
   res.render("premium");
