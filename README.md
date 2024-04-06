@@ -68,3 +68,12 @@ cd opt/keycloak/bin
 > Si el contenedor de keycloak no tiene como nombre **keycloak** poner el nombre que tenga.<br>
 > Da igual que se realice en el servidor externo o no. Poner **localhost**.
 
+### FICHEROS DONDE CAMBIAR IP
+
+- server/controller/mainController.js
+- server/public/script/scrip.js
+- server/views/calc.ejs
+- server/views/calc2.ejs
+- server/views/dia.ejs
+- server/views/seg.ejs
+- server/views/segmodif.ejs
