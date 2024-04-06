@@ -147,7 +147,8 @@ exports.perfil = async (req, res, next) => {
 
 exports.plato = async (req, res, next) => {
   await acc(req);
-  res.render("plato");
+  // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS CREADOS POR EL USUARIO
+  res.render("plato", { layout: false, dia_mes: dia_mes, platos: elems });
 };
 
 exports.premium = async (req, res, next) => {
@@ -233,8 +234,7 @@ exports.saveplat = async (req, res, next) => {
           mis_ingredientes + plato_global[3][num][0].replace(" ", "_");
         mis_descripciones =
           mis_descripciones + plato_global[3][num][1].replace(" ", "_");
-        mis_calorias =
-          mis_calorias + plato_global[3][num][2].replace(" ", "_");
+        mis_calorias = mis_calorias + plato_global[3][num][2].replace(" ", "_");
         mi_aux = mi_aux + "-";
       } else {
         mis_ingredientes =
@@ -275,30 +275,34 @@ exports.saveplat = async (req, res, next) => {
 exports.preparacion = async (req, res, next) => {
   let fecha = req.body.dia_mes;
   let plat = req.body.plat;
-  plat = plat.split(',');
+  plat = plat.split(",");
   if (!req.body.prep) {
     plat[1] = "_";
   } else {
     plat[1] = req.body.prep;
   }
-  var http = 
-    "http://localhost:5000/api/isst/modificar_plato/" + 
+  var http =
+    "http://localhost:5000/api/isst/modificar_plato/" +
     req.session.user +
     "/" +
-    plat[0] + 
-    "/" + 
-    plat[1] + 
-    "/" + 
-    plat[2].replace(' ','_').replace('/','-') + 
+    plat[0] +
     "/" +
-    plat[4].replace('/','-') + 
+    plat[1] +
     "/" +
-    plat[5] + 
-    "/" + 
-    fecha.split(',')[0] + "_" + fecha.split(',')[1];
+    plat[2].replace(" ", "_").replace("/", "-") +
+    "/" +
+    plat[4].replace("/", "-") +
+    "/" +
+    plat[5] +
+    "/" +
+    fecha.split(",")[0] +
+    "_" +
+    fecha.split(",")[1];
   await axios.get(http);
-  res.redirect("/calendario/" + fecha.split(',')[0] + "1001" + fecha.split(',')[1]);
-}
+  res.redirect(
+    "/calendario/" + fecha.split(",")[0] + "1001" + fecha.split(",")[1]
+  );
+};
 
 exports.segmod = async (req, res, next) => {
   req.session.peso_act = peso_act;
@@ -314,13 +318,13 @@ exports.objchan = async (req, res, next) => {
   let ejer_obj = req.body.cantidad;
 
   //Realizar llamada a la api para guardarlos
-  res.redirect("/ESTAPORVER")
-}
+  res.redirect("/ESTAPORVER");
+};
 
 exports.segsav = async (req, res, next) => {
   let peso_act = req.body.peso;
   let ejer_act = req.body.tiempo;
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
-  res.redirect("/ESTAPORVER")
-}
+  res.redirect("/ESTAPORVER");
+};

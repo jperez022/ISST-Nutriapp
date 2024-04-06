@@ -122,7 +122,7 @@ h2 {
   border-radius: 4px;
   cursor: pointer;
   margin: 10px;
-  width: 150px;
+  width: 250px;
   transition: background-color 0.3s;
 }
 
@@ -733,6 +733,14 @@ input {
 #nomarg {
   margin: 0px;
   margin-left: 10px;
+}
+
+#nomarg5 {
+  margin: 0px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #nomarg2 {
