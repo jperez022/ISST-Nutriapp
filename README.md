@@ -77,3 +77,4 @@ cd opt/keycloak/bin
 - server/views/dia.ejs
 - server/views/seg.ejs
 - server/views/segmodif.ejs
+- server/views/segini.ejs
