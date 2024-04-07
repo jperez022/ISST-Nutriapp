@@ -135,6 +135,11 @@ exports.perfil = async (req, res, next) => {
       } else {
         ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
       }
+      if ((ejer_act%60).toString().length == 1) {
+        ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
+      } else {
+        ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+      }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
     })
@@ -185,6 +190,11 @@ exports.seg = async (req, res, next) => {
         ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
       } else {
         ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+      }
+      if ((ejer_act%60).toString().length == 1) {
+        ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
+      } else {
+        ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
       }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
@@ -348,6 +358,11 @@ exports.segmod = async (req, res, next) => {
       } else {
         ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
       }
+      if ((ejer_act%60).toString().length == 1) {
+        ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
+      } else {
+        ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+      }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
     })
@@ -366,6 +381,8 @@ exports.objchan = async (req, res, next) => {
   let ejer_act = req.body.ejer_act;
   ejer_obj = ejer_obj.split(':');
   ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
+  ejer_act = ejer_act.split(':');
+  ejer_act = (+ejer_act[0])*60 + parseInt(ejer_act[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join("-");
@@ -390,6 +407,8 @@ exports.segsav = async (req, res, next) => {
   let ejer_obj = req.body.ejer_obj;
   ejer_obj = ejer_obj.split(':');
   ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
+  ejer_act = ejer_act.split(':');
+  ejer_act = (+ejer_act[0])*60 + parseInt(ejer_act[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join("-");
@@ -415,6 +434,8 @@ exports.segsaveini = async (req, res, next) => {
   let ejer_obj = req.body.cantidad;
   ejer_obj = ejer_obj.split(':');
   ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
+  ejer_act = ejer_act.split(':');
+  ejer_act = (+ejer_act[0])*60 + parseInt(ejer_act[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join('-');

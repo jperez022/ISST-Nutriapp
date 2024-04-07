@@ -79,6 +79,10 @@
     let pobj = <%= peso[2] %>;
     let eact = <%= ejer[0] %>;
     let eobj = <%= ejer[1] %>;
+    eobj = eobj.split(':');
+    eobj = (+eobj[0])*60 + parseInt(eobj[1]);
+    eact = eact.split(':');
+    eact = (+eact[0])*60 + parseInt(eact[1]);
     document.addEventListener('DOMContentLoaded', function() {
       ponlobonito(pini, pact, pobj);
       ponlobonito2(eact, eobj);
