@@ -430,7 +430,7 @@ exports.segsaveini = async (req, res, next) => {
   let peso_ini = req.body.pesoini;
   let peso_act = req.body.peso;
   let peso_obj = req.body.pesojb;
-  let ejer_act = 0;
+  let ejer_act = "0:00";
   let ejer_obj = req.body.cantidad;
   ejer_obj = ejer_obj.split(':');
   ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
