@@ -130,6 +130,11 @@ exports.perfil = async (req, res, next) => {
       peso_act = myJson["peso_act"].toString();
       ejer_act = myJson["ejercicio_act"].toString();
       ejer_obj = myJson["ejercicio_obj"].toString();
+      if ((ejer_obj%60).toString().length == 1) {
+        ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
+      } else {
+        ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+      }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
     })
@@ -164,6 +169,7 @@ exports.premium = async (req, res, next) => {
 
 exports.seg = async (req, res, next) => {
   await acc(req);
+  var mi_error = "nohay";
   var http =
     "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
   await axios
@@ -175,13 +181,21 @@ exports.seg = async (req, res, next) => {
       peso_act = myJson["peso_act"].toString();
       ejer_act = myJson["ejercicio_act"].toString();
       ejer_obj = myJson["ejercicio_obj"].toString();
+      if ((ejer_obj%60).toString().length == 1) {
+        ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
+      } else {
+        ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+      }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
     })
     .catch((error) => {
+      mi_error = error;
       res.render("segini", { layout: false });
     });
-  res.render("seg", { layout: false, peso: peso, ejer: ejer });
+  if (mi_error == "nohay") {
+    res.render("seg", { layout: false, peso: peso, ejer: ejer });
+  }
 };
 
 exports.logout = (req, res, next) => {
@@ -329,6 +343,11 @@ exports.segmod = async (req, res, next) => {
       peso_act = myJson["peso_act"].toString();
       ejer_act = myJson["ejercicio_act"].toString();
       ejer_obj = myJson["ejercicio_obj"].toString();
+      if ((ejer_obj%60).toString().length == 1) {
+        ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
+      } else {
+        ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+      }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
     })
@@ -345,6 +364,8 @@ exports.objchan = async (req, res, next) => {
   let peso_ini = req.body.peso_ini;
   let peso_act = req.body.peso_act;
   let ejer_act = req.body.ejer_act;
+  ejer_obj = ejer_obj.split(':');
+  ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join('-');
@@ -358,7 +379,7 @@ exports.objchan = async (req, res, next) => {
     ejer;
   await axios.get(http);
   //Realizar llamada a la api para guardarlos
-  res.redirect("/ESTAPORVER");
+  res.redirect("/calendario");
 };
 
 exports.segsav = async (req, res, next) => {
@@ -367,6 +388,8 @@ exports.segsav = async (req, res, next) => {
   let peso_ini = req.body.peso_ini;
   let peso_obj = req.body.peso_obj;
   let ejer_obj = req.body.ejer_obj;
+  ejer_obj = ejer_obj.split(':');
+  ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join('-');
@@ -381,7 +404,7 @@ exports.segsav = async (req, res, next) => {
   await axios.get(http);
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
-  res.redirect("/ESTAPORVER");
+  res.redirect("/calendario");
 };
 
 exports.segsaveini = async (req, res, next) => {
@@ -389,10 +412,22 @@ exports.segsaveini = async (req, res, next) => {
   let peso_act = req.body.peso;
   let peso_obj = req.body.pesojb;
   let ejer_act = 0;
-  let ejer_obj = req.body.cantidad; //Esto viene en formato raro
+  let ejer_obj = req.body.cantidad;
+  ejer_obj = ejer_obj.split(':');
+  ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
+  peso = peso.join('-');
+  ejer = ejer.join('-');
+  var http =
+    "http://localhost:5000/api/isst/crear_objetivos/" + 
+    req.session.user + 
+    "/" + 
+    peso + 
+    "/" + 
+    ejer;
+  await axios.get(http);
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
-  res.redirect("/ESTAPORVER");
+  res.redirect("/calendario");
 };
