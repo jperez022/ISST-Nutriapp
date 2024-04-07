@@ -76,12 +76,12 @@
     let pini = <%= peso[0] %>;
     let pact = <%= peso[1] %>;
     let pobj = <%= peso[2] %>;
-    let eact = <%= ejer[0].toString() %>;
-    let eobj = <%= ejer[1].toString() %>;
-    eobj = eobj.split(':');
-    eobj = (+eobj[0])*60 + parseInt(eobj[1]);
-    eact = eact.split(':');
-    eact = (+eact[0])*60 + parseInt(eact[1]);
+    let eact_1 = <%= ejer[0].split(':')[0] %>;
+    let eobj_1 = <%= ejer[1].split(':')[0] %>;
+    let eact_2 = <%= ejer[0].split(':')[1] %>;
+    let eobj_2 = <%= ejer[1].split(':')[1] %>;
+    let eobj = (+eobj_1)*60 + parseInt(eobj_2);
+    let eact = (+eact_1)*60 + parseInt(eact_2);
     document.addEventListener('DOMContentLoaded', function() {
       ponlobonito(pini, pact, pobj);
       ponlobonito2(eact, eobj);

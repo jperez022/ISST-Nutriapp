@@ -135,10 +135,16 @@ exports.perfil = async (req, res, next) => {
       } else {
         ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
       }
+      if (ejer_obj.length == 4) {
+        ejer_obj = "0" + ejer_obj;
+      }
       if ((ejer_act%60).toString().length == 1) {
         ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
       } else {
         ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+      }
+      if (ejer_act.length == 4) {
+        ejer_act = "0" + ejer_act;
       }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
@@ -191,10 +197,16 @@ exports.seg = async (req, res, next) => {
       } else {
         ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
       }
+      if (ejer_obj.length == 4) {
+        ejer_obj = "0" + ejer_obj;
+      }
       if ((ejer_act%60).toString().length == 1) {
         ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
       } else {
         ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+      }
+      if (ejer_act.length == 4) {
+        ejer_act = "0" + ejer_act;
       }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
@@ -358,10 +370,16 @@ exports.segmod = async (req, res, next) => {
       } else {
         ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
       }
+      if (ejer_obj.length == 4) {
+        ejer_obj = "0" + ejer_obj;
+      }
       if ((ejer_act%60).toString().length == 1) {
         ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
       } else {
         ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+      }
+      if (ejer_act.length == 4) {
+        ejer_act = "0" + ejer_act;
       }
       peso = [peso_ini, peso_act, peso_obj];
       ejer = [ejer_act, ejer_obj];
