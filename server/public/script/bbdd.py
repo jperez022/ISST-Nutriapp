@@ -171,19 +171,18 @@ def agregar_plato(usuario,nombre,preparacion,ingredientes,descripcion,calorias,c
         entry = Plato(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, descripcion = descripcion, calorias = calorias, calorias_total = calorias_total)
     db.session.add(entry)
     db.session.commit()
-    if dia_mes != "no":
-        dia_mes = dia_mes.split('_')
-        elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == dia_mes[1], Dia.dia == dia_mes[0]).first()
-        if preparacion == " " and descripcion == " ":
-            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
-        elif preparacion == " ":
-            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
-        elif descripcion == " ":
-            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
-        else:
-            elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
-        statement = dia_platos.insert().values(dia_id= elem.id, plato_id= elem2.id)
-        db.session.execute(statement)
+    dia_mes = dia_mes.split('_')
+    elem = Dia.query.filter(Dia.usuario == usuario, Dia.mes == dia_mes[1], Dia.dia == dia_mes[0]).first()
+    if preparacion == " " and descripcion == " ":
+        elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+    elif preparacion == " ":
+        elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+    elif descripcion == " ":
+        elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+    else:
+        elem2 = Plato.query.filter(Plato.nombre == nombre, Plato.preparacion == preparacion, Plato.ingredientes == ingredientes, Plato.descripcion == descripcion, Plato.calorias == calorias, Plato.calorias_total == calorias_total).first()
+    statement = dia_platos.insert().values(dia_id= elem.id, plato_id= elem2.id)
+    db.session.execute(statement)
     db.session.commit()
     return Response(None,200)
 

@@ -30,9 +30,6 @@
             <% plat = plat.split(',')%>
             <h3 id="nomarg5">
               <div><%=plat[0]%> <%=plat[5]%>Kcal </div>
-              <% if (dia_mes) { %>
-              <div><%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</div>
-              <% } %>
             </h3>
             <div class="grideito4">
               <div class="grid_elem4">
@@ -51,16 +48,7 @@
               <div class="grid_elem4">
                 <h4 id="nomarg3">- Preparación:</h4>
                 <div class="sobra2">
-                  <% if (plat[1] == '') { %>
-                  <form action="http://localhost:3000/calendario/preparacion" method="POST">
-                    <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
-                    <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />
-                    <input name="plat" type="hidden" value="<%= plat %>" />
-                    <button class="anade_but" type="submit">Añadela!!!</button>
-                  </form>
-                  <% } else { %>
-                    <%= plat[1] %>
-                  <% } %>
+                  <%= plat[1] %>
                 </div>
               </div>
             </div>
