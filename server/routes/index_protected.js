@@ -22,6 +22,8 @@ router.get("/plato", Controller.plato);
 
 router.get("/plato/gen", Controller.platogen);
 
+router.post("/plato/gen/fil", Controller.platogenfil);
+
 router.get("/premium", Controller.premium);
 
 router.get("/seguimiento", Controller.seg);

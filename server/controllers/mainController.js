@@ -164,14 +164,24 @@ exports.perfil = async (req, res, next) => {
 exports.plato = async (req, res, next) => {
   await acc(req);
   // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS CREADOS POR EL USUARIO
-  res.render("plato", { layout: false, dia_mes: dia_mes, platos: elems });
+  res.render("plato", { layout: false, dia_mes: dia_mes, platos: elems, });
 };
 
 exports.platogen = async (req, res, next) => {
   await acc(req);
   // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS RECOMENDADOS AL USUARIO
-  res.render("platogen", { layout: false, platos: elems });
+  res.render("platogen", { layout: false, platos: elems, calorias: null  });
 };
+
+exports.platogenfil = async (req, res, next) => {
+  await acc(req);
+  let caloriasmin = req.body.calomin;
+  let caloriasmax = req.body.calomax;
+  let calorias = [caloriasmax, caloriasmin]
+  // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS RECOMENDADOS AL USUARIO filtra
+  res.render("platogen", { layout: false, platos: elems, calorias: calorias  });
+};
+
 
 exports.premium = async (req, res, next) => {
   await acc(req);

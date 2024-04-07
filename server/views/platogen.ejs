@@ -23,14 +23,26 @@
 
   <div id="ocupa_dia">
     <div class="my_dia_div">
-        <h2 id="dia_tit">Tus platos</h2>
-        <% for (let plat of platos ) { %>
-        <div class="cosa">
-          <% plat = plat.split(',')%>
-          <h3 id="nomarg5">
-            <div><%=plat[0]%> <%=plat[5]%>Kcal </div>
+      <div class="separa2">
+        <h2 id="dia_tit">Platos recomendados</h2>
+        <form action="http://localhost:3000/plato/gen/fil" method="POST">
+          <% if (calorias == null) { %>
+          <input type="number" id="tt" name="calomin" min="0" max="1000" placeholder="mínimas">
+          <input type="number" id="tt" name="calomax" min="0" max="1000" placeholder="máximas">
+          <% } else { %>
+          <input type="number" id="tt" name="calomin" min="0" max="1000" value="<%= calorias[0] %>">
+          <input type="number" id="tt" name="calomax" min="0" max="1000" value="<%= calorias[1] %>">
+          <% } %>
+          <button class="anade_but2" type="submit">Filtrar por kilocalorias</button>
+        </form>
+      </div>
+      <% for (let plat of platos ) { %>
+      <div class="cosa">
+        <% plat = plat.split(',')%>
+        <h3 id="nomarg5">
+          <div><%=plat[0]%> <%=plat[5]%>Kcal </div>
         </h3>
-          <div class="grideito4">
+        <div class="grideito4">
           <div class="grid_elem4">
             <h4 id="nomarg2">- Ingredientes:</h4>
             <div class="sobra">

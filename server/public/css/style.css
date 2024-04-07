@@ -743,6 +743,30 @@ input {
   outline: none;
 }
 
+.anade_but:hover {
+  background-color: #2e7d30;
+}
+
+.anade_but2 {
+  height: 20px;
+  width: 200px;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.anade_but2:hover {
+  background-color: #2e7d30;
+}
+
+#tt {
+  vertical-align: 0px;
+}
+
+
 #nomarg {
   margin: 0px;
   margin-left: 10px;
@@ -877,6 +901,13 @@ input[type="range"] {
 }
 
 .separa{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.separa2{
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
