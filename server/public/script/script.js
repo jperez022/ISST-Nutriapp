@@ -97,6 +97,9 @@ function ponlobonito(pini, pact, pobj) {
   let a = pact - pini;
   let b = pobj - pini;
   let c = (a * 100) / b;
+  if (c > 100) {
+    c = 100;
+  }
   const progressBar = document.getElementById("prog_bar_peso");
   let gradiente = gradea(c);
   progressBar.style.width = `${c}%`;
@@ -105,6 +108,9 @@ function ponlobonito(pini, pact, pobj) {
 
 function ponlobonito2(eact, eobj) {
   let c = (eact * 100) / eobj;
+  if (c > 100) {
+    c = 100;
+  }
   const progressBar = document.getElementById("prog_bar_ej");
   let gradiente = gradea(c);
   progressBar.style.width = `${c}%`;
