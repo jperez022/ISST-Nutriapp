@@ -35,7 +35,7 @@ exports.inicio = async (req, res, next) => {
     axios.get(http);
     req.session.inicio_iniciado = true;
   }
-  res.render("inicio", { layout: false });
+  res.render("inicio", { layout: false, user: req.session.user });
 };
 
 exports.index = (req, res, next) => {
@@ -347,14 +347,14 @@ exports.objchan = async (req, res, next) => {
   let ejer_act = req.body.ejer_act;
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
-  peso = peso.join('-');
-  ejer = ejer.join('-');
+  peso = peso.join("-");
+  ejer = ejer.join("-");
   var http =
-    "http://localhost:5000/api/isst/crear_objetivos/" + 
-    req.session.user + 
-    "/" + 
-    peso + 
-    "/" + 
+    "http://localhost:5000/api/isst/crear_objetivos/" +
+    req.session.user +
+    "/" +
+    peso +
+    "/" +
     ejer;
   await axios.get(http);
   //Realizar llamada a la api para guardarlos
@@ -369,14 +369,14 @@ exports.segsav = async (req, res, next) => {
   let ejer_obj = req.body.ejer_obj;
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
-  peso = peso.join('-');
-  ejer = ejer.join('-');
+  peso = peso.join("-");
+  ejer = ejer.join("-");
   var http =
-    "http://localhost:5000/api/isst/crear_objetivos/" + 
-    req.session.user + 
-    "/" + 
-    peso + 
-    "/" + 
+    "http://localhost:5000/api/isst/crear_objetivos/" +
+    req.session.user +
+    "/" +
+    peso +
+    "/" +
     ejer;
   await axios.get(http);
   // El tiempo lo guardaba en minutos
