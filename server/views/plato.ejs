@@ -23,48 +23,51 @@
 
   <div id="ocupa_dia">
     <div class="my_dia_div">
-        <h2 id="dia_tit">Tus platos</h2>
+      <h2 id="dia_tit">Tus platos</h2>
+      <% if (platos != "no") { %>
         <% for (let plat of platos ) { %>
-        <div class="cosa">
-          <% plat = plat.split(',')%>
-          <h3 id="nomarg5">
-            <div><%=plat[0]%> <%=plat[5]%>Kcal </div>
-            <% if (dia_mes) { %>
-            <div><%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</div>
-            <% } %>
-        </h3>
-          <div class="grideito4">
-          <div class="grid_elem4">
-            <h4 id="nomarg2">- Ingredientes:</h4>
-            <div class="sobra">
-              <ul>
-                <% let ings = plat[2].split("/"); %>
-                <% let cals = plat[4].split("/"); %>
-                <% let desc = plat[3].split("/"); %>
-                <% for (let k = 0; k < ings.length; k++ ) { %>
-                <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc[k] != '') { %> (<%= desc[k] %>) <% } %></li>
-                <% } %>
-              </ul>
-            </div>
-          </div>
-          <div class="grid_elem4">
-            <h4 id="nomarg3">- Preparación:</h4>
-            <div class="sobra2">
-              <% if (plat[1] == '') { %>
-              <form action="http://localhost:3000/calendario/preparacion" method="POST">
-                <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
-                <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />
-                <input name="plat" type="hidden" value="<%= plat %>" />
-                <button class="anade_but" type="submit">Añadela!!!</button>
-              </form>
-              <% } else { %>
-              <%= plat[1] %>
+          <div class="cosa">
+            <% plat = plat.split(',')%>
+            <h3 id="nomarg5">
+              <div><%=plat[0]%> <%=plat[5]%>Kcal </div>
+              <% if (dia_mes) { %>
+              <div><%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</div>
               <% } %>
+            </h3>
+            <div class="grideito4">
+              <div class="grid_elem4">
+                <h4 id="nomarg2">- Ingredientes:</h4>
+                <div class="sobra">
+                  <ul>
+                    <% let ings = plat[2].split("/"); %>
+                    <% let cals = plat[4].split("/"); %>
+                    <% let desc = plat[3].split("/"); %>
+                    <% for (let k = 0; k < ings.length; k++ ) { %>
+                    <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc[k] != '') { %> (<%= desc[k] %>) <% } %></li>
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+              <div class="grid_elem4">
+                <h4 id="nomarg3">- Preparación:</h4>
+                <div class="sobra2">
+                  <% if (plat[1] == '') { %>
+                  <form action="http://localhost:3000/calendario/preparacion" method="POST">
+                    <textarea name="prep" rows="10" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
+                    <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />
+                    <input name="plat" type="hidden" value="<%= plat %>" />
+                    <button class="anade_but" type="submit">Añadela!!!</button>
+                  </form>
+                  <% } else { %>
+                    <%= plat[1] %>
+                  <% } %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        <% } %>
       <% } %>
+      </div>
       <div class="anade">
         Añade algún plato más!
         <button class="anade_but" onclick="calculadora()">Añadir</button>

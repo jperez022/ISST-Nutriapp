@@ -163,7 +163,28 @@ exports.perfil = async (req, res, next) => {
 
 exports.plato = async (req, res, next) => {
   await acc(req);
-  // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS CREADOS POR EL USUARIO
+  var http =
+    "http://localhost:5000/api/isst/obtener_plato_usuario/" + req.session.user;
+  await axios
+    .get(http)
+    .then((response) => {
+      myJson = response.data;
+    });
+  if (myJson["resp"] == "vacio") {
+    res.render("plato", { layout: false, dia_mes: dia_mes, platos: "no"});
+  } else {
+    var aux = 0;
+    var elems = [];
+    for (let i = 0; i < Object.keys(myJson).length; i++) {
+      elems[aux.toString()] = myJson[aux.toString()].toString();
+      aux++;
+    }
+    res.render("plato", {
+      layout: false,
+      dia_mes: dia_mes,
+      platos: elems,
+    });
+  }
   res.render("plato", { layout: false, dia_mes: dia_mes, platos: elems, });
 };
 

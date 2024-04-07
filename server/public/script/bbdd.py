@@ -255,6 +255,18 @@ def obtener_plato_sugerido(calorias_total):
         num += 1
     return Response(json.dumps(resp),200)
 
+@app.route('/api/isst/obtener_plato_usuario/<string:usuario>', methods = ['GET', 'POST'])
+def obtener_plato_usuario(usuario):
+    elems = Plato.query.filter(Plato.dias.any(usuario = usuario)).all()
+    resp = {}
+    if (elems == None):
+        resp = {"resp": "vacio"}
+    num = 0
+    for elem in elems:
+        resp[str(num)] = [elem.nombre,elem.preparacion,elem.ingredientes,elem.descripcion,elem.calorias,elem.calorias_total]
+        num += 1
+    return Response(json.dumps(resp),200)
+
 if __name__ == "__main__":
     bbdd_init()
     app.run(host='0.0.0.0',port=port,debug=True)
