@@ -414,7 +414,7 @@ exports.objchan = async (req, res, next) => {
     ejer;
   await axios.get(http);
   //Realizar llamada a la api para guardarlos
-  res.redirect("/calendario");
+  res.redirect("/seguimiento");
 };
 
 exports.segsav = async (req, res, next) => {
@@ -441,7 +441,7 @@ exports.segsav = async (req, res, next) => {
   await axios.get(http);
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
-  res.redirect("/calendario");
+  res.redirect("/seguimiento");
 };
 
 exports.segsaveini = async (req, res, next) => {
@@ -468,5 +468,5 @@ exports.segsaveini = async (req, res, next) => {
   await axios.get(http);
   // El tiempo lo guardaba en minutos
   //Realizar llamada a la api para guardarlos
-  res.redirect("/calendario");
+  res.redirect("/seguimiento");
 };
