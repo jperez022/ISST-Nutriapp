@@ -165,13 +165,13 @@ exports.plato = async (req, res, next) => {
   await acc(req);
   var http =
     "http://localhost:5000/api/isst/obtener_plato_usuario/" + req.session.user;
-  await axios
+    await axios
     .get(http)
     .then((response) => {
       myJson = response.data;
     });
   if (myJson["resp"] == "vacio") {
-    res.render("plato", { layout: false, dia_mes: dia_mes, platos: "no"});
+    res.render("plato", { layout: false, platos: "no"});
   } else {
     var aux = 0;
     var elems = [];
@@ -181,11 +181,9 @@ exports.plato = async (req, res, next) => {
     }
     res.render("plato", {
       layout: false,
-      dia_mes: dia_mes,
-      platos: elems,
+      platos: elems
     });
   }
-  res.render("plato", { layout: false, dia_mes: dia_mes, platos: elems, });
 };
 
 exports.platogen = async (req, res, next) => {
@@ -288,9 +286,6 @@ exports.saveplat = async (req, res, next) => {
   var fecha = req.body.fecha;
   const inges = req.session.plato;
   const calo = req.session.total;
-  if (!fecha) {
-    fecha = "no";
-  }
   if (nombre && inges && calo && fecha) {
     let plato_global = [nombre, prep, fecha, inges, calo];
     delete req.session.plato;
@@ -298,12 +293,10 @@ exports.saveplat = async (req, res, next) => {
     if (plato_global[1] == "") {
       plato_global[1] = "_";
     }
-    if (plato_global[2] != "no") {
-      var new_fecha = plato_global[2].split("-");
-      var mi_dia = parseInt(new_fecha[2]);
-      var mi_mes = parseInt(new_fecha[1]);
-      plato_global[2] = mi_dia.toString() + "_" + mi_mes.toString();
-    }
+    var new_fecha = plato_global[2].split("-");
+    var mi_dia = parseInt(new_fecha[2]);
+    var mi_mes = parseInt(new_fecha[1]);
+    plato_global[2] = mi_dia.toString() + "_" + mi_mes.toString();
     var mis_ingredientes = "";
     var mis_descripciones = "";
     var mis_calorias = "";
