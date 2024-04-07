@@ -286,6 +286,9 @@ exports.saveplat = async (req, res, next) => {
   var fecha = req.body.fecha;
   const inges = req.session.plato;
   const calo = req.session.total;
+  if (!fecha) {
+    res.redirect("/calculadoratotal")
+  }
   if (nombre && inges && calo && fecha) {
     let plato_global = [nombre, prep, fecha, inges, calo];
     delete req.session.plato;
