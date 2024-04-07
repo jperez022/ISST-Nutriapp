@@ -245,8 +245,11 @@ def agregar_plato_sugerido(nombre,preparacion,ingredientes,cantidad,calorias,cal
 
 @app.route('/api/isst/obtener_plato_sugerido/<path:calorias_total>', methods = ['GET', 'POST'])
 def obtener_plato_sugerido(calorias_total):
-    calorias_total = calorias_total.split('_')
-    elems = Platos_Sugeridos.query.filter(Platos_Sugeridos.calorias_total > calorias_total[0], Platos_Sugeridos.calorias_total < calorias_total[1]).all()
+    if calorias_total == "no":
+        elems = Platos_Sugeridos.query.all()
+    else:
+        calorias_total = calorias_total.split('_')
+        elems = Platos_Sugeridos.query.filter(Platos_Sugeridos.calorias_total > calorias_total[0], Platos_Sugeridos.calorias_total < calorias_total[1]).all()
     resp = {}
     num = 0
     for elem in elems:

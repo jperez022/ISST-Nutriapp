@@ -188,7 +188,19 @@ exports.plato = async (req, res, next) => {
 
 exports.platogen = async (req, res, next) => {
   await acc(req);
-  // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS RECOMENDADOS AL USUARIO
+  var http =
+    "http://localhost:5000/api/isst/obtener_plato_sugerido/no";
+    await axios
+    .get(http)
+    .then((response) => {
+      myJson = response.data;
+    });
+  var aux = 0;
+  var elems = [];
+  for (let i = 0; i < Object.keys(myJson).length; i++) {
+    elems[aux.toString()] = myJson[aux.toString()].toString();
+    aux++;
+  }
   res.render("platogen", { layout: false, platos: elems, calorias: null  });
 };
 
@@ -197,7 +209,20 @@ exports.platogenfil = async (req, res, next) => {
   let caloriasmin = req.body.calomin;
   let caloriasmax = req.body.calomax;
   let calorias = [caloriasmax, caloriasmin]
-  // REALIZAR LLAMADA A LA API PARA OBTENER LOS PLATOS RECOMENDADOS AL USUARIO filtra
+  let mis_calorias = caloriasmin + "_" + caloriasmax;
+  var http =
+    "http://localhost:5000/api/isst/obtener_plato_sugerido/" + mis_calorias;
+    await axios
+    .get(http)
+    .then((response) => {
+      myJson = response.data;
+    });
+  var aux = 0;
+  var elems = [];
+  for (let i = 0; i < Object.keys(myJson).length; i++) {
+    elems[aux.toString()] = myJson[aux.toString()].toString();
+    aux++;
+  }
   res.render("platogen", { layout: false, platos: elems, calorias: calorias  });
 };
 
