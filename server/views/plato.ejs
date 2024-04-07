@@ -46,10 +46,12 @@
                 </div>
               </div>
               <div class="grid_elem4">
-                <h4 id="nomarg3">- Preparación:</h4>
-                <div class="sobra2">
-                  <%= plat[1] %>
-                </div>
+                <% if (plat[1] != '') { %>
+                  <h4 id="nomarg3">- Preparación:</h4>
+                  <div class="sobra2">
+                    <%= plat[1] %>
+                  </div>
+                <% } %>
               </div>
             </div>
           </div>
