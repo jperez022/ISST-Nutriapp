@@ -236,7 +236,6 @@ def agregar_plato_sugerido(nombre,preparacion,ingredientes,cantidad,calorias,cal
     preparacion = preparacion.replace('_',' ')
     ingredientes = ingredientes.replace('_',' ').replace('-','/')
     cantidad = cantidad.replace('_',' ').replace('-','/')
-    descripcion = descripcion.replace('_',' ').replace('-','/')
     calorias = calorias.replace('_',' ').replace('-','/')
     entry = Platos_Sugeridos(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, cantidad = cantidad, calorias = calorias, calorias_total = calorias_total)
     db.session.add(entry)
