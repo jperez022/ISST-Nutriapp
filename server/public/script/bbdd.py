@@ -252,7 +252,7 @@ def obtener_plato_sugerido(calorias_total):
     resp = {}
     num = 0
     for elem in elems:
-        resp[str(num)] = [elem.nombre,elem.preparacion,elem.ingredientes,elem.cantidad,elem.calorias,elem.calorias_total]
+        resp[str(num)] = [elem.nombre,elem.preparacion,elem.ingredientes,elem.cantidades,elem.calorias,elem.calorias_total]
         num += 1
     return Response(json.dumps(resp),200)
 
