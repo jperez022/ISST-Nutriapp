@@ -208,7 +208,7 @@ exports.platogenfil = async (req, res, next) => {
   await acc(req);
   let caloriasmin = req.body.calomin;
   let caloriasmax = req.body.calomax;
-  let calorias = [caloriasmax, caloriasmin]
+  let calorias = [caloriasmin, caloriasmax]
   let mis_calorias = caloriasmin + "_" + caloriasmax;
   var http =
     "http://localhost:5000/api/isst/obtener_plato_sugerido/" + mis_calorias;
