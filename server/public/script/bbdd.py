@@ -46,7 +46,7 @@ def bbdd_init():
     
     class Platos_Sugeridos(db.Model):
         id = db.Column(db.Integer, primary_key = True)
-        nombre = db.Column(db.Integer, nullable = False)
+        nombre = db.Column(db.String(500), nullable = False)
         preparacion = db.Column(db.String(500), nullable = False)
         ingredientes = db.Column(db.String(500), nullable = False)
         cantidades = db.Column(db.String(500), nullable = False)
