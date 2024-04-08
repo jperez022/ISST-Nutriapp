@@ -336,7 +336,6 @@ exports.saveplat = async (req, res, next) => {
         mis_descripciones =
           mis_descripciones + plato_global[3][num][1].replace(" ", "_");
         mis_calorias = mis_calorias + plato_global[3][num][2].replace(" ", "_");
-        mi_aux = mi_aux + "-";
       } else {
         mis_ingredientes =
           mis_ingredientes + plato_global[3][num][0].replace(" ", "_") + "-";
