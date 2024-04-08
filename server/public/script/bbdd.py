@@ -230,14 +230,14 @@ def obtener_objetivos(usuario):
     resp = {"peso_ini": elem.peso_ini, "peso_act": elem.peso_act, "peso_obj": elem.peso_obj, "ejercicio_act": elem.ejercicio_act, "ejercicio_obj": elem.ejercicio_obj}
     return Response(json.dumps(resp),200)
 
-@app.route('/api/isst/agregar_plato_sugerido/<string:nombre>/<string:preparacion>/<path:ingredientes>/<path:cantidad>/<path:calorias>/<int:calorias_total>', methods = ['GET', 'POST'])
-def agregar_plato_sugerido(nombre,preparacion,ingredientes,cantidad,calorias,calorias_total):
+@app.route('/api/isst/agregar_plato_sugerido/<string:nombre>/<string:preparacion>/<path:ingredientes>/<path:cantidades>/<path:calorias>/<int:calorias_total>', methods = ['GET', 'POST'])
+def agregar_plato_sugerido(nombre,preparacion,ingredientes,cantidades,calorias,calorias_total):
     nombre = nombre.replace('_',' ')
     preparacion = preparacion.replace('_',' ')
     ingredientes = ingredientes.replace('_',' ').replace('-','/')
-    cantidad = cantidad.replace('_',' ').replace('-','/')
+    cantidades = cantidades.replace('_',' ').replace('-','/')
     calorias = calorias.replace('_',' ').replace('-','/')
-    entry = Platos_Sugeridos(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, cantidad = cantidad, calorias = calorias, calorias_total = calorias_total)
+    entry = Platos_Sugeridos(nombre = nombre, preparacion = preparacion, ingredientes = ingredientes, cantidades = cantidades, calorias = calorias, calorias_total = calorias_total)
     db.session.add(entry)
     db.session.commit()
     return Response(None,200)
