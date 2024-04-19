@@ -78,3 +78,4 @@ cd opt/keycloak/bin
 - server/views/seg.ejs
 - server/views/segmodif.ejs
 - server/views/segini.ejs
+- server/views/platogen.ejs

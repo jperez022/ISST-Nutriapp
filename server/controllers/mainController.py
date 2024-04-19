@@ -22,11 +22,11 @@ if len(sys.argv) >= 2:
     if (new_ip == 'help'):
         mensaje()
         sys.exit()
-    my_file = open(directorio + '/' + ruta,'r')
+    my_file = open(ruta,'r')
     my_data = my_file.read()
     my_data = my_data.replace(old_ip,new_ip)
     my_file.close()
-    my_file = open(directorio + '/' + ruta,'w')
+    my_file = open(ruta,'w')
     my_file.write(my_data)
     my_file.close()
 else:
