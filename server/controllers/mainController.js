@@ -25,6 +25,12 @@ async function acc(req) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
   }
+  // LLAMADA A LA API PARA SABER SI EL USUARIO ES PREMIUM
+  // TAMBIEN HARIA UNA PARA SABER SI ES ESPECIALISTA
+  let isprem = null;
+  let isspec = null;
+  req.session.isprem = isprem;
+  req.session.isspec = isspec;
 }
 
 exports.inicio = async (req, res, next) => {
@@ -221,8 +227,8 @@ exports.platogenfil = async (req, res, next) => {
 
 exports.premium = async (req, res, next) => {
   await acc(req);
-  let isprem = null; // LLAMADA A LA API PARA SABER SI ES PREMIUM O NO
-  res.render("premium", { layout: false, isprem: isprem });
+
+  res.render("premium", { layout: false, isprem: req.session.isprem });
 };
 
 exports.seg = async (req, res, next) => {
