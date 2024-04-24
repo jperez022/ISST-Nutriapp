@@ -75,7 +75,7 @@ exports.calendario = async (req, res, next) => {
   } else {
     myJson = "meni";
   }
-  res.render("calendario", { myJson: myJson });
+  res.render("calendario", { myJson: myJson, isprem: req.session.isprem });
 };
 
 exports.dia = async (req, res, next) => {
@@ -115,7 +115,7 @@ exports.dia = async (req, res, next) => {
 
 exports.educacion = async (req, res, next) => {
   await acc(req);
-  res.render("edu");
+  res.render("edu", req.session.isprem);
 };
 
 exports.objetivos = async (req, res, next) => {
