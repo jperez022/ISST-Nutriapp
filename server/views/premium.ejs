@@ -1,3 +1,66 @@
-<section>
-  <h2>Premium (Completar)</h2>
-</section>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUTRI-APP</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/script/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div id="ocupa_header">
+      <button class="but_head" onclick="calendario()">Volver</button>
+    </div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
+  </header>
+
+  <div id="ocupa_dia">
+    <div class="premium">
+      <h1>PÁSATE AL PREMIUM POR SOLO 5&euro;/mes</h1>
+      <div class="grideito6">
+        <h2 id="nomarg6">Ventajas</h2>
+        <div class="NOQUITARESTEDIV"></div>
+        <div class="redo">
+          <h4 id="nomarg5">Contacta con profesionales</h4>
+          <div class="paddead">
+            Tendras acceso a una gama de profesionales de forma gratuita elegidos por nosotros <br>
+            Podrás contactar con ellos gratis! <br>
+            También podrás contactar con profesionales autónomos que se quieran dar a conocer!!
+          </div>
+        </div>
+        <div class="redo">
+          <h4 id="nomarg5">Publicítate</h4>
+          <div class="paddead">Podrás aparecer en nuestra pestaña de profesionales y poner un precio por tu conocimiento!</div>
+        </div>
+
+        <div class="redo">
+          <h4 id="nomarg5">Platos personalizados</h4>
+          <div class="paddead">Recibirás recomendaciones personales de platos basados en tu dieta</div>
+        </div>
+        <div class="redo">
+          <h4 id="nomarg5">Acceso a articulos nutricionales</h4>
+          <div class="paddead">Podrás acceder a una amplia gama de árticulos hechos por nuestros mejores expertos!</div>
+        </div>
+      </div>
+      <div class="centraooo2">
+        <% if (isprem) { %>
+        <button class="calc_but4" onclick="comprarprem()">COMPRAR!</button>
+        <% } else { %>
+        Gracias por todo!!!
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>

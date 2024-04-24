@@ -126,6 +126,11 @@ function ir_al_dia(dia, mes, año) {
   window.location.href = url;
 }
 
+function comprarprem() {
+  // Gestionar que se hace al comprar premium API
+  res.send("COMPRAR PREMIUM")
+}
+
 function realizar_calendario() {
   let date = new Date();
   let year = date.getFullYear();

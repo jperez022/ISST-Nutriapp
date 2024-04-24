@@ -130,18 +130,18 @@ exports.perfil = async (req, res, next) => {
       peso_act = myJson["peso_act"].toString();
       ejer_act = myJson["ejercicio_act"].toString();
       ejer_obj = myJson["ejercicio_obj"].toString();
-      if ((ejer_obj%60).toString().length == 1) {
-        ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
+      if ((ejer_obj % 60).toString().length == 1) {
+        ejer_obj = Math.round(ejer_obj / 60) + ":0" + (ejer_obj % 60);
       } else {
-        ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+        ejer_obj = Math.round(ejer_obj / 60) + ":" + (ejer_obj % 60);
       }
       if (ejer_obj.length == 4) {
         ejer_obj = "0" + ejer_obj;
       }
-      if ((ejer_act%60).toString().length == 1) {
-        ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
+      if ((ejer_act % 60).toString().length == 1) {
+        ejer_act = Math.round(ejer_act / 60) + ":0" + (ejer_act % 60);
       } else {
-        ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+        ejer_act = Math.round(ejer_act / 60) + ":" + (ejer_act % 60);
       }
       if (ejer_act.length == 4) {
         ejer_act = "0" + ejer_act;
@@ -165,13 +165,11 @@ exports.plato = async (req, res, next) => {
   await acc(req);
   var http =
     "http://localhost:5000/api/isst/obtener_plato_usuario/" + req.session.user;
-    await axios
-    .get(http)
-    .then((response) => {
-      myJson = response.data;
-    });
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+  });
   if (myJson["resp"] == "vacio") {
-    res.render("plato", { layout: false, platos: "no"});
+    res.render("plato", { layout: false, platos: "no" });
   } else {
     var aux = 0;
     var elems = [];
@@ -181,55 +179,50 @@ exports.plato = async (req, res, next) => {
     }
     res.render("plato", {
       layout: false,
-      platos: elems
+      platos: elems,
     });
   }
 };
 
 exports.platogen = async (req, res, next) => {
   await acc(req);
-  var http =
-    "http://localhost:5000/api/isst/obtener_plato_sugerido/no";
-    await axios
-    .get(http)
-    .then((response) => {
-      myJson = response.data;
-    });
+  var http = "http://localhost:5000/api/isst/obtener_plato_sugerido/no";
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+  });
   var aux = 0;
   var elems = [];
   for (let i = 0; i < Object.keys(myJson).length; i++) {
     elems[aux.toString()] = myJson[aux.toString()].toString();
     aux++;
   }
-  res.render("platogen", { layout: false, platos: elems, calorias: null  });
+  res.render("platogen", { layout: false, platos: elems, calorias: null });
 };
 
 exports.platogenfil = async (req, res, next) => {
   await acc(req);
   let caloriasmin = req.body.calomin;
   let caloriasmax = req.body.calomax;
-  let calorias = [caloriasmin, caloriasmax]
+  let calorias = [caloriasmin, caloriasmax];
   let mis_calorias = caloriasmin + "_" + caloriasmax;
   var http =
     "http://localhost:5000/api/isst/obtener_plato_sugerido/" + mis_calorias;
-    await axios
-    .get(http)
-    .then((response) => {
-      myJson = response.data;
-    });
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+  });
   var aux = 0;
   var elems = [];
   for (let i = 0; i < Object.keys(myJson).length; i++) {
     elems[aux.toString()] = myJson[aux.toString()].toString();
     aux++;
   }
-  res.render("platogen", { layout: false, platos: elems, calorias: calorias  });
+  res.render("platogen", { layout: false, platos: elems, calorias: calorias });
 };
-
 
 exports.premium = async (req, res, next) => {
   await acc(req);
-  res.render("premium");
+  let isprem = null; // LLAMADA A LA API PARA SABER SI ES PREMIUM O NO
+  res.render("premium", { layout: false, isprem: isprem });
 };
 
 exports.seg = async (req, res, next) => {
@@ -246,18 +239,18 @@ exports.seg = async (req, res, next) => {
       peso_act = myJson["peso_act"].toString();
       ejer_act = myJson["ejercicio_act"].toString();
       ejer_obj = myJson["ejercicio_obj"].toString();
-      if ((ejer_obj%60).toString().length == 1) {
-        ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
+      if ((ejer_obj % 60).toString().length == 1) {
+        ejer_obj = Math.round(ejer_obj / 60) + ":0" + (ejer_obj % 60);
       } else {
-        ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+        ejer_obj = Math.round(ejer_obj / 60) + ":" + (ejer_obj % 60);
       }
       if (ejer_obj.length == 4) {
         ejer_obj = "0" + ejer_obj;
       }
-      if ((ejer_act%60).toString().length == 1) {
-        ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
+      if ((ejer_act % 60).toString().length == 1) {
+        ejer_act = Math.round(ejer_act / 60) + ":0" + (ejer_act % 60);
       } else {
-        ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+        ejer_act = Math.round(ejer_act / 60) + ":" + (ejer_act % 60);
       }
       if (ejer_act.length == 4) {
         ejer_act = "0" + ejer_act;
@@ -312,7 +305,7 @@ exports.saveplat = async (req, res, next) => {
   const inges = req.session.plato;
   const calo = req.session.total;
   if (!fecha) {
-    res.redirect("/calculadoratotal")
+    res.redirect("/calculadoratotal");
   }
   if (nombre && inges && calo && fecha) {
     let plato_global = [nombre, prep, fecha, inges, calo];
@@ -416,18 +409,18 @@ exports.segmod = async (req, res, next) => {
       peso_act = myJson["peso_act"].toString();
       ejer_act = myJson["ejercicio_act"].toString();
       ejer_obj = myJson["ejercicio_obj"].toString();
-      if ((ejer_obj%60).toString().length == 1) {
-        ejer_obj = Math.round(ejer_obj/60) + ":0" + ejer_obj%60;
+      if ((ejer_obj % 60).toString().length == 1) {
+        ejer_obj = Math.round(ejer_obj / 60) + ":0" + (ejer_obj % 60);
       } else {
-        ejer_obj = Math.round(ejer_obj/60) + ":" + ejer_obj%60;
+        ejer_obj = Math.round(ejer_obj / 60) + ":" + (ejer_obj % 60);
       }
       if (ejer_obj.length == 4) {
         ejer_obj = "0" + ejer_obj;
       }
-      if ((ejer_act%60).toString().length == 1) {
-        ejer_act = Math.round(ejer_act/60) + ":0" + ejer_act%60;
+      if ((ejer_act % 60).toString().length == 1) {
+        ejer_act = Math.round(ejer_act / 60) + ":0" + (ejer_act % 60);
       } else {
-        ejer_act = Math.round(ejer_act/60) + ":" + ejer_act%60;
+        ejer_act = Math.round(ejer_act / 60) + ":" + (ejer_act % 60);
       }
       if (ejer_act.length == 4) {
         ejer_act = "0" + ejer_act;
@@ -448,10 +441,10 @@ exports.objchan = async (req, res, next) => {
   let peso_ini = req.body.peso_ini;
   let peso_act = req.body.peso_act;
   let ejer_act = req.body.ejer_act;
-  ejer_obj = ejer_obj.split(':');
-  ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
-  ejer_act = ejer_act.split(':');
-  ejer_act = (+ejer_act[0])*60 + parseInt(ejer_act[1]);
+  ejer_obj = ejer_obj.split(":");
+  ejer_obj = +ejer_obj[0] * 60 + parseInt(ejer_obj[1]);
+  ejer_act = ejer_act.split(":");
+  ejer_act = +ejer_act[0] * 60 + parseInt(ejer_act[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join("-");
@@ -474,10 +467,10 @@ exports.segsav = async (req, res, next) => {
   let peso_ini = req.body.peso_ini;
   let peso_obj = req.body.peso_obj;
   let ejer_obj = req.body.ejer_obj;
-  ejer_obj = ejer_obj.split(':');
-  ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
-  ejer_act = ejer_act.split(':');
-  ejer_act = (+ejer_act[0])*60 + parseInt(ejer_act[1]);
+  ejer_obj = ejer_obj.split(":");
+  ejer_obj = +ejer_obj[0] * 60 + parseInt(ejer_obj[1]);
+  ejer_act = ejer_act.split(":");
+  ejer_act = +ejer_act[0] * 60 + parseInt(ejer_act[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
   peso = peso.join("-");
@@ -501,20 +494,20 @@ exports.segsaveini = async (req, res, next) => {
   let peso_obj = req.body.pesojb;
   let ejer_act = "0:00";
   let ejer_obj = req.body.cantidad;
-  ejer_obj = ejer_obj.split(':');
-  ejer_obj = (+ejer_obj[0])*60 + parseInt(ejer_obj[1]);
-  ejer_act = ejer_act.split(':');
-  ejer_act = (+ejer_act[0])*60 + parseInt(ejer_act[1]);
+  ejer_obj = ejer_obj.split(":");
+  ejer_obj = +ejer_obj[0] * 60 + parseInt(ejer_obj[1]);
+  ejer_act = ejer_act.split(":");
+  ejer_act = +ejer_act[0] * 60 + parseInt(ejer_act[1]);
   let peso = [peso_ini, peso_act, peso_obj];
   let ejer = [ejer_act, ejer_obj];
-  peso = peso.join('-');
-  ejer = ejer.join('-');
+  peso = peso.join("-");
+  ejer = ejer.join("-");
   var http =
-    "http://localhost:5000/api/isst/crear_objetivos/" + 
-    req.session.user + 
-    "/" + 
-    peso + 
-    "/" + 
+    "http://localhost:5000/api/isst/crear_objetivos/" +
+    req.session.user +
+    "/" +
+    peso +
+    "/" +
     ejer;
   await axios.get(http);
   // El tiempo lo guardaba en minutos
