@@ -607,7 +607,21 @@ input {
 }
 
 .but_perf {
-  margin: auto;
+  margin-top: auto;
+  margin-bottom: 5px;
+  padding: 5px;
+  width: 200px;
+  border-radius: 3px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.but_perf2 {
+  margin-bottom: auto;
+  margin-top: 5px;
   padding: 5px;
   width: 200px;
   border-radius: 3px;
@@ -621,6 +635,11 @@ input {
 .but_perf:hover {
   background-color: #2e7d30;
 }
+
+.but_perf2:hover {
+  background-color: #2e7d30;
+}
+
 
 .peso {
   width: 100%;

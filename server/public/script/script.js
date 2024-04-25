@@ -67,6 +67,11 @@ function segchan() {
   window.location.href = "http://localhost:3000/seg/mod";
 }
 
+function changefot() {
+ // HACER LO QUE SEA PARA CAMBIAR LA FOTO DE PERFIL
+ // API 
+}
+
 function gradea(prog) {
   let gradientColor = 0;
   if (prog < 33) {
