@@ -29,16 +29,16 @@
           <% for (let spec of lista_spec ) { %>
           <div class="spec">
             <div class="separa2">
-              <h2 id="nomarg8"> <% = spec[0] %></h2>
-              <span class="val" style="background: linear-gradient(to left, gold <% = spec[2] - 5 %>%, transparent <% = spec[2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <h2 id="nomarg8"> <%= spec[0] %></h2>
+              <span class="val" style="background: linear-gradient(to left, gold <%= spec[2] - 5 %>%, transparent <%= spec[2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
             </div>
             <div class="grideito8">
               <img src="server/public/images/perf.jpg" height="150px" style="border-radius: 25px; border: solid 1px #333;"> 
               <div>
-                <div class="dessssss"> <% = spec[1] %> </div>
+                <div class="dessssss"> <%= spec[1] %> </div>
                 <div class="separa3">
-                  <h4 id="nomarg4"> <% = spec[3] %></h4>
-                  <h3 id="nomarg4"> <% = spec[4] %>&euro;/consulta</h3>
+                  <h4 id="nomarg4"> <%= spec[3] %></h4>
+                  <h3 id="nomarg4"> <%= spec[4] %>&euro;/consulta</h3>
                 </div>
               </div>
             </div>
