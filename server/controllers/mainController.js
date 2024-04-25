@@ -516,7 +516,16 @@ exports.segsaveini = async (req, res, next) => {
     "/" +
     ejer;
   await axios.get(http);
-  // El tiempo lo guardaba en minutos
-  //Realizar llamada a la api para guardarlos
   res.redirect("/seguimiento");
+};
+
+exports.specops = async (req, res, next) => {
+  // LLAMADA A LA API PARA TENER ESPCIALISTAS
+  // DEVUELVEME UN ARRAY, Y EN CADA POSICION TODOS LOS DATOS DE LOS ESPECIALISTAS
+
+  let lista_spec = null;
+  // EJEMPLO
+  // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio] 
+  // AUN FALTA CAMBIAR FOTO EN LA VISTA
+  res.render("specopc", { layout: false, lista: lista_spec  });
 };

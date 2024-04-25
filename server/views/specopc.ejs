@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUTRI-APP</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/script/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div id="ocupa_header">
+      <button class="but_head" onclick="calendario()">Volver</button>
+    </div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
+  </header>
+
+  <div id="ocupa_dia">
+    <div class="premium">
+      <h1>Especialistas</h1>
+      <div class="overf">
+        <div class="grideito7">
+          <% for (let spec of lista_spec ) { %>
+          <div class="spec">
+            <div class="separa2">
+              <h2 id="nomarg8"> <% = spec[0] %></h2>
+              <span class="val" style="background: linear-gradient(to left, gold <% = spec[2] - 5 %>%, transparent <% = spec[2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            </div>
+            <div class="grideito8">
+              <img src="server/public/images/perf.jpg" height="150px" style="border-radius: 25px; border: solid 1px #333;"> 
+              <div>
+                <div class="dessssss"> <% = spec[1] %> </div>
+                <div class="separa3">
+                  <h4 id="nomarg4"> <% = spec[3] %></h4>
+                  <h3 id="nomarg4"> <% = spec[4] %>&euro;/consulta</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  </div>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>

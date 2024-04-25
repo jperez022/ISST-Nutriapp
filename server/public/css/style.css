@@ -943,15 +943,14 @@ input[type="range"] {
 
 .premium {
   background-color: #eee;
-  margin: 7vh;
-  min-height: calc(100vh - (138px + 14vh));
-  width: calc(100% - 15vw);
-  max-width: 1000px;
+  margin: 30px;
+  height: calc(100vh - (138px + 60px));
+  width: calc(100% - 100px);
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .grideito6 {
@@ -986,6 +985,12 @@ input[type="range"] {
   padding-left: 0px;
 }
 
+#nomarg8 {
+  margin: 0px;
+  padding-left: 0px;
+  background-color: #fff;
+}
+
 .centraooo2 {
   width: 100%;
   display: flex;
@@ -993,4 +998,51 @@ input[type="range"] {
   align-items: center;
   flex-direction: column;
   margin: auto;
+}
+
+.spec {
+  padding: 10px;
+  width: calc(100% - 25px);
+  height: 220px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: solid 1px #333;
+}
+
+.grideito7 {
+  display: grid;
+  grid-template-columns: calc(50% - 8px) calc(50% - 8px);
+  grid-auto-rows: minmax(200px, auto);
+  gap: 16px;
+}
+
+.overf {
+  height: calc(100vh - (138px + 14vh + 50px));
+  width: 90%;
+  overflow-y: auto;
+}
+
+.grideito8 {
+  display: grid;
+  grid-template-columns: 150px calc(100% - 170px);
+  gap: 20px;
+  height: 150px;
+}
+
+.val{
+  font-size: 50px;
+}
+
+.dessssss{
+  height: 120px;
+  overflow-y: auto;
+  text-align: justify;
+}
+
+.separa3 {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

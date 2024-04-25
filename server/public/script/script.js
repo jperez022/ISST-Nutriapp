@@ -54,6 +54,10 @@ function inicio() {
   window.location.href = "http://localhost:3000/calendario";
 }
 
+function specops() {
+  window.location.href = "http://localhost:3000/especialistas";
+}
+
 function cuenta() {
   window.location.href =
     " http://localhost:8080/realms/ISST/account/#/personal-info";

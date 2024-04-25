@@ -44,4 +44,6 @@ router.post("/seg/save", Controller.segsav);
 
 router.post("/seg/inisave", Controller.segsaveini);
 
+router.post("/especialistas", Controller.specops)
+
 module.exports = router;
