@@ -14,6 +14,8 @@ router.get("/calendario/:dia(\\d+)", Controller.dia);
 
 router.get("/educacion", Controller.educacion);
 
+router.get("/articulo", Controller.artic); // DEBERIA SER SOLO PARA PREMIUM
+
 router.get("/objetivos", Controller.objetivos);
 
 router.get("/perfil", Controller.perfil);
@@ -46,6 +48,6 @@ router.post("/seg/save", Controller.segsav);
 
 router.post("/seg/inisave", Controller.segsaveini);
 
-router.post("/especialistas", Controller.specops);
+router.post("/especialistas", Controller.specops); // DEBERIA SER SOLO PARA PREMIUM
 
 module.exports = router;

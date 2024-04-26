@@ -67,6 +67,10 @@ function segchan() {
   window.location.href = "http://localhost:3000/seg/mod";
 }
 
+function segchan() {
+  window.location.href = "http://localhost:3000/articulo";
+}
+
 function gradea(prog) {
   let gradientColor = 0;
   if (prog < 33) {

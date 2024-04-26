@@ -116,7 +116,12 @@ exports.dia = async (req, res, next) => {
 
 exports.educacion = async (req, res, next) => {
   await acc(req);
-  res.render("edu", req.session.isprem);
+  res.render("edu", { layout: false });
+};
+
+exports.artic = async (req, res, next) => {
+  await acc(req);
+  res.render("articulo", { layout: false });
 };
 
 exports.objetivos = async (req, res, next) => {
