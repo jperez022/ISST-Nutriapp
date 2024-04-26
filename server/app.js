@@ -17,7 +17,7 @@ function getfot() {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'profilePics/'); 
+    cb(null, '/public/images/profilePics/'); 
   },
   filename: function (req, file, cb) {
     

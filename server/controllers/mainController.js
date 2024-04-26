@@ -160,26 +160,25 @@ exports.perfil = async (req, res, next) => {
       peso = "error";
       ejer = "error";
     });
+  // API FALTA PASAR FOTO EL ID DE LA FOTO A LA VISTA
+  // COMPLETAR
   res.render("perfil", {
     layout: false,
+    foto: fotico,
     user: req.session.user,
     peso: peso,
     ejer: ejer,
   });
-  // API FALTA PASAR FOTO EL ID DE LA FOTO A LA VISTA
-  // COMPLETAR
 };
-
 
 exports.chanfoto = async (req, res, next) => {
   if (!req.file) {
-    return res.status(400).send('No se ha seleccionado ninguna imagen.');
+    return res.status(400).send("No se ha seleccionado ninguna imagen.");
   } else {
-    res.redirect("/perfil")
+    res.redirect("/perfil");
     // TESTEAR FUNCIONAMIENTO
   }
 };
-
 
 exports.plato = async (req, res, next) => {
   await acc(req);
@@ -540,7 +539,7 @@ exports.specops = async (req, res, next) => {
 
   let lista_spec = null;
   // EJEMPLO
-  // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio] 
+  // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio, idfoto]
   // AUN FALTA CAMBIAR FOTO EN LA VISTA
-  res.render("specopc", { layout: false, lista: lista_spec  });
+  res.render("specopc", { layout: false, lista: lista_spec });
 };
