@@ -25,70 +25,15 @@
     <div class="premium">
       <h1>Artículos</h1>
       <div class="articus">
+        <% for (let artic of articulos) { %>
         <div class="artic">
-          <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-          <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
+          <h2 id="nomarg9"> <%= artic[1] %> </h2>
+          <div class="textito">
+            <%= artic[2]
           </div>
-          <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
+          <div class="centraooo"><button class="verat" onclick="verart(<%= artic[0] %>)">Ver artículo</button></div>
         </div>
-        <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
-          <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
-          <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
-          <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
-          <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
-          <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
-          <div class="artic">
-            <h2 id="nomarg9">Lorem ipsum dolor sit amet consectetur adipisi...</h2>
-            <div class="textito">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed enim sequi doloribus velit, ex quibusdam magni hic nulla accusantium, natus illo reiciendis incidunt beatae iste doloremque ipsum officiis placeat assumenda?
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sit quibusdam, culpa dolores sed asperiores sequi animi? Itaque iure rem provident suscipit architecto reiciendis sapiente ducimus? Doloribus assumenda labore repellat?
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum fuga ipsam 
-            </div>
-            <div class="centraooo"><button class="verat" onclick="verart()">Ver artículo</button></div>
-          </div>
+        <% } %>
       </div>
       <br><br>
     </div>

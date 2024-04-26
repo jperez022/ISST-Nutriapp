@@ -67,8 +67,8 @@ function segchan() {
   window.location.href = "http://localhost:3000/seg/mod";
 }
 
-function segchan() {
-  window.location.href = "http://localhost:3000/articulo";
+function verart(id) {
+  window.location.href = "http://localhost:3000/articulo/" + id ;
 }
 
 function gradea(prog) {

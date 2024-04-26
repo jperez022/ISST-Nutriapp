@@ -116,12 +116,26 @@ exports.dia = async (req, res, next) => {
 
 exports.educacion = async (req, res, next) => {
   await acc(req);
-  res.render("edu", { layout: false });
+  // COMPLETAR
+  // LLAMDA A LA API
+  // PASAR TODOS LOS ARTICULOS EN UN ARRAY LLAMADO ARTICULOS
+  // EJEMPLO
+  // Articulos[0] = [Id, Nombre, Descripcion]
+  // NO HACE FALTA PASAR TODO EL CONTENIDO DEL ARTICULO
+  let articulos = null
+  res.render("edu", { layout: false, articulos: articulos });
 };
 
 exports.artic = async (req, res, next) => {
   await acc(req);
-  res.render("articulo", { layout: false });
+  var artic_id = req.params.id;
+  // COMPLETAR
+  // LLAMDA A LA API
+  // PASAR EL ARTICULO COMO UN ARRAY 
+  // EJEMPLO
+  // Articulos = [Nombre, Descripcion, Texto_COMPLETO]
+  let articulo = null
+  res.render("articulo", { layout: false, articulo: articulo });
 };
 
 exports.objetivos = async (req, res, next) => {
