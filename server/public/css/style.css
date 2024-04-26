@@ -1111,3 +1111,10 @@ input[type="range"] {
   text-align: justify;
   height: 160px;
 }
+
+.textaco {
+  width: calc( 100% - 80px);
+  height: calc( 100% - 40px);
+  padding: 20px;
+  text-align: justify;
+}
