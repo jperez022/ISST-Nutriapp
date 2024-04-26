@@ -1106,10 +1106,9 @@ input[type="range"] {
 
 .textito {
   width: calc( 100% - 40px);
-  height: calc( 100% - 130px);
+  height: calc( 100% - 200px);
   padding: 20px;
   text-align: justify;
-  height: 160px;
 }
 
 .textaco {
