@@ -180,6 +180,8 @@ function realizar_calendario() {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
     for (let i = 1; i <= lastdate; i++) {
+      // COMPLETAR
+      // TESTEAR PARA QUE SE VEAN COLORES EN LOS DIAS QUE HAYA ALGO
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
