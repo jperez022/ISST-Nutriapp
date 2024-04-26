@@ -25,6 +25,7 @@ async function acc(req) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
   }
+  // COMPLETAR
   // LLAMADA A LA API PARA SABER SI EL USUARIO ES PREMIUM
   // TAMBIEN HARIA UNA PARA SABER SI ES ESPECIALISTA
   let isprem = null;
@@ -165,7 +166,20 @@ exports.perfil = async (req, res, next) => {
     peso: peso,
     ejer: ejer,
   });
+  // API FALTA PASAR FOTO EL ID DE LA FOTO A LA VISTA
+  // COMPLETAR
 };
+
+
+exports.chanfoto = async (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send('No se ha seleccionado ninguna imagen.');
+  } else {
+    res.redirect("/perfil")
+    // TESTEAR FUNCIONAMIENTO
+  }
+};
+
 
 exports.plato = async (req, res, next) => {
   await acc(req);
@@ -520,6 +534,7 @@ exports.segsaveini = async (req, res, next) => {
 };
 
 exports.specops = async (req, res, next) => {
+  // COMPLETAR
   // LLAMADA A LA API PARA TENER ESPCIALISTAS
   // DEVUELVEME UN ARRAY, Y EN CADA POSICION TODOS LOS DATOS DE LOS ESPECIALISTAS
 

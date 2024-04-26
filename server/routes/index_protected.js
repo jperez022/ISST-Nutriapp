@@ -18,6 +18,8 @@ router.get("/objetivos", Controller.objetivos);
 
 router.get("/perfil", Controller.perfil);
 
+router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto);
+
 router.get("/plato", Controller.plato);
 
 router.get("/plato/gen", Controller.platogen);
@@ -44,6 +46,6 @@ router.post("/seg/save", Controller.segsav);
 
 router.post("/seg/inisave", Controller.segsaveini);
 
-router.post("/especialistas", Controller.specops)
+router.post("/especialistas", Controller.specops);
 
 module.exports = router;
