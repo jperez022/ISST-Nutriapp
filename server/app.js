@@ -57,9 +57,13 @@ const keycloak = new Keycloak({ store: memoryStore });
 app.use(keycloak.middleware());
 
 // Importamos las rutas
+var indexRouterProtectedPrem = require("./routes/index_premium.js");
 var indexRouterProtected = require("./routes/index_protected");
 var indexRouter = require("./routes/index");
+
 app.get("/", indexRouter);
+app.get("/premium/*", keycloak.protect("premium"), indexRouterProtectedPrem);
+app.post("/premium/*", keycloak.protect("premium"), indexRouterProtectedPrem);
 app.get("/*", keycloak.protect(), indexRouterProtected);
 app.post("/*", keycloak.protect(), indexRouterProtected);
 

@@ -19,7 +19,7 @@ function calendario() {
 }
 
 function educacion() {
-  window.location.href = "http://localhost:3000/educacion";
+  window.location.href = "http://localhost:3000/premium/educacion";
 }
 
 function objetivos() {
@@ -55,7 +55,7 @@ function inicio() {
 }
 
 function specops() {
-  window.location.href = "http://localhost:3000/especialistas";
+  window.location.href = "http://localhost:3000/premium/especialistas";
 }
 
 function cuenta() {
@@ -68,7 +68,7 @@ function segchan() {
 }
 
 function verart(id) {
-  window.location.href = "http://localhost:3000/articulo/" + id ;
+  window.location.href = "http://localhost:3000/premium/articulo/" + id ;
 }
 
 function gradea(prog) {
