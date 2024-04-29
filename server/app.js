@@ -3,8 +3,8 @@ const session = require("express-session");
 const expressPartials = require("express-partials");
 const Keycloak = require("keycloak-connect");
 const keycloakConfig = require("./keycloak.json");
-const bodyParser = require('body-parser');
-const multer = require('multer');
+const bodyParser = require("body-parser");
+const multer = require("multer");
 const app = express();
 const port = 3000;
 
@@ -12,19 +12,18 @@ const port = 3000;
 let k = 0;
 
 function getfot() {
- return k;
+  return k;
 }
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/public/images/profilePics/'); 
+    cb(null, "/public/images/profilePics/");
   },
   filename: function (req, file, cb) {
-    
     const uniqueSuffix = getfot();
     k = k + 1;
-    cb(null, file.fieldname + '-' + uniqueSuffix); 
-  }
+    cb(null, file.fieldname + "-" + uniqueSuffix);
+  },
 });
 
 // Configuración de EJS como motor de plantillas
