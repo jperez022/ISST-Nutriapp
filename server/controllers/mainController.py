@@ -29,5 +29,6 @@ if len(sys.argv) >= 2:
     my_file = open(ruta,'w')
     my_file.write(my_data)
     my_file.close()
+    print("localhost cambiado por " + new_ip + " en controller")
 else:
     mensaje()
