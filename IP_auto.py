@@ -5,8 +5,8 @@ def mensaje():
     print("Para ejecutar este script escriba 'python3 auto_IP.py *NEW_IP*")
 
 directorio = os.getcwd()
-kk = directorio + "/server/controller/mainController.py"
-pp = directorio + "/server/public/script/scrip.js"
+kk = directorio + "/server/controllers/mainController.py"
+pp = directorio + "/server/views/views.py"
 tt = directorio + "/server/public/script/script.py"
 
 if len(sys.argv) >= 3:
