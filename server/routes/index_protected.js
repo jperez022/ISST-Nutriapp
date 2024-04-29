@@ -16,7 +16,7 @@ router.get("/objetivos", Controller.objetivos);
 
 router.get("/perfil", Controller.perfil);
 
-router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto);
+// router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto); COMPLETAR NO VA
 
 router.get("/plato", Controller.plato);
 
