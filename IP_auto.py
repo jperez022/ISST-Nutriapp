@@ -6,7 +6,7 @@ def mensaje():
 
 directorio = os.getcwd()
 kk = directorio + "/server/controllers/mainController.py"
-pp = directorio + "/server/views/views.py"
+pp = directorio + "/server/views/viewss.py"
 tt = directorio + "/server/public/script/script.py"
 
 if len(sys.argv) >= 3:
