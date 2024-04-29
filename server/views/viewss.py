@@ -8,13 +8,13 @@ def mensaje():
 
 ruta_py = sys.argv[0]
 ruta = ruta_py.replace('.py','.ejs')
-ruta_calc = ruta.replace('views','calc')
-ruta_calc2 = ruta.replace('views','calc2')
-ruta_dia = ruta.replace('views','dia')
-ruta_seg = ruta.replace('views','seg')
-ruta_segmodif = ruta.replace('views','segmodif')
-ruta_segini = ruta.replace('views','segini')
-ruta_platogen = ruta.replace('views','platogen')
+ruta_calc = ruta.replace('viewss','calc')
+ruta_calc2 = ruta.replace('viewss','calc2')
+ruta_dia = ruta.replace('viewss','dia')
+ruta_seg = ruta.replace('viewss','seg')
+ruta_segmodif = ruta.replace('viewss','segmodif')
+ruta_segini = ruta.replace('viewss','segini')
+ruta_platogen = ruta.replace('viewss','platogen')
 
 if len(sys.argv) >= 4:
     mensaje()
