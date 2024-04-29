@@ -68,7 +68,7 @@ function segchan() {
 }
 
 function verart(id) {
-  window.location.href = "http://localhost:3000/premium/articulo/" + id ;
+  window.location.href = "http://localhost:3000/premium/articulo/" + id;
 }
 
 function gradea(prog) {
@@ -148,9 +148,7 @@ function changefot() {
 }
 
 function comprarprem() {
-  // COMPLETAR
-  // Gestionar que se hace al comprar premium API
-  res.send("COMPRAR PREMIUM");
+  window.location.href = "http://localhost:3000/premium/crompar";
 }
 
 function realizar_calendario() {

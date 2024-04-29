@@ -1,5 +1,33 @@
+const KeycloakAdminClient = require("keycloak-admin-client");
 const keycloakConfig = require("./../keycloak.json");
 const axios = require("axios");
+
+// Configura el cliente de administración de Keycloak
+const keycloakAdmin = new KeycloakAdminClient();
+keycloakAdmin.setConfig({
+  baseUrl: keycloakConfig["auth-server-url"],
+  realmName: keycloakConfig.realm,
+  username: "admin",
+  password: "admin",
+  grantType: "password",
+});
+
+async function givprem(username) {
+  try {
+    await keycloakAdmin.auth();
+
+    const usuario = await keycloakAdmin.users.find({ username: username });
+
+    await keycloakAdmin.users.addRealmRoleMappings({
+      id: usuario.id,
+      roles: ["premium"],
+    });
+
+    console.log(`Rol "premium" asignado al usuario ${username}`);
+  } catch (error) {
+    console.error('Error al asignar el rol "premium" al usuario:', error);
+  }
+}
 
 async function acc(req) {
   if (!req.session.user) {
@@ -122,7 +150,7 @@ exports.educacion = async (req, res, next) => {
   // EJEMPLO
   // Articulos[0] = [Id, Nombre, Descripcion]
   // NO HACE FALTA PASAR TODO EL CONTENIDO DEL ARTICULO
-  let articulos = null
+  let articulos = null;
   res.render("edu", { layout: false, articulos: articulos });
 };
 
@@ -131,10 +159,10 @@ exports.artic = async (req, res, next) => {
   var artic_id = req.params.id;
   // COMPLETAR
   // LLAMDA A LA API
-  // PASAR EL ARTICULO COMO UN ARRAY 
+  // PASAR EL ARTICULO COMO UN ARRAY
   // EJEMPLO
   // Articulos = [Nombre, Descripcion, Texto_COMPLETO]
-  let articulo = null
+  let articulo = null;
   res.render("articulo", { layout: false, articulo: articulo });
 };
 
@@ -261,6 +289,12 @@ exports.premium = async (req, res, next) => {
   await acc(req);
 
   res.render("premium", { layout: false, isprem: req.session.isprem });
+};
+
+exports.premiumcom = async (req, res, next) => {
+  await acc(req);
+  await givprem(req.session.user);
+  res.redirect("/calendario")
 };
 
 exports.seg = async (req, res, next) => {

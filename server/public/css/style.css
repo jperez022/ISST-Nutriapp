@@ -994,7 +994,6 @@ input[type="range"] {
   grid-template-rows: 50px 150px 100px;
   column-gap: 40px;
   row-gap: 10px;
-  height: 100%;
 }
 
 .paddead {
