@@ -1,4 +1,4 @@
-package com.isst.nutriapp.grupo18.apirest.usuario;
+package com.isst.nutriapp.grupo18.apirest.JSON;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

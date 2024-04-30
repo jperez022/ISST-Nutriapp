@@ -1,4 +1,4 @@
-package com.isst.nutriapp.grupo18.apirest.usuario;
+package com.isst.nutriapp.grupo18.apirest.dia;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,10 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
+import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
+import com.isst.nutriapp.grupo18.apirest.plato.Plato;
+import com.isst.nutriapp.grupo18.apirest.usuario.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 

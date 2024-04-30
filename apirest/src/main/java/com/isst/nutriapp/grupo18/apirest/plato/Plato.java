@@ -1,6 +1,8 @@
-package com.isst.nutriapp.grupo18.apirest.usuario;
+package com.isst.nutriapp.grupo18.apirest.plato;
 
 import java.util.List;
+
+import com.isst.nutriapp.grupo18.apirest.dia.Dia;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;

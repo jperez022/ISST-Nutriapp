@@ -2,6 +2,8 @@ package com.isst.nutriapp.grupo18.apirest.usuario;
 
 import org.springframework.stereotype.Service;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.ObjetivosJSON;
+
 import lombok.RequiredArgsConstructor;
 
 @Service

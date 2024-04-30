@@ -1,6 +1,9 @@
 package com.isst.nutriapp.grupo18.apirest.usuario;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import com.isst.nutriapp.grupo18.apirest.JSON.ObjetivosJSON;
+
 import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
