@@ -146,7 +146,7 @@ function changefot() {
 }
 
 function comprarprem() {
-  window.location.href = "http://localhost:3000/premium/crompar";
+  window.location.href = "http://localhost:3000/comprar/premium/";
 }
 
 function realizar_calendario() {

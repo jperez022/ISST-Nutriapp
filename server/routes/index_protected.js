@@ -49,7 +49,7 @@ router.post("/plato/gen/fil", platogenfil);
 
 router.get("/premium", premium);
 
-router.get("/premium/comprar", premiumcom);
+router.get("/comprar/premium", premiumcom);
 
 router.get("/seguimiento", seg);
 
