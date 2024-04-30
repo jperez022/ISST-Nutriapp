@@ -79,7 +79,7 @@ export const inicio = async (req, res, next) => {
   await acc(req);
   if (!req.session.inicio_iniciado) {
     var http =
-      "http://localhost:5000/api/isst/nuevo_usuario/" + req.session.user;
+      "http://localhost:5000/usuario/nuevo/" + req.session.user;
     axios.get(http);
     req.session.inicio_iniciado = true;
   }
@@ -109,7 +109,7 @@ export const calendario = async (req, res, next) => {
   var myJson = "error";
   if (!req.session.calendario_created) {
     var http =
-      "http://localhost:5000/api/isst/calendario/crear/" + req.session.user;
+      "http://localhost:5000/calendario/crear/" + req.session.user;
     await axios.get(http).then((response) => {
       myJson = response;
     });
@@ -128,7 +128,7 @@ export const dia = async (req, res, next) => {
     dia_mes = "error";
   }
   var http =
-    "http://localhost:5000/api/isst/calendario/dia/" +
+    "http://localhost:5000/calendario/dia/" +
     req.session.user +
     "/" +
     dia_mes[1] +
@@ -138,13 +138,13 @@ export const dia = async (req, res, next) => {
     myJson = response.data;
   });
 
-  if (myJson["resp"] == "vacio") {
+  if (myJson["resp"] == [["vacio"]]) {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
     var aux = 0;
     var elems = [];
-    for (let i = 0; i < Object.keys(myJson).length; i++) {
-      elems[aux.toString()] = myJson[aux.toString()].toString();
+    for (let i = 0; i < myJson["resp"].length; i++) {
+      elems[aux.toString()] = myJson[aux].toString();
       aux++;
     }
     res.render("dia", {
@@ -187,7 +187,7 @@ export const objetivos = async (req, res, next) => {
 export const perfil = async (req, res, next) => {
   await acc(req);
   var http =
-    "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
+    "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
     .get(http)
     .then((response) => {
@@ -243,7 +243,7 @@ export const chanfoto = async (req, res, next) => {
 export const plato = async (req, res, next) => {
   await acc(req);
   var http =
-    "http://localhost:5000/api/isst/obtener_plato_usuario/" + req.session.user;
+    "http://localhost:5000/plato/obtener/" + req.session.user;
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
@@ -252,8 +252,8 @@ export const plato = async (req, res, next) => {
   } else {
     var aux = 0;
     var elems = [];
-    for (let i = 0; i < Object.keys(myJson).length; i++) {
-      elems[aux.toString()] = myJson[aux.toString()].toString();
+    for (let i = 0; i < myJson["resp"].length; i++) {
+      elems[aux.toString()] = myJson[aux].toString();
       aux++;
     }
     res.render("plato", {
@@ -265,14 +265,14 @@ export const plato = async (req, res, next) => {
 
 export const platogen = async (req, res, next) => {
   await acc(req);
-  var http = "http://localhost:5000/api/isst/obtener_plato_sugerido/no";
+  var http = "http://localhost:5000/plato/obtenerSugerido/no";
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
   var aux = 0;
   var elems = [];
-  for (let i = 0; i < Object.keys(myJson).length; i++) {
-    elems[aux.toString()] = myJson[aux.toString()].toString();
+  for (let i = 0; i < myJson["resp"].length; i++) {
+    elems[aux.toString()] = myJson[aux].toString();
     aux++;
   }
   res.render("platogen", { layout: false, platos: elems, calorias: null });
@@ -285,14 +285,14 @@ export const platogenfil = async (req, res, next) => {
   let calorias = [caloriasmin, caloriasmax];
   let mis_calorias = caloriasmin + "_" + caloriasmax;
   var http =
-    "http://localhost:5000/api/isst/obtener_plato_sugerido/" + mis_calorias;
+    "http://localhost:5000/plato/obtenerSugerido/" + mis_calorias;
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
   var aux = 0;
   var elems = [];
-  for (let i = 0; i < Object.keys(myJson).length; i++) {
-    elems[aux.toString()] = myJson[aux.toString()].toString();
+  for (let i = 0; i < myJson["resp"].length; i++) {
+    elems[aux.toString()] = myJson[aux].toString();
     aux++;
   }
   res.render("platogen", { layout: false, platos: elems, calorias: calorias });
@@ -314,7 +314,7 @@ export const seg = async (req, res, next) => {
   await acc(req);
   var mi_error = "nohay";
   var http =
-    "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
+    "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
     .get(http)
     .then((response) => {
@@ -429,7 +429,7 @@ export const saveplat = async (req, res, next) => {
     }
     req.session.plato_global = plato_global;
     var http =
-      "http://localhost:5000/api/isst/agregar_plato/" +
+      "http://localhost:5000/plato/agregar/" +
       req.session.user +
       "/" +
       req.session.plato_global[0].replace(" ", "_") +
@@ -460,7 +460,7 @@ export const preparacion = async (req, res, next) => {
     plat[1] = req.body.prep;
   }
   var http =
-    "http://localhost:5000/api/isst/modificar_plato/" +
+    "http://localhost:5000/plato/modificar/" +
     req.session.user +
     "/" +
     plat[0] +
@@ -484,7 +484,7 @@ export const preparacion = async (req, res, next) => {
 
 export const segmod = async (req, res, next) => {
   var http =
-    "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
+    "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
     .get(http)
     .then((response) => {
@@ -535,7 +535,7 @@ export const objchan = async (req, res, next) => {
   peso = peso.join("-");
   ejer = ejer.join("-");
   var http =
-    "http://localhost:5000/api/isst/crear_objetivos/" +
+    "http://localhost:5000/usuario/crear_objetivos/" +
     req.session.user +
     "/" +
     peso +
@@ -561,7 +561,7 @@ export const segsav = async (req, res, next) => {
   peso = peso.join("-");
   ejer = ejer.join("-");
   var http =
-    "http://localhost:5000/api/isst/crear_objetivos/" +
+    "http://localhost:5000/usuario/crear_objetivos/" +
     req.session.user +
     "/" +
     peso +
@@ -588,7 +588,7 @@ export const segsaveini = async (req, res, next) => {
   peso = peso.join("-");
   ejer = ejer.join("-");
   var http =
-    "http://localhost:5000/api/isst/crear_objetivos/" +
+    "http://localhost:5000/usuario/crear_objetivos/" +
     req.session.user +
     "/" +
     peso +

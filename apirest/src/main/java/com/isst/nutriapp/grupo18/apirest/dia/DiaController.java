@@ -26,7 +26,7 @@ public class DiaController {
         return ResponseEntity.ok(null);
     }
 
-    @GetMapping("dia/{nombre}/{mes}/{dia}")
+    @GetMapping("/dia/{nombre}/{mes}/{dia}")
     public ResponseEntity<PlatosJSON> getPlatosDia(@PathVariable("nombre") String nombre, @PathVariable("mes") String mes, @PathVariable("dia") String dia) {
         if (!diaService.usuarioExiste(nombre)) {
             return ResponseEntity.status(400).body(null);

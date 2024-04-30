@@ -35,7 +35,7 @@ public class UsuarioController {
         return ResponseEntity.ok(null);
     }
 
-    @GetMapping("obtener_objetivos/{nombre}")
+    @GetMapping("/obtener_objetivos/{nombre}")
     public ResponseEntity<ObjetivosJSON> obtenerObjetivos(@PathVariable("nombre") String nombre) {
         if (!usuarioService.usuarioExiste(nombre)) {
             return ResponseEntity.status(400).body(null);
