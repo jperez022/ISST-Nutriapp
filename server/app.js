@@ -1,10 +1,17 @@
-const express = require("express");
-const session = require("express-session");
-const expressPartials = require("express-partials");
-const Keycloak = require("keycloak-connect");
-const keycloakConfig = require("./keycloak.json");
-const bodyParser = require("body-parser");
-const multer = require("multer");
+import expressPartials from 'express-partials';
+import keycloakConfig from './keycloak.json';
+import Keycloak from 'keycloak-connect';
+import session from "express-session";
+import bodyParser from "body-parser";
+import express from "express";
+import multer from 'multer';
+
+import proutes from "./routes/index_protected"
+import premtes from "./routes/index_premium"
+import broutes from "./routes/index";
+
+
+
 const app = express();
 const port = 3000;
 
@@ -44,7 +51,7 @@ app.use(express.static("public"));
 const memoryStore = new session.MemoryStore();
 app.use(
   session({
-    secret: "asdawda3dbqlhbdwoabyo8dygy2o8dadiuoas",
+    secret: "misecretosuperseguronadiedebesaberlo", //DA IGUAL LO QUE APAREZCA AQUI
     resave: false,
     saveUninitialized: true,
     store: memoryStore,
@@ -55,16 +62,11 @@ app.use(
 const keycloak = new Keycloak({ store: memoryStore });
 app.use(keycloak.middleware());
 
-// Importamos las rutas
-var indexRouterProtectedPrem = require("./routes/index_premium.js");
-var indexRouterProtected = require("./routes/index_protected");
-var indexRouter = require("./routes/index");
-
-app.get("/", indexRouter);
-app.get("/premium/*", keycloak.protect("premium"), indexRouterProtectedPrem);
-app.post("/premium/*", keycloak.protect("premium"), indexRouterProtectedPrem);
-app.get("/*", keycloak.protect(), indexRouterProtected);
-app.post("/*", keycloak.protect(), indexRouterProtected);
+app.get("/", broutes);
+app.get("/premium/*", keycloak.protect("premium"), premtes);
+app.post("/premium/*", keycloak.protect("premium"), premtes);
+app.get("/*", keycloak.protect(), proutes);
+app.post("/*", keycloak.protect(), proutes);
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

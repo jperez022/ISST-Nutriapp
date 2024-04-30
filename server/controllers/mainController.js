@@ -1,6 +1,6 @@
-const KeycloakAdminClient = require("keycloak-admin-client");
-const keycloakConfig = require("./../keycloak.json");
-const axios = require("axios");
+import KcAdminClient from '@keycloak/keycloak-admin-client';
+import keycloakConfig from './../keycloak.json';
+import axios from 'axios';
 
 // Configura el cliente de administración de Keycloak
 const keycloakAdmin = new KeycloakAdminClient();
@@ -62,7 +62,7 @@ async function acc(req) {
   req.session.isspec = isspec;
 }
 
-exports.inicio = async (req, res, next) => {
+export const inicio = async (req, res, next) => {
   await acc(req);
   if (!req.session.inicio_iniciado) {
     var http =
@@ -73,25 +73,25 @@ exports.inicio = async (req, res, next) => {
   res.render("inicio", { layout: false, user: req.session.user });
 };
 
-exports.index = (req, res, next) => {
+export const index = (req, res, next) => {
   res.render("index", { layout: false });
 };
 
-exports.calc = async (req, res, next) => {
+export const calc = async (req, res, next) => {
   await acc(req);
   let lista = req.session.plato ? req.session.plato : false;
   let suma = req.session.total ? req.session.total : 0;
   res.render("calc", { layout: false, lista: lista, suma: suma });
 };
 
-exports.calc2 = async (req, res, next) => {
+export const calc2 = async (req, res, next) => {
   await acc(req);
   let lista = req.session.plato ? req.session.plato : false;
   let suma = req.session.total ? req.session.total : 0;
   res.render("calc2", { layout: false, lista: lista, suma: suma });
 };
 
-exports.calendario = async (req, res, next) => {
+export const calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";
   if (!req.session.calendario_created) {
@@ -107,7 +107,7 @@ exports.calendario = async (req, res, next) => {
   res.render("calendario", { myJson: myJson, isprem: req.session.isprem });
 };
 
-exports.dia = async (req, res, next) => {
+export const dia = async (req, res, next) => {
   await acc(req);
   var dia = req.params.dia;
   var dia_mes = dia.split("1001");
@@ -142,7 +142,7 @@ exports.dia = async (req, res, next) => {
   }
 };
 
-exports.educacion = async (req, res, next) => {
+export const educacion = async (req, res, next) => {
   await acc(req);
   // COMPLETAR
   // LLAMDA A LA API
@@ -154,7 +154,7 @@ exports.educacion = async (req, res, next) => {
   res.render("edu", { layout: false, articulos: articulos });
 };
 
-exports.artic = async (req, res, next) => {
+export const artic = async (req, res, next) => {
   await acc(req);
   var artic_id = req.params.id;
   // COMPLETAR
@@ -166,12 +166,12 @@ exports.artic = async (req, res, next) => {
   res.render("articulo", { layout: false, articulo: articulo });
 };
 
-exports.objetivos = async (req, res, next) => {
+export const objetivos = async (req, res, next) => {
   await acc(req);
   res.render("objetivos", { layout: false });
 };
 
-exports.perfil = async (req, res, next) => {
+export const perfil = async (req, res, next) => {
   await acc(req);
   var http =
     "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
@@ -218,7 +218,7 @@ exports.perfil = async (req, res, next) => {
   });
 };
 
-exports.chanfoto = async (req, res, next) => {
+export const chanfoto = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).send("No se ha seleccionado ninguna imagen.");
   } else {
@@ -227,7 +227,7 @@ exports.chanfoto = async (req, res, next) => {
   }
 };
 
-exports.plato = async (req, res, next) => {
+export const plato = async (req, res, next) => {
   await acc(req);
   var http =
     "http://localhost:5000/api/isst/obtener_plato_usuario/" + req.session.user;
@@ -250,7 +250,7 @@ exports.plato = async (req, res, next) => {
   }
 };
 
-exports.platogen = async (req, res, next) => {
+export const platogen = async (req, res, next) => {
   await acc(req);
   var http = "http://localhost:5000/api/isst/obtener_plato_sugerido/no";
   await axios.get(http).then((response) => {
@@ -265,7 +265,7 @@ exports.platogen = async (req, res, next) => {
   res.render("platogen", { layout: false, platos: elems, calorias: null });
 };
 
-exports.platogenfil = async (req, res, next) => {
+export const platogenfil = async (req, res, next) => {
   await acc(req);
   let caloriasmin = req.body.calomin;
   let caloriasmax = req.body.calomax;
@@ -285,19 +285,19 @@ exports.platogenfil = async (req, res, next) => {
   res.render("platogen", { layout: false, platos: elems, calorias: calorias });
 };
 
-exports.premium = async (req, res, next) => {
+export const premium = async (req, res, next) => {
   await acc(req);
 
   res.render("premium", { layout: false, isprem: req.session.isprem });
 };
 
-exports.premiumcom = async (req, res, next) => {
+export const premiumcom = async (req, res, next) => {
   await acc(req);
   await givprem(req.session.user);
   res.redirect("/calendario")
 };
 
-exports.seg = async (req, res, next) => {
+export const seg = async (req, res, next) => {
   await acc(req);
   var mi_error = "nohay";
   var http =
@@ -339,7 +339,7 @@ exports.seg = async (req, res, next) => {
   }
 };
 
-exports.logout = (req, res, next) => {
+export const logout = (req, res, next) => {
   req.session.destroy();
   res.redirect(
     keycloakConfig["auth-server-url"] +
@@ -351,7 +351,7 @@ exports.logout = (req, res, next) => {
   // PONER IP SI SE HACE EN SERVIDOR EXTERNO
 };
 
-exports.save = async (req, res, next) => {
+export const save = async (req, res, next) => {
   const ingrediente = req.body.ing;
   const descripcion = req.body.desc;
   const calorias = req.body.calo;
@@ -370,7 +370,7 @@ exports.save = async (req, res, next) => {
   res.redirect("/calculadora");
 };
 
-exports.saveplat = async (req, res, next) => {
+export const saveplat = async (req, res, next) => {
   const nombre = req.body.nombre;
   const prep = req.body.prep;
   var fecha = req.body.fecha;
@@ -437,7 +437,7 @@ exports.saveplat = async (req, res, next) => {
   res.redirect("/calendario");
 };
 
-exports.preparacion = async (req, res, next) => {
+export const preparacion = async (req, res, next) => {
   let fecha = req.body.dia_mes;
   let plat = req.body.plat;
   plat = plat.split(",");
@@ -469,7 +469,7 @@ exports.preparacion = async (req, res, next) => {
   );
 };
 
-exports.segmod = async (req, res, next) => {
+export const segmod = async (req, res, next) => {
   var http =
     "http://localhost:5000/api/isst/obtener_objetivos/" + req.session.user;
   await axios
@@ -507,7 +507,7 @@ exports.segmod = async (req, res, next) => {
   res.render("segmodif", { layout: false, peso: peso, ejer: ejer });
 };
 
-exports.objchan = async (req, res, next) => {
+export const objchan = async (req, res, next) => {
   let peso_obj = req.body.valor;
   let ejer_obj = req.body.cantidad;
   let peso_ini = req.body.peso_ini;
@@ -533,7 +533,7 @@ exports.objchan = async (req, res, next) => {
   res.redirect("/seguimiento");
 };
 
-exports.segsav = async (req, res, next) => {
+export const segsav = async (req, res, next) => {
   let peso_act = req.body.peso;
   let ejer_act = req.body.tiempo;
   let peso_ini = req.body.peso_ini;
@@ -560,7 +560,7 @@ exports.segsav = async (req, res, next) => {
   res.redirect("/seguimiento");
 };
 
-exports.segsaveini = async (req, res, next) => {
+export const segsaveini = async (req, res, next) => {
   let peso_ini = req.body.pesoini;
   let peso_act = req.body.peso;
   let peso_obj = req.body.pesojb;
@@ -585,7 +585,7 @@ exports.segsaveini = async (req, res, next) => {
   res.redirect("/seguimiento");
 };
 
-exports.specops = async (req, res, next) => {
+export const specops = async (req, res, next) => {
   // COMPLETAR
   // LLAMADA A LA API PARA TENER ESPCIALISTAS
   // DEVUELVEME UN ARRAY, Y EN CADA POSICION TODOS LOS DATOS DE LOS ESPECIALISTAS

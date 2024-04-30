@@ -1,11 +1,12 @@
-var express = require("express");
-var router = express.Router();
-const Controller = require("../controllers/mainController");
+import express from "express";
+import { educacion, artic, specops } from "./../controllers/mainController";
 
-router.get("/premium/educacion", Controller.educacion); // DEBERIA SER SOLO PARA PREMIUM // COMPLETAR
+const router = express.Router();
 
-router.get("/premium/articulo/:id(\\d+)", Controller.artic); // DEBERIA SER SOLO PARA PREMIUM // COMPLETAR
+router.get("/premium/educacion", educacion); // DEBERIA SER SOLO PARA PREMIUM // COMPLETAR
 
-router.get("/premium/especialistas", Controller.specops); // DEBERIA SER SOLO PARA PREMIUM // COMPLETAR
+router.get("/premium/articulo/:id(\\d+)", artic); // DEBERIA SER SOLO PARA PREMIUM // COMPLETAR
 
-module.exports = router;
+router.get("/premium/especialistas", specops); // DEBERIA SER SOLO PARA PREMIUM // COMPLETAR
+
+export default router;

@@ -1,5 +1,3 @@
-const axios = require("axios");
-const keycloakConfig = require("./../../keycloak.json");
 
 function login() {
   // Redirigir al servidor de autorización de Keycloak
