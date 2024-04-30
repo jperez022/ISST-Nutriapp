@@ -1,24 +1,31 @@
 import KcAdminClient from '@keycloak/keycloak-admin-client';
-import keycloakConfig from './../keycloak.json';
 import axios from 'axios';
 
-// Configura el cliente de administración de Keycloak
-const keycloakAdmin = new KeycloakAdminClient();
-keycloakAdmin.setConfig({
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const keycloakConfig = require("./../keycloak.json");
+
+const configOptions = {
   baseUrl: keycloakConfig["auth-server-url"],
   realmName: keycloakConfig.realm,
-  username: "admin",
-  password: "admin",
-  grantType: "password",
-});
+};
+
+const kcAdminClient = new KcAdminClient(configOptions);
+
 
 async function givprem(username) {
   try {
-    await keycloakAdmin.auth();
+    
+    await kcAdminClient.auth({
+      username: 'admin',
+      password: 'admin',
+      grantType: 'password',
+      clientId: keycloakConfig.resource,
+    });
 
-    const usuario = await keycloakAdmin.users.find({ username: username });
+    const usuario = await kcAdminClient.users.find({ username: username });
 
-    await keycloakAdmin.users.addRealmRoleMappings({
+    await kcAdminClient.users.addRealmRoleMappings({
       id: usuario.id,
       roles: ["premium"],
     });
