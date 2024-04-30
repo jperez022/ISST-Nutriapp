@@ -12,22 +12,28 @@ const configOptions = {
 
 const kcAdminClient = new KcAdminClient(configOptions);
 
-
 async function givprem(username) {
   try {
     
     await kcAdminClient.auth({
-      username: 'admin',
-      password: 'admin',
-      grantType: 'password',
+      grantType: 'client_credentials',
       clientId: keycloakConfig.resource,
+      clientSecret: keycloakConfig.credentials.secret,
     });
 
-    const usuario = await kcAdminClient.users.find({ username: username });
+    let usuario = await kcAdminClient.users.findOne({ username: username });
+    let client = await kcAdminClient.clients.findOne({ clientId: keycloakConfig.resource });
+    let role = await kcAdminClient.clients.findRole({ id: client[0].id, roleName: "premium" });
 
-    await kcAdminClient.users.addRealmRoleMappings({
-      id: usuario.id,
-      roles: ["premium"],
+    await kcAdminClient.users.addClientRoleMappings({
+      id: usuario[0].id,
+      clientUniqueId: client[0].id,
+      roles: [
+        {
+          id: role.id,
+          name: role.name,
+        },
+      ],
     });
 
     console.log(`Rol "premium" asignado al usuario ${username}`);
