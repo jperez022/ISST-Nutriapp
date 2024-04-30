@@ -111,6 +111,10 @@ h2 {
   padding: 0;
   border: none;
   background: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .but_norm {
@@ -254,7 +258,6 @@ h2 {
   align-items: center;
   justify-content: center;
   z-index: 1;
-  cursor: pointer;
   display: flex;
 }
 
