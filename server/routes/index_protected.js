@@ -21,7 +21,7 @@ import {
   objchan,
   segsav,
   segsaveini
-} from "./../controllers/mainController";
+} from "./../controllers/mainController.js";
 
 const router = express.Router();
 

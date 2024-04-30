@@ -1,15 +1,17 @@
 import expressPartials from 'express-partials';
-import keycloakConfig from './keycloak.json';
 import Keycloak from 'keycloak-connect';
 import session from "express-session";
 import bodyParser from "body-parser";
 import express from "express";
 import multer from 'multer';
 
-import proutes from "./routes/index_protected"
-import premtes from "./routes/index_premium"
-import broutes from "./routes/index";
+import proutes from "./routes/index_protected.js";
+import premtes from "./routes/index_premium.js";
+import broutes from "./routes/index.js";
 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const keycloakConfig = require("./keycloak.json");
 
 
 const app = express();
