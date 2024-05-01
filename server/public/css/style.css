@@ -286,7 +286,11 @@ h2 {
 }
 
 .calendar-dates li.active::before {
-  background: grey;
+  background: coral;
+}
+
+.calendar-dates li.hayplato::before {
+  background: lightblue;
 }
 
 .calendar-navigation {

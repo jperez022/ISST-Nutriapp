@@ -1,4 +1,3 @@
-
 function login() {
   // Redirigir al servidor de autorización de Keycloak
   window.location.href = "http://localhost:3000/inicio";
@@ -188,6 +187,14 @@ function realizar_calendario() {
         year === new Date().getFullYear()
           ? "active"
           : "";
+      if (isToday != "active") {
+        for (let fecha of fechas) {
+          if (i === fecha[0] && month === fecha[1] - 1 && year === fecha[2]) {
+            isToday = "hayplato";
+            break;
+          }
+        }
+      }
       lit += `<li class="${isToday}"><button class="botones-calendario" onclick="ir_al_dia(${i},${month},${year})">${i}</button></li>`;
     }
     for (let i = dayend; i < 6; i++) {
