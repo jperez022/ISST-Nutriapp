@@ -78,11 +78,6 @@ public class PlatoService {
             ingredientes = ingredientes.replace('-','/');
             calorias = calorias.replace('-','/');
             for (Plato plato : posibles) {
-                System.err.println(posibles.size());
-                System.err.println(plato.getNombre().equals(nombre));
-                System.err.println(plato.getIngredientes().equals(ingredientes));
-                System.err.println(plato.getCalorias().equals(calorias));
-                System.err.println(plato.getCaloriasTot() == calorias_total);
                 if ((plato.getNombre().equals(nombre)) && (plato.getIngredientes().equals(ingredientes)) 
                     && (plato.getCalorias().equals(calorias)) && (plato.getCaloriasTot().equals(calorias_total))) {
                         plato.setPreparacion(preparacion);
