@@ -189,7 +189,15 @@ export const objetivos = async (req, res, next) => {
 
 export const perfil = async (req, res, next) => {
   await acc(req);
+  var peso;
+  var ejer;
+  var fotico;
   var myJson;
+  var peso_ini;
+  var peso_obj;
+  var peso_act;
+  var ejer_act;
+  var ejer_obj;
   var http =
     "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
@@ -321,6 +329,11 @@ export const seg = async (req, res, next) => {
   await acc(req);
   var myJson;
   var mi_error = "nohay";
+  var peso_ini;
+  var peso_obj;
+  var peso_act;
+  var ejer_act;
+  var ejer_obj;
   var http =
     "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
@@ -492,6 +505,11 @@ export const preparacion = async (req, res, next) => {
 
 export const segmod = async (req, res, next) => {
   var myJson;
+  var peso_ini;
+  var peso_obj;
+  var peso_act;
+  var ejer_act;
+  var ejer_obj;
   var http =
     "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios

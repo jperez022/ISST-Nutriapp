@@ -40,13 +40,13 @@
                     <% let cals = plat[4].split("/"); %>
                     <% let desc = plat[3].split("/"); %>
                     <% for (let k = 0; k < ings.length; k++ ) { %>
-                    <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != ' ') { %> (<%= desc[k] %>) <% } %></li>
+                      <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != '_') { if (desc[k] != '') { %> (<%= desc[k] %>) <% } } %></li>
                     <% } %>
                   </ul>
                 </div>
               </div>
               <div class="grid_elem4">
-                <% if (plat[1] != ' ') { %>
+                <% if (plat[1] != '_') { %>
                   <h4 id="nomarg3">- Preparación:</h4>
                   <div class="sobra2">
                     <%= plat[1] %>

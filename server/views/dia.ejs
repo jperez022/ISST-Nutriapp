@@ -37,7 +37,7 @@
                 <% let cals = plat[4].split("/"); %>
                 <% let desc = plat[3].split("/"); %>
                 <% for (let k = 0; k < ings.length; k++ ) { %>
-                <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != ' ') { if (desc[k] != '') { %> (<%= desc[k] %>) <% } } %></li>
+                  <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != '_') { if (desc[k] != '') { %> (<%= desc[k] %>) <% } } %></li>
                 <% } %>
               </ul>
             </div>
@@ -45,7 +45,7 @@
           <div class="grid_elem4">
             <h4 id="nomarg3">- Preparación:</h4>
             <div class="sobra2">
-              <% if (plat[1] == ' ') { %>
+              <% if (plat[1] == '_') { %>
                 <form action="http://localhost:3000/calendario/preparacion" method="POST">
                   <textarea name="prep" rows="8" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
                   <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />

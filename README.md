@@ -54,6 +54,41 @@ En el resto de casos sirve con correr el comando:
 
 - pip install -r requirements.txt
 
+### INICIALIZAR SPRING BOOT
+
+Para poder desplegar el servicio de nuestra API REST utilizando Spring Boot deberemos instalar tanto Java como Maven.
+
+Para instalar la version 17 de Java (mínima requerida) seguiremos los siguientes pasos situados en el directorio /home/(usuario):
+
+- wget https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb
+- sudo dpkg -i jdk-17_linux-x64_bin.deb
+- nano .bashrc (escribir dentro la linea export PATH=/usr/lib/jvm/jdk-17/bin:$PATH)
+- source .bashrc
+- java --version (para comprobar su correcta instalación)
+
+Para instalar maven usaremos los siguientes comandos:
+
+- wget https://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
+- tar -xvf apache-maven-3.6.3-bin.tar.gz
+- mv apache-maven-3.6.3 /opt/
+- nano .profile
+
+Dentro del documento .profile escribiremos las siguientes líneas:
+
+M2_HOME='/opt/apache-maven-3.6.3'
+PATH="$M2_HOME/bin:$PATH"
+export PATH
+
+- source .profile
+- mvn --version (para comprobar su correcta instalación)
+
+Hay que recordar que para poder usar Spring Boot debemos tener creada la BBDD a la que nos referimos en application.properties.
+En nuestro caso la BBDD se llama isst2.
+
+Por último para lanzar el servidor usaremos: 
+
+- mvn spring-boot:run
+
 ### DESHABILITAR SSL PETICIONES EXTERNAS
 
 Ejecutar:
