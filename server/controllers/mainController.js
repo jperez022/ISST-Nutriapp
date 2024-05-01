@@ -166,7 +166,7 @@ export const educacion = async (req, res, next) => {
   // EJEMPLO
   // Articulos[0] = [Id, Nombre, Descripcion]
   // NO HACE FALTA PASAR TODO EL CONTENIDO DEL ARTICULO
-  let articulos = null;
+  var articulos;
   res.render("edu", { layout: false, articulos: articulos });
 };
 
@@ -634,9 +634,9 @@ export const specops = async (req, res, next) => {
   // LLAMADA A LA API PARA TENER ESPCIALISTAS
   // DEVUELVEME UN ARRAY, Y EN CADA POSICION TODOS LOS DATOS DE LOS ESPECIALISTAS
 
-  let lista_spec = null;
+  var lista_spec;
   // EJEMPLO
   // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio, idfoto]
   // AUN FALTA CAMBIAR FOTO EN LA VISTA
-  res.render("specopc", { layout: false, lista: lista_spec });
+  res.render("specopc", { layout: false, lista_spec: lista_spec });
 };

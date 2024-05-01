@@ -25,14 +25,16 @@
     <div class="premium">
       <h1>Artículos</h1>
       <div class="articus">
-        <% for (let artic of articulos) { %>
-        <div class="artic">
-          <h2 id="nomarg9"> <%= artic[1] %> </h2>
-          <div class="textito">
-            <%= artic[2]
-          </div>
-          <div class="centraooo"><button class="verat" onclick="verart(<%= artic[0] %>)">Ver artículo</button></div>
-        </div>
+        <% if (typeof articulos !== 'undefined') { %>
+          <% for (let artic of articulos) { %>
+            <div class="artic">
+              <h2 id="nomarg9"> <%= artic[1] %> </h2>
+              <div class="textito">
+                <%= artic[2] %>
+              </div>
+              <div class="centraooo"><button class="verat" onclick="verart(<%= artic[0] %>)">Ver artículo</button></div>
+            </div>
+          <% } %>
         <% } %>
       </div>
       <br><br>
