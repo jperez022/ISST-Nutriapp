@@ -180,7 +180,11 @@ function realizar_calendario() {
     }
     for (let i = 1; i <= lastdate; i++) {
       // COMPLETAR
-      // TESTEAR PARA QUE SE VEAN COLORES EN LOS DIAS QUE HAYA ALGO
+      // LLAMAR A LA API PARA VER TODAS LAS FECHAS DE PLATOS DE UN USUARIO
+      // QUIERO LAS FECHAS COMO UN ARRAY DE ARRAYS DE ESTA FORMA
+      // fecha = fechas[0]
+      // fecha [dia,mes,año]
+      let fechas = [];
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
