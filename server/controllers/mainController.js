@@ -14,7 +14,6 @@ const kcAdminClient = new KcAdminClient(configOptions);
 
 async function givprem(username) {
   try {
-    
     await kcAdminClient.auth({
       grantType: 'client_credentials',
       clientId: keycloakConfig.resource,
@@ -35,6 +34,9 @@ async function givprem(username) {
         },
       ],
     });
+
+    // COMPLETAR 
+    // LLAMADA A LA API PARA GUARDAR QUE ES PREMIUM X USUARIO
 
     console.log(`Rol "premium" asignado al usuario ${username}`);
   } catch (error) {
