@@ -117,6 +117,10 @@ h2 {
   cursor: pointer;
 }
 
+.botones-calendario:hover{
+  background-color: #e4e1e1;
+}
+
 .but_norm {
   /* BOTON LAYOUT*/
   background-color: #4caf50;
@@ -283,10 +287,6 @@ h2 {
 
 .calendar-dates li.active::before {
   background: grey;
-}
-
-.calendar-dates li:not(.active):hover::before {
-  background: #e4e1e1;
 }
 
 .calendar-navigation {
