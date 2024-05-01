@@ -126,9 +126,11 @@ public class PlatoService {
 
     public void createPlatoSugerido(String nombre, String preparacion, String ingredientes, 
         String cantidades, String calorias, Integer calorias_total) {
-            ingredientes = ingredientes.replace('-','/');
-            cantidades = cantidades.replace('-','/');
-            calorias = calorias.replace('-','/');
+            nombre = nombre.replace('_',' ');
+            preparacion = preparacion.replace('_',' ');
+            ingredientes = ingredientes.replace('_',' ').replace('-','/');
+            cantidades = cantidades.replace('_',' ').replace('-','/');
+            calorias = calorias.replace('_',' ').replace('-','/');
             Plato plato = new Plato();
             plato.setNombre(nombre);
             plato.setPreparacion(preparacion);
