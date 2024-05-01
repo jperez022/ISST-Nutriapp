@@ -28,11 +28,9 @@ public class PlatoService {
 
     public void agregarPlato(String usuario, String nombre, String preparacion, 
         String ingredientes, String cantidades, String calorias, Integer calorias_total, String dia_mes) {
-            nombre = nombre.replace('_',' ');
-            preparacion = preparacion.replace('_',' ');
-            ingredientes = ingredientes.replace('_',' ').replace('-','/');
-            cantidades = cantidades.replace('_',' ').replace('-','/');
-            calorias = calorias.replace('_',' ').replace('-','/');
+            ingredientes = ingredientes.replace('-','/');
+            cantidades = cantidades.replace('-','/');
+            calorias = calorias.replace('-','/');
             Plato plato = new Plato();
             plato.setNombre(nombre);
             if (preparacion != " ") {
@@ -77,10 +75,8 @@ public class PlatoService {
             dia.setMes(mimes);
             Optional<Dia> diaid = diaRepo.findOne(Example.of(dia));
             List<Plato> posibles = platoRepo.findByDias_Id(diaid.get().getId());
-            nombre = nombre.replace('_',' ');
-            preparacion = preparacion.replace('_',' ');
-            ingredientes = ingredientes.replace('_',' ').replace('-','/');
-            calorias = calorias.replace('_',' ').replace('-','/');
+            ingredientes = ingredientes.replace('-','/');
+            calorias = calorias.replace('-','/');
             for (Plato plato : posibles) {
                 if ((plato.getNombre().equals(nombre)) && (plato.getIngredientes().equals(ingredientes)) 
                     && (plato.getCalorias().equals(calorias)) && (plato.getCaloriasTot() == calorias_total)) {
@@ -125,11 +121,9 @@ public class PlatoService {
 
     public void createPlatoSugerido(String nombre, String preparacion, String ingredientes, 
         String cantidades, String calorias, Integer calorias_total) {
-            nombre = nombre.replace('_',' ');
-            preparacion = preparacion.replace('_',' ');
-            ingredientes = ingredientes.replace('_',' ').replace('-','/');
-            cantidades = cantidades.replace('_',' ').replace('-','/');
-            calorias = calorias.replace('_',' ').replace('-','/');
+            ingredientes = ingredientes.replace('-','/');
+            cantidades = cantidades.replace('-','/');
+            calorias = calorias.replace('-','/');
             Plato plato = new Plato();
             plato.setNombre(nombre);
             plato.setPreparacion(preparacion);

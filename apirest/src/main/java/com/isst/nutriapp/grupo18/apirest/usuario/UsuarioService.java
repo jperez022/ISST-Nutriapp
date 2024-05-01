@@ -17,9 +17,11 @@ public class UsuarioService {
     }
 
     public void createUsuario(String nombre) {
-        Usuario usuario = new Usuario();
-        usuario.setNombre(nombre);
-        usuarioRepo.save(usuario);
+        if (!usuarioExiste(nombre)) {
+            Usuario usuario = new Usuario();
+            usuario.setNombre(nombre);
+            usuarioRepo.save(usuario);
+        }
     }
 
     public void createObjetivos(String nombre, String peso, String ejercicio) {

@@ -123,6 +123,7 @@ export const calendario = async (req, res, next) => {
 };
 
 export const dia = async (req, res, next) => {
+  var myJson;
   await acc(req);
   var dia = req.params.dia;
   var dia_mes = dia.split("1001");
@@ -140,13 +141,13 @@ export const dia = async (req, res, next) => {
     myJson = response.data;
   });
 
-  if (myJson["resp"] == [["vacio"]]) {
+  if (JSON.stringify(myJson["resp"]) == JSON.stringify([["vacio"]])) {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
     var aux = 0;
     var elems = [];
     for (let i = 0; i < myJson["resp"].length; i++) {
-      elems[aux.toString()] = myJson[aux].toString();
+      elems[aux.toString()] = myJson["resp"][aux].toString();
       aux++;
     }
     res.render("dia", {
@@ -188,6 +189,7 @@ export const objetivos = async (req, res, next) => {
 
 export const perfil = async (req, res, next) => {
   await acc(req);
+  var myJson;
   var http =
     "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
@@ -244,18 +246,19 @@ export const chanfoto = async (req, res, next) => {
 
 export const plato = async (req, res, next) => {
   await acc(req);
+  var myJson;
   var http =
     "http://localhost:5000/plato/obtener/" + req.session.user;
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  if (myJson["resp"] == "vacio") {
+  if (JSON.stringify(myJson["resp"]) == JSON.stringify([["vacio"]])) {
     res.render("plato", { layout: false, platos: "no" });
   } else {
     var aux = 0;
     var elems = [];
     for (let i = 0; i < myJson["resp"].length; i++) {
-      elems[aux.toString()] = myJson[aux].toString();
+      elems[aux.toString()] = myJson["resp"][aux].toString();
       aux++;
     }
     res.render("plato", {
@@ -267,6 +270,7 @@ export const plato = async (req, res, next) => {
 
 export const platogen = async (req, res, next) => {
   await acc(req);
+  var myJson;
   var http = "http://localhost:5000/plato/obtenerSugerido/no";
   await axios.get(http).then((response) => {
     myJson = response.data;
@@ -274,7 +278,7 @@ export const platogen = async (req, res, next) => {
   var aux = 0;
   var elems = [];
   for (let i = 0; i < myJson["resp"].length; i++) {
-    elems[aux.toString()] = myJson[aux].toString();
+    elems[aux.toString()] = myJson["resp"][aux].toString();
     aux++;
   }
   res.render("platogen", { layout: false, platos: elems, calorias: null });
@@ -282,6 +286,7 @@ export const platogen = async (req, res, next) => {
 
 export const platogenfil = async (req, res, next) => {
   await acc(req);
+  var myJson;
   let caloriasmin = req.body.calomin;
   let caloriasmax = req.body.calomax;
   let calorias = [caloriasmin, caloriasmax];
@@ -294,7 +299,7 @@ export const platogenfil = async (req, res, next) => {
   var aux = 0;
   var elems = [];
   for (let i = 0; i < myJson["resp"].length; i++) {
-    elems[aux.toString()] = myJson[aux].toString();
+    elems[aux.toString()] = myJson["resp"][aux].toString();
     aux++;
   }
   res.render("platogen", { layout: false, platos: elems, calorias: calorias });
@@ -314,6 +319,7 @@ export const premiumcom = async (req, res, next) => {
 
 export const seg = async (req, res, next) => {
   await acc(req);
+  var myJson;
   var mi_error = "nohay";
   var http =
     "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
@@ -412,17 +418,17 @@ export const saveplat = async (req, res, next) => {
     for (let num = 0; num < plato_global[3].length; num++) {
       if (num == plato_global[3].length - 1) {
         mis_ingredientes =
-          mis_ingredientes + plato_global[3][num][0].replace(" ", "_");
+          mis_ingredientes + plato_global[3][num][0];
         mis_descripciones =
-          mis_descripciones + plato_global[3][num][1].replace(" ", "_");
-        mis_calorias = mis_calorias + plato_global[3][num][2].replace(" ", "_");
+          mis_descripciones + plato_global[3][num][1];
+        mis_calorias = mis_calorias + plato_global[3][num][2];
       } else {
         mis_ingredientes =
-          mis_ingredientes + plato_global[3][num][0].replace(" ", "_") + "-";
+          mis_ingredientes + plato_global[3][num][0] + "-";
         mis_descripciones =
-          mis_descripciones + plato_global[3][num][1].replace(" ", "_") + "-";
+          mis_descripciones + plato_global[3][num][1] + "-";
         mis_calorias =
-          mis_calorias + plato_global[3][num][2].replace(" ", "_") + "-";
+          mis_calorias + plato_global[3][num][2] + "-";
         mi_aux = mi_aux + "-";
       }
     }
@@ -434,7 +440,7 @@ export const saveplat = async (req, res, next) => {
       "http://localhost:5000/plato/agregar/" +
       req.session.user +
       "/" +
-      req.session.plato_global[0].replace(" ", "_") +
+      req.session.plato_global[0] +
       "/" +
       req.session.plato_global[1] +
       "/" +
@@ -469,9 +475,9 @@ export const preparacion = async (req, res, next) => {
     "/" +
     plat[1] +
     "/" +
-    plat[2].replace(" ", "_").replace("/", "-") +
+    plat[2].replaceAll("/", "-") +
     "/" +
-    plat[4].replace("/", "-") +
+    plat[4].replaceAll("/", "-") +
     "/" +
     plat[5] +
     "/" +
@@ -485,6 +491,7 @@ export const preparacion = async (req, res, next) => {
 };
 
 export const segmod = async (req, res, next) => {
+  var myJson;
   var http =
     "http://localhost:5000/usuario/obtener_objetivos/" + req.session.user;
   await axios
