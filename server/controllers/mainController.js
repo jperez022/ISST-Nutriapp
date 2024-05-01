@@ -327,6 +327,8 @@ export const premiumcom = async (req, res, next) => {
 
 export const seg = async (req, res, next) => {
   await acc(req);
+  var peso;
+  var ejer;
   var myJson;
   var mi_error = "nohay";
   var peso_ini;
@@ -504,6 +506,8 @@ export const preparacion = async (req, res, next) => {
 };
 
 export const segmod = async (req, res, next) => {
+  var peso;
+  var ejer;
   var myJson;
   var peso_ini;
   var peso_obj;
