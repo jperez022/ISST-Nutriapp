@@ -117,8 +117,8 @@ h2 {
   cursor: pointer;
 }
 
-.botones-calendario:hover{
-  background-color: #e4e1e1;
+.botones-calendario:hover {
+  border: solid 2px #333;
 }
 
 .but_norm {
@@ -1107,15 +1107,15 @@ input[type="range"] {
 }
 
 .textito {
-  width: calc( 100% - 40px);
-  height: calc( 100% - 200px);
+  width: calc(100% - 40px);
+  height: calc(100% - 200px);
   padding: 20px;
   text-align: justify;
 }
 
 .textaco {
-  width: calc( 100% - 80px);
-  height: calc( 100% - 40px);
+  width: calc(100% - 80px);
+  height: calc(100% - 40px);
   padding: 20px;
   text-align: justify;
 }
