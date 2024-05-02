@@ -17,24 +17,6 @@ const keycloakConfig = require("./keycloak.json");
 const app = express();
 const port = 3000;
 
-// NO TOCAR ESTA CUTREZ
-let k = 0;
-
-function getfot() {
-  return k;
-}
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "/public/images/profilePics/");
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = getfot();
-    k = k + 1;
-    cb(null, file.fieldname + "-" + uniqueSuffix);
-  },
-});
-
 // Configuración de EJS como motor de plantillas
 app.use(expressPartials());
 app.set("views", "./views");

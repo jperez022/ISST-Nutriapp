@@ -23,6 +23,26 @@ import {
   segsaveini
 } from "./../controllers/mainController.js";
 
+// NO TOCAR ESTA CUTREZ
+let k = 0;
+
+function getfot() {
+  return k;
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "/public/images/profilePics/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = getfot();
+    k = k + 1;
+    cb(null, file.fieldname + "-" + uniqueSuffix);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const router = express.Router();
 
 router.get("/inicio", inicio);
@@ -39,7 +59,7 @@ router.get("/objetivos", objetivos);
 
 router.get("/perfil", perfil);
 
-// router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto); COMPLETAR NO VA
+router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto); //TESTEAR COMPLETAR
 
 router.get("/plato", plato);
 
