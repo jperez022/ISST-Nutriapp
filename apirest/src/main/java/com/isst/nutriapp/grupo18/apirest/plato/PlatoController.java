@@ -21,7 +21,7 @@ public class PlatoController {
 
     private final PlatoService platoService;
 
-    @PostMapping("/agregar/{usuario}/{nombre}/{preparacion}/{ingredientes}/{descripcion}/{calorias}/{calorias_total}/{dia_mes}")
+    @PostMapping("/agregar")
     public ResponseEntity<Void> agregarPlato(@RequestBody NuevoPlatoJSON platoJSON) {
         String usuario = platoJSON.getUsuario();
         if (!platoService.usuarioExiste(usuario)) {
