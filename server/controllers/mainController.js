@@ -455,23 +455,17 @@ export const saveplat = async (req, res, next) => {
     }
     req.session.plato_global = plato_global;
     var http =
-      "http://localhost:5000/plato/agregar/" +
-      req.session.user +
-      "/" +
-      req.session.plato_global[0] +
-      "/" +
-      req.session.plato_global[1] +
-      "/" +
-      mis_ingredientes +
-      "/" +
-      mis_descripciones +
-      "/" +
-      mis_calorias +
-      "/" +
-      req.session.plato_global[4] +
-      "/" +
-      req.session.plato_global[2];
-    await axios.get(http);
+      "http://localhost:5000/plato/agregar";
+    await axios.post(http, {
+      "usuario": req.session.user,
+      "nombre": req.session.plato_global[0],
+      "preparacion": req.session.plato_global[1],
+      "ingredientes": mis_ingredientes,
+      "descripcion": mis_descripciones,
+      "calorias": mis_calorias,
+      "calorias_total": req.session.plato_global[4],
+      "dia_mes": req.session.plato_global[2]
+    });
   }
   res.redirect("/calendario");
 };

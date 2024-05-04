@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.NuevoPlatoJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.NuevoPlatoSugeridoJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
 
@@ -20,20 +21,21 @@ public class PlatoController {
 
     private final PlatoService platoService;
 
-    @GetMapping("/agregar/{usuario}/{nombre}/{preparacion}/{ingredientes}/{descripcion}/{calorias}/{calorias_total}/{dia_mes}")
-    public ResponseEntity<Void> agregarPlato(@PathVariable("usuario") String usuario, 
-        @PathVariable("nombre") String nombre, 
-        @PathVariable("preparacion") String preparacion, 
-        @PathVariable("ingredientes") String ingredientes, 
-        @PathVariable("descripcion") String descripcion, 
-        @PathVariable("calorias") String calorias, 
-        @PathVariable("calorias_total") Integer calorias_total, 
-        @PathVariable("dia_mes") String dia_mes) {
-            if (!platoService.usuarioExiste(usuario)) {
-                return ResponseEntity.status(400).body(null);
-            }
-            platoService.agregarPlato(usuario, nombre, preparacion, ingredientes, descripcion, calorias, calorias_total, dia_mes);
-            return ResponseEntity.ok(null);
+    @PostMapping("/agregar/{usuario}/{nombre}/{preparacion}/{ingredientes}/{descripcion}/{calorias}/{calorias_total}/{dia_mes}")
+    public ResponseEntity<Void> agregarPlato(@RequestBody NuevoPlatoJSON platoJSON) {
+        String usuario = platoJSON.getUsuario();
+        if (!platoService.usuarioExiste(usuario)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        String nombre = platoJSON.getNombre();
+        String preparacion = platoJSON.getPreparacion();
+        String ingredientes = platoJSON.getIngredientes();
+        String descripcion = platoJSON.getDescripcion();
+        String calorias = platoJSON.getCalorias();
+        Integer calorias_total = platoJSON.getCalorias_total();
+        String dia_mes = platoJSON.getDia_mes();
+        platoService.agregarPlato(usuario, nombre, preparacion, ingredientes, descripcion, calorias, calorias_total, dia_mes);
+        return ResponseEntity.ok(null);
     }
 
     @GetMapping("/modificar/{usuario}/{nombre}/{preparacion}/{ingredientes}/{calorias}/{calorias_total}/{dia_mes}")
