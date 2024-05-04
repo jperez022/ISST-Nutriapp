@@ -6,10 +6,12 @@ import com.isst.nutriapp.grupo18.apirest.dia.Dia;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
@@ -26,6 +28,8 @@ public class Plato {
     private Integer Id;
     @Basic
     private String nombre;
+    @Lob
+    @Column(length = 16777216)
     private String preparacion;
     private String ingredientes;
     private String cantidades;

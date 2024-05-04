@@ -52,4 +52,26 @@ public class UsuarioService {
         return response;
     }
 
+    public void hacerPremium(String nombre) {
+        Usuario usuario = usuarioRepo.findByNombre(nombre);
+        usuario.setPremium(true);
+        usuarioRepo.save(usuario);
+    }
+
+    public boolean esPremium(String nombre) {
+        if (usuarioRepo.existsByNombre(nombre)) {
+            Usuario usuario = usuarioRepo.findByNombre(nombre);
+            return usuario.getPremium();
+        }
+        return false;
+    }
+
+    public boolean esEspecialista(String nombre) {
+        if (usuarioRepo.existsByNombre(nombre)) {
+            Usuario usuario = usuarioRepo.findByNombre(nombre);
+            return usuario.getSpecialist();
+        }
+        return false;
+    }
+
 }

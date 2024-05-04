@@ -3,9 +3,12 @@ package com.isst.nutriapp.grupo18.apirest.plato;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.NuevoPlatoSugeridoJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
 
 import lombok.RequiredArgsConstructor;
@@ -56,16 +59,17 @@ public class PlatoController {
         return ResponseEntity.ok(platoService.getPlatosusuario(usuario));
     }
 
-    @GetMapping("/agregarSugerido/{nombre}/{preparacion}/{ingredientes}/{cantidades}/{calorias}/{calorias_total}")
-    public ResponseEntity<Void> createPlatoSugerido(@PathVariable("nombre") String nombre, 
-        @PathVariable("preparacion") String preparacion, 
-        @PathVariable("ingredientes") String ingredientes, 
-        @PathVariable("cantidades") String cantidades, 
-        @PathVariable("calorias") String calorias, 
-        @PathVariable("calorias_total") Integer calorias_total) {
-            platoService.createPlatoSugerido(nombre, preparacion, ingredientes, cantidades, calorias, calorias_total);
-            return ResponseEntity.ok(null);
-        }
+    @PostMapping("/agregarSugerido")
+    public ResponseEntity<Void> createPlatoSugerido(@RequestBody NuevoPlatoSugeridoJSON platoSugeridoJSON) {
+        String nombre = platoSugeridoJSON.getNombre();
+        String preparacion = platoSugeridoJSON.getPreparacion();
+        String ingredientes = platoSugeridoJSON.getIngredientes();
+        String cantidades = platoSugeridoJSON.getCantidades();
+        String calorias = platoSugeridoJSON.getCalorias();
+        Integer calorias_total = platoSugeridoJSON.getCalorias_total();
+        platoService.createPlatoSugerido(nombre, preparacion, ingredientes, cantidades, calorias, calorias_total);
+        return ResponseEntity.ok(null);
+    }
 
     @GetMapping("/obtenerSugerido/{calorias_total}")
     public ResponseEntity<PlatosJSON> obtenerPlatoSugerido(@PathVariable("calorias_total") String calorias_total) {

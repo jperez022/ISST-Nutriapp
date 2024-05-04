@@ -1,4 +1,5 @@
 import express from "express";
+import multer from 'multer';
 import {
   inicio,
   calc,
@@ -59,7 +60,7 @@ router.get("/objetivos", objetivos);
 
 router.get("/perfil", perfil);
 
-router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto); //TESTEAR COMPLETAR
+//router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto);
 
 router.get("/plato", plato);
 

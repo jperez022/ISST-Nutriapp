@@ -45,7 +45,7 @@ Previamente a la inicialización habrá que instalar mysql en caso de que no est
 
 Para poder inicializar las bases de datos hay que ejecutar los siguientes comandos si el entorno en el que se corre es gestionado externamente (por ejemplo si usamos los servicios de Google Cloud para desplegar nuestro servicio):
 
-- apt install python3.11-venv
+- sudo apt install python3.11-venv
 - python3 -m venv .venv
 - source .venv/bin/activate
 - python3 -m pip install -r requirements.txt

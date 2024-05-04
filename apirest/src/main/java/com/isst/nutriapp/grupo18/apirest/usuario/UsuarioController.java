@@ -43,4 +43,23 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.obtenerObjetivos(nombre));
     }
 
+    @GetMapping("/premium/nuevo/{nombre}")
+    public ResponseEntity<Void> hacerPremium(@PathVariable("nombre") String nombre) {
+        if (!usuarioService.usuarioExiste(nombre)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        usuarioService.hacerPremium(nombre);
+        return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("/premium/{nombre}")
+    public ResponseEntity<Boolean> esPremium(@PathVariable("nombre") String nombre) {
+        return ResponseEntity.ok(usuarioService.esPremium(nombre));
+    }
+
+    @GetMapping("especialista/{nombre}")
+    public ResponseEntity<Boolean> esEspecialista(@PathVariable("nombre") String nombre) {
+        return ResponseEntity.ok(usuarioService.esEspecialista(nombre));
+    }
+
 }

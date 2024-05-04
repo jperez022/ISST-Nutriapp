@@ -28,11 +28,12 @@
         <% if (typeof articulos !== 'undefined') { %>
           <% for (let artic of articulos) { %>
             <div class="artic">
-              <h2 id="nomarg9"> <%= artic[1] %> </h2>
+              <h2 id="nomarg9"> <%= artic[0] %> </h2>
+              <br><br>
+              <p> <%= artic[2] %> </p>
               <div class="textito">
-                <%= artic[2] %>
-              </div>
-              <div class="centraooo"><button class="verat" onclick="verart(<%= artic[0] %>)">Ver artículo</button></div>
+                <%= artic[1] %>
+              </div>              
             </div>
           <% } %>
         <% } %>

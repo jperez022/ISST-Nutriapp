@@ -3,7 +3,6 @@ import Keycloak from 'keycloak-connect';
 import session from "express-session";
 import bodyParser from "body-parser";
 import express from "express";
-import multer from 'multer';
 
 import proutes from "./routes/index_protected.js";
 import premtes from "./routes/index_premium.js";

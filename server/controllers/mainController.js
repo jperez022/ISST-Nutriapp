@@ -34,10 +34,9 @@ async function givprem(username) {
         },
       ],
     });
-
-    // COMPLETAR 
-    // LLAMADA A LA API PARA GUARDAR QUE ES PREMIUM X USUARIO
-
+    var http =
+      "http://localhost:5000/usuario/premium/nuevo/" + req.session.user;
+    axios.get(http);
     console.log(`Rol "premium" asignado al usuario ${username}`);
   } catch (error) {
     console.error('Error al asignar el rol "premium" al usuario:', error);
@@ -68,13 +67,16 @@ async function acc(req) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
   }
-  // COMPLETAR
-  // LLAMADA A LA API PARA SABER SI EL USUARIO ES PREMIUM
-  // TAMBIEN HARIA UNA PARA SABER SI ES ESPECIALISTA
-  let isprem = null;
-  let isspec = null;
-  req.session.isprem = isprem;
-  req.session.isspec = isspec;
+  var http =
+      "http://localhost:5000/usuario/premium/" + req.session.user;
+  await axios.get(http).then((response) => {
+    req.session.isprem = response;
+  });
+  var http =
+    "http://localhost:5000/usuario/especialista/" + req.session.user;
+  await axios.get(http).then((response) => {
+    req.session.isspec = response;
+  });
 }
 
 export const inicio = async (req, res, next) => {
@@ -160,26 +162,19 @@ export const dia = async (req, res, next) => {
 
 export const educacion = async (req, res, next) => {
   await acc(req);
-  // COMPLETAR
-  // LLAMDA A LA API
-  // PASAR TODOS LOS ARTICULOS EN UN ARRAY LLAMADO ARTICULOS
-  // EJEMPLO
-  // Articulos[0] = [Id, Nombre, Descripcion]
-  // NO HACE FALTA PASAR TODO EL CONTENIDO DEL ARTICULO
+  var myJson;
   var articulos;
+  var http =
+    "http://localhost:5000/articulo/obtener";
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+    for (let i = 0; i < myJson.length; i++) {
+      articulos[i][0] = myJson[i]["titulo"];
+      articulos[i][1] = myJson[i]["descripcion"];
+      articulos[i][2] = myJson[i]["url"];
+    }
+  });
   res.render("edu", { layout: false, articulos: articulos });
-};
-
-export const artic = async (req, res, next) => {
-  await acc(req);
-  var artic_id = req.params.id;
-  // COMPLETAR
-  // LLAMDA A LA API
-  // PASAR EL ARTICULO COMO UN ARRAY
-  // EJEMPLO
-  // Articulos = [Nombre, Descripcion, Texto_COMPLETO]
-  let articulo = null;
-  res.render("articulo", { layout: false, articulo: articulo });
 };
 
 export const objetivos = async (req, res, next) => {
@@ -630,11 +625,20 @@ export const segsaveini = async (req, res, next) => {
 };
 
 export const specops = async (req, res, next) => {
-  // COMPLETAR
-  // LLAMADA A LA API PARA TENER ESPCIALISTAS
-  // DEVUELVEME UN ARRAY, Y EN CADA POSICION TODOS LOS DATOS DE LOS ESPECIALISTAS
-
+  var myJson;
   var lista_spec;
+  var http =
+    "http://localhost:5000/especialista/obtener";
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+    for (let i = 0; i < myJson.length; i++) {
+      lista_spec[i][0] = myJson[i]["nombre"];
+      lista_spec[i][1] = myJson[i]["info"];
+      lista_spec[i][2] = myJson[i]["valoracion"];
+      lista_spec[i][3] = myJson[i]["movil"];
+      lista_spec[i][4] = myJson[i]["precio"];
+    }
+  });
   // EJEMPLO
   // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio, idfoto]
   // AUN FALTA CAMBIAR FOTO EN LA VISTA
