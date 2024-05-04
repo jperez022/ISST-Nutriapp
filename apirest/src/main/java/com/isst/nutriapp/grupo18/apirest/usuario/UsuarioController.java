@@ -3,6 +3,7 @@ package com.isst.nutriapp.grupo18.apirest.usuario;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isst.nutriapp.grupo18.apirest.JSON.ObjetivosJSON;
+import com.isst.nutriapp.grupo18.apirest.JSON.RespJSON;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -53,13 +54,17 @@ public class UsuarioController {
     }
 
     @GetMapping("/premium/{nombre}")
-    public ResponseEntity<Boolean> esPremium(@PathVariable("nombre") String nombre) {
-        return ResponseEntity.ok(usuarioService.esPremium(nombre));
+    public ResponseEntity<RespJSON> esPremium(@PathVariable("nombre") String nombre) {
+        RespJSON resp = new RespJSON();
+        resp.setResp(usuarioService.esPremium(nombre));
+        return ResponseEntity.ok(resp);
     }
 
     @GetMapping("especialista/{nombre}")
-    public ResponseEntity<Boolean> esEspecialista(@PathVariable("nombre") String nombre) {
-        return ResponseEntity.ok(usuarioService.esEspecialista(nombre));
+    public ResponseEntity<RespJSON> esEspecialista(@PathVariable("nombre") String nombre) {
+        RespJSON resp = new RespJSON();
+        resp.setResp(usuarioService.esEspecialista(nombre));
+        return ResponseEntity.ok(resp);
     }
 
 }

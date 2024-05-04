@@ -67,16 +67,20 @@ async function acc(req) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
   }
+  let isprem = null;
+  let isspec = null;
   var http =
       "http://localhost:5000/usuario/premium/" + req.session.user;
   await axios.get(http).then((response) => {
-    req.session.isprem = response;
+    isprem = response;
   });
-  var http =
+  http =
     "http://localhost:5000/usuario/especialista/" + req.session.user;
   await axios.get(http).then((response) => {
-    req.session.isspec = response;
+    isspec = response;
   });
+  req.session.isprem = isprem;
+  req.session.isspec = isspec;
 }
 
 export const inicio = async (req, res, next) => {
