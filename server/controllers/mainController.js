@@ -67,20 +67,24 @@ async function acc(req) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
   }
-  let isprem = null;
-  let isspec = null;
-  var http =
+  if (!req.session.isprem) {
+    let isprem = null;
+    var http =
       "http://localhost:5000/usuario/premium/" + req.session.user;
-  await axios.get(http).then((response) => {
-    isprem = response;
-  });
-  http =
-    "http://localhost:5000/usuario/especialista/" + req.session.user;
-  await axios.get(http).then((response) => {
-    isspec = response;
-  });
-  req.session.isprem = isprem;
-  req.session.isspec = isspec;
+    await axios.get(http).then((response) => {
+      isprem = response["resp"];
+    });
+    req.session.isprem = isprem;
+  }
+  if (!req.session.isspec) {
+    let isspec = null;
+    var http =
+      "http://localhost:5000/usuario/especialista/" + req.session.user;
+    await axios.get(http).then((response) => {
+      isspec = response["resp"];
+    });
+    req.session.isspec = isspec;
+  }
 }
 
 export const inicio = async (req, res, next) => {
