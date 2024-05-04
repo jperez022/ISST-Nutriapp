@@ -20,6 +20,8 @@ public class UsuarioService {
         if (!usuarioExiste(nombre)) {
             Usuario usuario = new Usuario();
             usuario.setNombre(nombre);
+            usuario.setPremium(false);
+            usuario.setSpecialist(false);
             usuarioRepo.save(usuario);
         }
     }
