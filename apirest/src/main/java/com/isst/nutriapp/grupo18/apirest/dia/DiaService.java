@@ -113,7 +113,7 @@ public class DiaService {
         }
     }
 
-    public PlatosJSON getPlatosDia(String nombre, String mes, String dia) {
+    public ArrayList<PlatosJSON> getPlatosDia(String nombre, String mes, String dia) {
         Integer midia = Integer.parseInt(dia);
         Integer mimes = Integer.parseInt(mes);
         Dia newdia = new Dia();
@@ -122,27 +122,20 @@ public class DiaService {
         newdia.setMes(mimes);
         Optional<Dia> diaid = diaRepo.findOne(Example.of(newdia));
         List<Plato> platos = diaid.get().getPlatos();
-        PlatosJSON resp = new PlatosJSON();
-        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+        ArrayList<PlatosJSON> list = new ArrayList<PlatosJSON>();
         if (!platos.isEmpty()) {
             for (Plato plato : platos) {
-                ArrayList<String> elem = new ArrayList<String>();
-                elem.add(plato.getNombre());
-                elem.add(plato.getPreparacion());
-                elem.add(plato.getIngredientes());
-                elem.add(plato.getCantidades());
-                elem.add(plato.getCalorias());
-                elem.add(plato.getCaloriasTot().toString());
+                PlatosJSON elem = new PlatosJSON();
+                elem.setNombre(plato.getNombre());
+                elem.setPreparacion(plato.getPreparacion());
+                elem.setIngredientes(plato.getIngredientes());
+                elem.setCantidades(plato.getCantidades());
+                elem.setCalorias(plato.getCalorias());
+                elem.setCalorias_total(plato.getCaloriasTot().toString());
                 list.add(elem);
             }
-            resp.setResp(list);
-            return resp;
         }
-        ArrayList<String> vacio = new ArrayList<String>();
-        vacio.add("vacio");
-        list.add(vacio);
-        resp.setResp(list);
-        return resp;
+        return list;
     }
 
 }

@@ -1,7 +1,5 @@
 package com.isst.nutriapp.grupo18.apirest.JSON;
 
-import java.util.ArrayList;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,5 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlatosJSON {
-    private ArrayList<ArrayList<String>> resp;
+    private String nombre;
+    private String preparacion;
+    private String ingredientes;
+    private String cantidades;
+    private String calorias;
+    private String calorias_total;
 }

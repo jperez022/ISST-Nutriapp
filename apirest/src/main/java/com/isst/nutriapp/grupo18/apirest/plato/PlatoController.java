@@ -1,5 +1,7 @@
 package com.isst.nutriapp.grupo18.apirest.plato;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +56,7 @@ public class PlatoController {
     }
 
     @GetMapping("/obtener/{usuario}")
-    public ResponseEntity<PlatosJSON> getPlatosusuario(@PathVariable("usuario") String usuario) {
+    public ResponseEntity<List<PlatosJSON>> getPlatosusuario(@PathVariable("usuario") String usuario) {
         if (!platoService.usuarioExiste(usuario)) {
             return ResponseEntity.status(400).body(null);
         }
@@ -74,7 +76,7 @@ public class PlatoController {
     }
 
     @GetMapping("/obtenerSugerido/{calorias_total}")
-    public ResponseEntity<PlatosJSON> obtenerPlatoSugerido(@PathVariable("calorias_total") String calorias_total) {
+    public ResponseEntity<List<PlatosJSON>> obtenerPlatoSugerido(@PathVariable("calorias_total") String calorias_total) {
         return ResponseEntity.ok(platoService.obtenerPlatoSugerido(calorias_total));
     }
 }

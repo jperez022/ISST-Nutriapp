@@ -1,5 +1,7 @@
 package com.isst.nutriapp.grupo18.apirest.dia;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +29,7 @@ public class DiaController {
     }
 
     @GetMapping("/dia/{nombre}/{mes}/{dia}")
-    public ResponseEntity<PlatosJSON> getPlatosDia(@PathVariable("nombre") String nombre, @PathVariable("mes") String mes, @PathVariable("dia") String dia) {
+    public ResponseEntity<List<PlatosJSON>> getPlatosDia(@PathVariable("nombre") String nombre, @PathVariable("mes") String mes, @PathVariable("dia") String dia) {
         if (!diaService.usuarioExiste(nombre)) {
             return ResponseEntity.status(400).body(null);
         }

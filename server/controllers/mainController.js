@@ -151,19 +151,13 @@ export const dia = async (req, res, next) => {
     myJson = response.data;
   });
 
-  if (JSON.stringify(myJson["resp"]) == JSON.stringify([["vacio"]])) {
+  if (myJson[0]["nombre"] == null) {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
-    var aux = 0;
-    var elems = [];
-    for (let i = 0; i < myJson["resp"].length; i++) {
-      elems[aux.toString()] = myJson["resp"][aux].toString();
-      aux++;
-    }
     res.render("dia", {
       layout: false,
       dia_mes: dia_mes,
-      platos: elems,
+      platos: myJson,
     });
   }
 };
@@ -263,18 +257,12 @@ export const plato = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  if (JSON.stringify(myJson["resp"]) == JSON.stringify([["vacio"]])) {
+  if (myJson[0]["nombre"] == null) {
     res.render("plato", { layout: false, platos: "no" });
   } else {
-    var aux = 0;
-    var elems = [];
-    for (let i = 0; i < myJson["resp"].length; i++) {
-      elems[aux.toString()] = myJson["resp"][aux].toString();
-      aux++;
-    }
     res.render("plato", {
       layout: false,
-      platos: elems,
+      platos: myJson,
     });
   }
 };

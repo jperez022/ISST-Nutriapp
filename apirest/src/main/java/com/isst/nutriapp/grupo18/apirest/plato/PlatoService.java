@@ -87,9 +87,8 @@ public class PlatoService {
             }
     }
 
-    public PlatosJSON getPlatosusuario(String usuario) {
-        PlatosJSON resp = new PlatosJSON();
-        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+    public ArrayList<PlatosJSON> getPlatosusuario(String usuario) {
+        ArrayList<PlatosJSON> list = new ArrayList<PlatosJSON>();
         Dia edia = new Dia();
         edia.setNombreusuario(usuario);
         List<Dia> dias = diaRepo.findAll(Example.of(edia));
@@ -97,26 +96,20 @@ public class PlatoService {
             if (dia.getPlatos() != null) {
                 List<Plato> platos = dia.getPlatos();
                 for (Plato plato : platos) {
-                    ArrayList<String> elem = new ArrayList<String>();
-                    elem.add(plato.getNombre());
-                    elem.add(plato.getPreparacion());
-                    elem.add(plato.getIngredientes());
-                    elem.add(plato.getCantidades());
-                    elem.add(plato.getCalorias());
-                    elem.add(plato.getCaloriasTot().toString());
+                    PlatosJSON elem = new PlatosJSON();
+                    elem.setNombre(plato.getNombre());
+                    elem.setPreparacion(plato.getPreparacion());
+                    elem.setIngredientes(plato.getIngredientes());
+                    elem.setCantidades(plato.getCantidades());
+                    elem.setCalorias(plato.getCalorias());
+                    elem.setCalorias_total(plato.getCaloriasTot().toString());
                     if (!list.contains(elem)) {
                         list.add(elem);
                     }
                 }
             }
         }
-        if (list.isEmpty()) {
-            ArrayList<String> vacio = new ArrayList<String>();
-            vacio.add("vacio");
-            list.add(vacio);
-        }
-        resp.setResp(list);
-        return resp;
+        return list;
     }
 
     public void createPlatoSugerido(String nombre, String preparacion, String ingredientes, 
@@ -132,21 +125,20 @@ public class PlatoService {
             platoRepo.save(plato);
     }
 
-    public PlatosJSON obtenerPlatoSugerido(String calorias_total) {
-        PlatosJSON resp = new PlatosJSON();
-        ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+    public ArrayList<PlatosJSON> obtenerPlatoSugerido(String calorias_total) {
+        ArrayList<PlatosJSON> list = new ArrayList<PlatosJSON>();
         if (calorias_total.equals("no")) {
             Plato eplato = new Plato();
             eplato.setSugerido(true);
             List<Plato> platos = platoRepo.findAll(Example.of(eplato));
             for (Plato plato : platos) {
-                ArrayList<String> elem = new ArrayList<String>();
-                elem.add(plato.getNombre());
-                elem.add(plato.getPreparacion());
-                elem.add(plato.getIngredientes());
-                elem.add(plato.getCantidades());
-                elem.add(plato.getCalorias());
-                elem.add(plato.getCaloriasTot().toString());
+                PlatosJSON elem = new PlatosJSON();
+                elem.setNombre(plato.getNombre());
+                elem.setPreparacion(plato.getPreparacion());
+                elem.setIngredientes(plato.getIngredientes());
+                elem.setCantidades(plato.getCantidades());
+                elem.setCalorias(plato.getCalorias());
+                elem.setCalorias_total(plato.getCaloriasTot().toString());
                 list.add(elem);
             }
         } else {
@@ -155,18 +147,17 @@ public class PlatoService {
             Integer calalta = Integer.parseInt(caloriastotal[1]);
             List<Plato> platos = platoRepo.findByCaloriasTotLessThanEqualAndCaloriasTotGreaterThanEqualAndSugerido(calalta, calbaja, true);
             for (Plato plato : platos) {
-                ArrayList<String> elem = new ArrayList<String>();
-                elem.add(plato.getNombre());
-                elem.add(plato.getPreparacion());
-                elem.add(plato.getIngredientes());
-                elem.add(plato.getCantidades());
-                elem.add(plato.getCalorias());
-                elem.add(plato.getCaloriasTot().toString());
+                PlatosJSON elem = new PlatosJSON();
+                elem.setNombre(plato.getNombre());
+                elem.setPreparacion(plato.getPreparacion());
+                elem.setIngredientes(plato.getIngredientes());
+                elem.setCantidades(plato.getCantidades());
+                elem.setCalorias(plato.getCalorias());
+                elem.setCalorias_total(plato.getCaloriasTot().toString());
                 list.add(elem);
             }
         }
-        resp.setResp(list);
-        return resp;
+        return list;
     }
 
 }

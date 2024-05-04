@@ -29,16 +29,16 @@
           <div class="cosa">
             <% plat = plat.split(',')%>
             <h3 id="nomarg5">
-              <div><%=plat[0]%> <%=plat[5]%>Kcal </div>
+              <div><%=plat["nombre"]%> <%=plat["calorias_total"]%>Kcal </div>
             </h3>
             <div class="grideito4">
               <div class="grid_elem4">
                 <h4 id="nomarg2">- Ingredientes:</h4>
                 <div class="sobra">
                   <ul>
-                    <% let ings = plat[2].split("/"); %>
-                    <% let cals = plat[4].split("/"); %>
-                    <% let desc = plat[3].split("/"); %>
+                    <% let ings = plat["ingredientes"].split("/"); %>
+                    <% let cals = plat["calorias"].split("/"); %>
+                    <% let desc = plat["cantidades"].split("/"); %>
                     <% for (let k = 0; k < ings.length; k++ ) { %>
                       <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != '_') { if (desc[k] != '') { %> (<%= desc[k] %>) <% } } %></li>
                     <% } %>
@@ -46,10 +46,10 @@
                 </div>
               </div>
               <div class="grid_elem4">
-                <% if (plat[1] != '_') { %>
+                <% if (plat["preparacion"] != '_') { %>
                   <h4 id="nomarg3">- Preparación:</h4>
                   <div class="sobra2">
-                    <%= plat[1] %>
+                    <%= plat["preparacion"] %>
                   </div>
                 <% } %>
               </div>
