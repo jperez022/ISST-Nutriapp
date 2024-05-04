@@ -151,7 +151,7 @@ export const dia = async (req, res, next) => {
     myJson = response.data;
   });
 
-  if (myJson[0]["nombre"] == null) {
+  if (!myJson[0]) {
     res.render("dia_vac", { layout: false, dia_mes: dia_mes });
   } else {
     res.render("dia", {
@@ -257,7 +257,7 @@ export const plato = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  if (myJson[0]["nombre"] == null) {
+  if (!myJson[0]) {
     res.render("plato", { layout: false, platos: "no" });
   } else {
     res.render("plato", {
