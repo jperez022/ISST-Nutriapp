@@ -21,7 +21,8 @@ import {
   preparacion,
   objchan,
   segsav,
-  segsaveini
+  segsaveini,
+  chanfoto
 } from "./../controllers/mainController.js";
 
 // NO TOCAR ESTA CUTREZ
@@ -60,7 +61,7 @@ router.get("/objetivos", objetivos);
 
 router.get("/perfil", perfil);
 
-//router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto);
+router.post("/perfil/foto", upload.single("perfil"), chanfoto);
 
 router.get("/plato", plato);
 
