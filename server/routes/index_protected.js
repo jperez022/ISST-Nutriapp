@@ -1,6 +1,7 @@
 import express from "express";
-import multer from 'multer';
-import path from 'path';
+import multer from "multer";
+import { fileURLToPath } from "url";
+import path from "path";
 import {
   inicio,
   calc,
@@ -23,7 +24,7 @@ import {
   objchan,
   segsav,
   segsaveini,
-  chanfoto
+  chanfoto,
 } from "./../controllers/mainController.js";
 
 // NO TOCAR ESTA CUTREZ
@@ -33,11 +34,15 @@ function getfot() {
   return k;
 }
 
-const projectDirectory = path.resolve(__dirname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(projectDirectory, '..', 'public', 'images', 'profilePics'));
+    cb(
+      null,
+      path.join(projectDirectory, "..", "public", "images", "profilePics")
+    );
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = getfot();
