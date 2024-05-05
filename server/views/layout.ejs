@@ -25,11 +25,11 @@
   <nav>
     <button class="but_norm" onclick="calculadora()">Calculadora</button>
     <button class="but_norm" onclick="plato()">Tus platos</button>
-    <% if (!isprem) { %>
+    <% if (isprem) { %>
     <button class="but_norm" onclick="platogen()">Platos recomendados</button>
     <% } %>
     <button class="but_norm" onclick="seg()">Seguimiento</button>
-    <% if (!isprem) { %>
+    <% if (isprem) { %>
     <button class="but_norm" onclick="specops()">Especialistas</button>
     <button class="but_norm" onclick="educacion()">Educacion</button>
     <button class="but_norm" onclick="premium()">Premium</button>
