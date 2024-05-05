@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isst.nutriapp.grupo18.apirest.JSON.NuevaReunionJSON;
-import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,8 +31,8 @@ public class ReunionController {
         String titulo = reunionJSON.getTitulo();
         String link = reunionJSON.getLink();
         String fecha = reunionJSON.getFecha();
-        Integer dia = 0;
-        Integer mes = 0;
+        Integer dia = Integer.parseInt(fecha.split("_")[0]);
+        Integer mes = Integer.parseInt(fecha.split("_")[1]);;
         Time hora = reunionJSON.getHora();
         reunionService.nuevaReunion(titulo, link, dia, mes, hora, usuario);
         return ResponseEntity.ok(null);
