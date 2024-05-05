@@ -15,6 +15,7 @@ ruta_seg = ruta.replace('viewss','seg')
 ruta_segmodif = ruta.replace('viewss','segmodif')
 ruta_segini = ruta.replace('viewss','segini')
 ruta_platogen = ruta.replace('viewss','platogen')
+ruta_reunion = ruta.replace('viewss','reunion')
 
 if len(sys.argv) >= 4:
     mensaje()
@@ -82,6 +83,14 @@ if len(sys.argv) >= 2:
     my_data = my_data.replace(old_ip,new_ip)
     my_file.close()
     my_file = open(ruta_platogen,'w')
+    my_file.write(my_data)
+    my_file.close()
+
+    my_file = open(ruta_reunion,'r')
+    my_data = my_file.read()
+    my_data = my_data.replace(old_ip,new_ip)
+    my_file.close()
+    my_file = open(ruta_reunion,'w')
     my_file.write(my_data)
     my_file.close()
     print("localhost cambiado por " + new_ip + " en los ficheros views")
