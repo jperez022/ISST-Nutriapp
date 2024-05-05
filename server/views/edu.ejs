@@ -26,18 +26,18 @@
       <h1>Artículos</h1>
       <div class="articus">
         <% if (typeof articulos !== 'undefined') { %>
-          <% for (let artic of articulos) { %>
-            <div class="artic">
-              <h2 id="nomarg9"> <%= artic[0] %> </h2>
-              <br><br>
-              
-              <div class="textito">
-                <%= artic[1] %>
-                <br> <br>
-                <a href="<%= artic[2] %> ">Lee más!! </a>
-              </div>              
+        <% for (let artic of articulos) { %>
+        <div class="artic">
+          <h2 id="nomarg9" style="padding-left: 20px;"> <%= artic[0] %> </h2>
+          <div class="textito">
+            <%= artic[1] %>
+            <br> <br>
+            <div class="heigthelo">
+              <a class="but_normall" href="<%= artic[2] %> "> Lee más!! </a>
             </div>
-          <% } %>
+          </div>
+        </div>
+        <% } %>
         <% } %>
       </div>
       <br><br>

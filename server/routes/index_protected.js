@@ -11,7 +11,6 @@ import {
   objetivos,
   perfil,
   plato,
-  platogen,
   platogenfil,
   premium,
   premiumcom,
@@ -73,8 +72,6 @@ router.get("/perfil", perfil);
 router.post("/perfil/foto", upload.single("perfil"), chanfoto);
 
 router.get("/plato", plato);
-
-router.get("/plato/gen", platogen);
 
 router.post("/plato/gen/fil", platogenfil);
 

@@ -32,7 +32,7 @@ function plato() {
 }
 
 function platogen() {
-  window.location.href = "http://localhost:3000/plato/gen";
+  window.location.href = "http://localhost:3000/premium/plato/gen";
 }
 
 function premium() {
