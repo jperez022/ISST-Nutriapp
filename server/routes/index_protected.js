@@ -1,6 +1,6 @@
+import { fileURLToPath } from "url";
 import express from "express";
 import multer from "multer";
-import { fileURLToPath } from "url";
 import path from "path";
 import {
   inicio,
@@ -36,6 +36,7 @@ function getfot() {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const projectDirectory = path.resolve(__dirname);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
