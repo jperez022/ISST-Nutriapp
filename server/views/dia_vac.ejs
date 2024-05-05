@@ -23,14 +23,21 @@
 
   <div id="ocupa_dia">
     <div class="my_dia_div">
-      <% if (isspec) { %>
-      <div class="separa2">
+      <% if (isprem && hayreunion) { %>
+        <div class="separa2">
+          <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
+          <button class="anade_but" onclick="verreun( dia_mes[0], dia_mes[1]  )"> +Info de reuniones</button>
+        </div>
+        <% } else { %>
+        <% if (isspec && !hayreunion) { %>
+        <div class="separa2">
+          <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
+          <button class="anade_but" onclick="reunete()"> Convocar una reunión</button>
+        </div>
+        <% } else { %>
         <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
-        <button class="anade_but" onclick="reunete()"> Convocar una reunión</button>
-      </div>
-      <% } else { %>
-      <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
-      <% } %>
+        <% } %>
+        <% } %>
       <div class="my_dia_div_vac">
         Aun no has añadido nada.
         <br>
