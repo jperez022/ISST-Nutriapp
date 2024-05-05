@@ -144,6 +144,10 @@ function comprarprem() {
   window.location.href = "http://localhost:3000/comprar/premium/";
 }
 
+function reunete() {
+  window.location.href = "http://localhost:3000/specs/reunion/";
+}
+
 function realizar_calendario() {
   let date = new Date();
   let year = date.getFullYear();

@@ -23,7 +23,14 @@
 
   <div id="ocupa_dia">
     <div class="my_dia_div">
+      <% if (isspec) { %>
+      <div class="separa2">
+        <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
+        <button class="anade_but" onclick="reunete()"> Convocar una reunión</button>
+      </div>
+      <% } else { %>
       <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
+      <% } %>
       <% for (let plat of platos ) { %>
       <div class="cosa">
         <h3 id="nomarg"><%=plat["nombre"]%> <%=plat["calorias_total"]%>Kcal </h3>
@@ -36,7 +43,7 @@
                 <% let cals = plat["calorias"].split("/"); %>
                 <% let desc = plat["cantidades"].split("/"); %>
                 <% for (let k = 0; k < ings.length; k++ ) { %>
-                  <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != '_') { if (desc[k] != '') { %> (<%= desc[k] %>) <% } } %></li>
+                <li><%= cals[k] %>Kcal - <%= ings[k] %> <% if (desc != '_') { if (desc[k] != '') { %> (<%= desc[k] %>) <% } } %></li>
                 <% } %>
               </ul>
             </div>
@@ -45,14 +52,14 @@
             <h4 id="nomarg3">- Preparación:</h4>
             <div class="sobra2">
               <% if (plat["preparacion"] == '_') { %>
-                <form action="http://localhost:3000/calendario/preparacion" method="POST">
-                  <textarea name="prep" rows="8" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
-                  <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />
-                  <input name="plat" type="hidden" value="<%= plat %>" />
-                  <div><button class="anade_but" type="submit">Añadela!!!</button></div>
-                </form>
+              <form action="http://localhost:3000/calendario/preparacion" method="POST">
+                <textarea name="prep" rows="8" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
+                <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />
+                <input name="plat" type="hidden" value="<%= plat %>" />
+                <div><button class="anade_but" type="submit">Añadela!!!</button></div>
+              </form>
               <% } else { %>
-                <%= plat["preparacion"] %>
+              <%= plat["preparacion"] %>
               <% } %>
             </div>
           </div>

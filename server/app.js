@@ -7,6 +7,7 @@ import express from "express";
 import proutes from "./routes/index_protected.js";
 import premtes from "./routes/index_premium.js";
 import broutes from "./routes/index.js";
+import sroutes from "./routes/index_spec.js"
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -48,6 +49,8 @@ app.use(keycloak.middleware());
 app.get("/", broutes);
 app.get("/premium/*", keycloak.protect("premium"), premtes);
 app.post("/premium/*", keycloak.protect("premium"), premtes);
+app.get("/specs/*", keycloak.protect("specialist"), sroutes);
+app.post("/specs/*", keycloak.protect("specialist"), sroutes);
 app.get("/*", keycloak.protect(), proutes);
 app.post("/*", keycloak.protect(), proutes);
 

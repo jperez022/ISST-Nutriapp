@@ -1,5 +1,5 @@
-import KcAdminClient from '@keycloak/keycloak-admin-client';
-import axios from 'axios';
+import KcAdminClient from "@keycloak/keycloak-admin-client";
+import axios from "axios";
 
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
@@ -15,14 +15,21 @@ const kcAdminClient = new KcAdminClient(configOptions);
 async function givprem(req) {
   try {
     await kcAdminClient.auth({
-      grantType: 'client_credentials',
+      grantType: "client_credentials",
       clientId: keycloakConfig.resource,
       clientSecret: keycloakConfig.credentials.secret,
     });
 
-    let usuario = await kcAdminClient.users.findOne({ username: req.session.user });
-    let client = await kcAdminClient.clients.findOne({ clientId: keycloakConfig.resource });
-    let role = await kcAdminClient.clients.findRole({ id: client[0].id, roleName: "premium" });
+    let usuario = await kcAdminClient.users.findOne({
+      username: req.session.user,
+    });
+    let client = await kcAdminClient.clients.findOne({
+      clientId: keycloakConfig.resource,
+    });
+    let role = await kcAdminClient.clients.findRole({
+      id: client[0].id,
+      roleName: "premium",
+    });
 
     await kcAdminClient.users.addClientRoleMappings({
       id: usuario[0].id,
@@ -69,8 +76,7 @@ async function acc(req) {
   }
   if (!req.session.isprem || req.session.isprem == false) {
     let isprem = null;
-    var http =
-      "http://localhost:5000/usuario/premium/" + req.session.user;
+    var http = "http://localhost:5000/usuario/premium/" + req.session.user;
     await axios.get(http).then((response) => {
       isprem = response.data["resp"];
     });
@@ -78,8 +84,7 @@ async function acc(req) {
   }
   if (!req.session.isspec || req.session.isspec == false) {
     let isspec = null;
-    var http =
-      "http://localhost:5000/usuario/especialista/" + req.session.user;
+    var http = "http://localhost:5000/usuario/especialista/" + req.session.user;
     await axios.get(http).then((response) => {
       isspec = response.data["resp"];
     });
@@ -90,8 +95,7 @@ async function acc(req) {
 export const inicio = async (req, res, next) => {
   await acc(req);
   if (!req.session.inicio_iniciado) {
-    var http =
-      "http://localhost:5000/usuario/nuevo/" + req.session.user;
+    var http = "http://localhost:5000/usuario/nuevo/" + req.session.user;
     axios.get(http);
     req.session.inicio_iniciado = true;
   }
@@ -120,8 +124,7 @@ export const calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";
   if (!req.session.calendario_created) {
-    var http =
-      "http://localhost:5000/calendario/crear/" + req.session.user;
+    var http = "http://localhost:5000/calendario/crear/" + req.session.user;
     await axios.get(http).then((response) => {
       myJson = response;
     });
@@ -166,8 +169,7 @@ export const educacion = async (req, res, next) => {
   await acc(req);
   var myJson;
   var articulos;
-  var http =
-    "http://localhost:5000/articulo/obtener";
+  var http = "http://localhost:5000/articulo/obtener";
   await axios.get(http).then((response) => {
     myJson = response.data;
     articulos = new Array(myJson.length);
@@ -254,8 +256,7 @@ export const chanfoto = async (req, res, next) => {
 export const plato = async (req, res, next) => {
   await acc(req);
   var myJson;
-  var http =
-    "http://localhost:5000/plato/obtener/" + req.session.user;
+  var http = "http://localhost:5000/plato/obtener/" + req.session.user;
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
@@ -292,8 +293,7 @@ export const platogenfil = async (req, res, next) => {
   let caloriasmax = req.body.calomax;
   let calorias = [caloriasmin, caloriasmax];
   let mis_calorias = caloriasmin + "_" + caloriasmax;
-  var http =
-    "http://localhost:5000/plato/obtenerSugerido/" + mis_calorias;
+  var http = "http://localhost:5000/plato/obtenerSugerido/" + mis_calorias;
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
@@ -315,7 +315,7 @@ export const premium = async (req, res, next) => {
 export const premiumcom = async (req, res, next) => {
   await acc(req);
   await givprem(req);
-  res.redirect("/calendario")
+  res.redirect("/calendario");
 };
 
 export const seg = async (req, res, next) => {
@@ -425,18 +425,13 @@ export const saveplat = async (req, res, next) => {
     var mi_aux = "";
     for (let num = 0; num < plato_global[3].length; num++) {
       if (num == plato_global[3].length - 1) {
-        mis_ingredientes =
-          mis_ingredientes + plato_global[3][num][0];
-        mis_descripciones =
-          mis_descripciones + plato_global[3][num][1];
+        mis_ingredientes = mis_ingredientes + plato_global[3][num][0];
+        mis_descripciones = mis_descripciones + plato_global[3][num][1];
         mis_calorias = mis_calorias + plato_global[3][num][2];
       } else {
-        mis_ingredientes =
-          mis_ingredientes + plato_global[3][num][0] + "-";
-        mis_descripciones =
-          mis_descripciones + plato_global[3][num][1] + "-";
-        mis_calorias =
-          mis_calorias + plato_global[3][num][2] + "-";
+        mis_ingredientes = mis_ingredientes + plato_global[3][num][0] + "-";
+        mis_descripciones = mis_descripciones + plato_global[3][num][1] + "-";
+        mis_calorias = mis_calorias + plato_global[3][num][2] + "-";
         mi_aux = mi_aux + "-";
       }
     }
@@ -444,17 +439,16 @@ export const saveplat = async (req, res, next) => {
       mis_descripciones = "_";
     }
     req.session.plato_global = plato_global;
-    var http =
-      "http://localhost:5000/plato/agregar";
+    var http = "http://localhost:5000/plato/agregar";
     await axios.post(http, {
-      "usuario": req.session.user,
-      "nombre": req.session.plato_global[0],
-      "preparacion": req.session.plato_global[1],
-      "ingredientes": mis_ingredientes,
-      "descripcion": mis_descripciones,
-      "calorias": mis_calorias,
-      "calorias_total": req.session.plato_global[4],
-      "dia_mes": req.session.plato_global[2]
+      usuario: req.session.user,
+      nombre: req.session.plato_global[0],
+      preparacion: req.session.plato_global[1],
+      ingredientes: mis_ingredientes,
+      descripcion: mis_descripciones,
+      calorias: mis_calorias,
+      calorias_total: req.session.plato_global[4],
+      dia_mes: req.session.plato_global[2],
     });
   }
   res.redirect("/calendario");
@@ -619,8 +613,7 @@ export const segsaveini = async (req, res, next) => {
 export const specops = async (req, res, next) => {
   var myJson;
   var lista_spec;
-  var http =
-    "http://localhost:5000/especialista/obtener";
+  var http = "http://localhost:5000/especialista/obtener";
   await axios.get(http).then((response) => {
     myJson = response.data;
     articulos = new Array(myJson.length);
@@ -637,4 +630,18 @@ export const specops = async (req, res, next) => {
   // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio, idfoto]
   // AUN FALTA CAMBIAR FOTO EN LA VISTA
   res.render("specopc", { layout: false, lista_spec: lista_spec });
+};
+
+export const convreu = async (req, res, next) => {
+  res.render("reunion", { layout: false });
+};
+
+export const crearreu = async (req, res, next) => {
+  let titulo = req.body.nombre;
+  let link = req.body.link;
+  let fecha = req.body.fecha;
+  let hora = req.body.hora;
+  // COMPLETAR
+  // HACER LLAMADA A LA API PARA GUARDAR REUNION
+  res.redirect("/calendario");
 };

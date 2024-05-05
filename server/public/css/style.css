@@ -1123,3 +1123,11 @@ input[type="range"] {
   padding: 20px;
   text-align: justify;
 }
+
+.reunete {
+  width: 80%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid 1px black;
+}
