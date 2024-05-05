@@ -31,7 +31,7 @@
               <div class="spec">
                 <div class="separa2">
                   <h2 id="nomarg88"> <%= spec[0] %></h2>
-                  <% if (!spec[2]) { %>
+                  <% if (spec[2]) { %>
                     <span class="val" style="background: linear-gradient(to left, gold <%= spec[2] - 5 %>%, transparent <%= spec[2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   <% } %>  
                 </div>
