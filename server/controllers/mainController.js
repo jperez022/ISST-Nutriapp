@@ -620,9 +620,9 @@ export const specops = async (req, res, next) => {
   var http = "http://localhost:5000/especialista/obtener";
   await axios.get(http).then((response) => {
     myJson = response.data;
-    articulos = new Array(myJson.length);
+    lista_spec = new Array(myJson.length);
     for (let i = 0; i < myJson.length; i++) {
-      articulos[i] = new Array(5);
+      lista_spec[i] = new Array(5);
       lista_spec[i][0] = myJson[i]["nombre"];
       lista_spec[i][1] = myJson[i]["info"];
       lista_spec[i][2] = myJson[i]["valoracion"];
