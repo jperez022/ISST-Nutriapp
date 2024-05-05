@@ -130,9 +130,9 @@ function ir_al_dia(dia, mes, año) {
 function changefot() {
   var brdDiv = document.querySelector(".brd");
   brdDiv.innerHTML = `
-  <form class="todo" action="http://localhost:3000/perfil/foto" method="POST">
+  <form class="todo" action="http://localhost:3000/perfil/foto" method="POST" enctype="multipart/form-data">
     <br>
-    &nbsp;<input type="file"  accept="image/*"> &nbsp;<br> <br>
+    &nbsp;<input type="file" name="perfil" accept="image/*"> &nbsp;<br> <br>
     <div class="centraooo">
     <button class="but_perf" type="submit">Añadir</button>
     </div>

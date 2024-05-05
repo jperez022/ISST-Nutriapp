@@ -1,5 +1,7 @@
+import { fileURLToPath } from "url";
 import express from "express";
-import multer from 'multer';
+import multer from "multer";
+import path from "path";
 import {
   inicio,
   calc,
@@ -21,7 +23,8 @@ import {
   preparacion,
   objchan,
   segsav,
-  segsaveini
+  segsaveini,
+  chanfoto,
 } from "./../controllers/mainController.js";
 
 // NO TOCAR ESTA CUTREZ
@@ -31,9 +34,16 @@ function getfot() {
   return k;
 }
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectDirectory = path.resolve(__dirname);
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "/public/images/profilePics/");
+    cb(
+      null,
+      path.join(projectDirectory, "..", "public", "images", "profilePics")
+    );
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = getfot();
@@ -60,7 +70,7 @@ router.get("/objetivos", objetivos);
 
 router.get("/perfil", perfil);
 
-//router.post("/perfil/foto", upload.single("perfil"), Controller.chanfoto);
+router.post("/perfil/foto", upload.single("perfil"), chanfoto);
 
 router.get("/plato", plato);
 
