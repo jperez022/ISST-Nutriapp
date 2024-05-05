@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isst.nutriapp.grupo18.apirest.JSON.NuevaReunionJSON;
+import com.isst.nutriapp.grupo18.apirest.JSON.RespJSON;
 
 import lombok.RequiredArgsConstructor;
 
@@ -40,6 +41,11 @@ public class ReunionController {
     @GetMapping("/dia/{mes}/{dia}")
     public ResponseEntity<List<Reunion>> getReunionesDia(@PathVariable("mes") Integer mes, @PathVariable("dia") Integer dia) {
         return ResponseEntity.ok(reunionService.getReunionesDia(mes, dia));
+    }
+
+    @GetMapping("/hay/{mes}/{dia}")
+    public ResponseEntity<RespJSON> getReunion(@PathVariable("mes") Integer mes, @PathVariable("dia") Integer dia) {
+        return ResponseEntity.ok(reunionService.getReunion(mes, dia));
     }
 
 }
