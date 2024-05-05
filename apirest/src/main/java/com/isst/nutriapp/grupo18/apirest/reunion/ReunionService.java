@@ -1,6 +1,5 @@
 package com.isst.nutriapp.grupo18.apirest.reunion;
 
-import java.sql.Time;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +19,7 @@ public class ReunionService {
         return usuarioRepo.existsByNombre(usuario);
     }
 
-    public void nuevaReunion(String titulo, String link, Integer dia, Integer mes, Time hora, String usuario) {
+    public void nuevaReunion(String titulo, String link, Integer dia, Integer mes, String hora, String usuario) {
         Reunion reunion = new Reunion();
         reunion.setTitulo(titulo);
         reunion.setLink(link);
