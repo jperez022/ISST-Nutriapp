@@ -68,6 +68,12 @@ public class UsuarioService {
         return false;
     }
 
+    public void hacerEspecialista(String nombre) {
+        Usuario usuario = usuarioRepo.findByNombre(nombre);
+        usuario.setSpecialist(true);
+        usuarioRepo.save(usuario);
+    }
+
     public boolean esEspecialista(String nombre) {
         if (usuarioRepo.existsByNombre(nombre)) {
             Usuario usuario = usuarioRepo.findByNombre(nombre);

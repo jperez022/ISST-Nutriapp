@@ -60,6 +60,15 @@ public class UsuarioController {
         return ResponseEntity.ok(resp);
     }
 
+    @GetMapping("/especialista/nuevo/{nombre}")
+    public ResponseEntity<Void> hacerEspecialista(@PathVariable("nombre") String nombre) {
+        if (!usuarioService.usuarioExiste(nombre)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        usuarioService.hacerEspecialista(nombre);
+        return ResponseEntity.ok(null);
+    }
+
     @GetMapping("especialista/{nombre}")
     public ResponseEntity<RespJSON> esEspecialista(@PathVariable("nombre") String nombre) {
         RespJSON resp = new RespJSON();
