@@ -17,7 +17,7 @@ public class EspecialistaService {
     }
 
     public Especialista getEspecialistaUsuario(String usuario) {
-        return especialistaRepo.findByNombre(usuario);
+        return especialistaRepo.findByUsuario(usuario);
     }
 
     public void setValoracion(String nombre, Integer valoracion) {
