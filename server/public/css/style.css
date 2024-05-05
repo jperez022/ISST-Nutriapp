@@ -404,6 +404,7 @@ h2 {
   width: 100%;
 }
 
+
 .todo2 {
   height: calc(100% - 100px);
   width: 100%;
@@ -837,6 +838,17 @@ input {
   padding: 5px;
 }
 
+#nomarg8 {
+  margin: 0px;
+  padding: 0px;
+}
+
+#nomarg9 {
+  margin: 0px;
+  padding: 0px;
+  transform: translateY(-50px);
+}
+
 .grideito4 {
   display: grid;
   grid-template-columns: calc((100% / 2) - 5px) calc((100% / 2) - 5px);
@@ -1074,6 +1086,10 @@ input[type="range"] {
   font-size: 50px;
 }
 
+.val {
+  font-size: 20px;
+}
+
 .dessssss {
   height: 120px;
   overflow-y: auto;
@@ -1130,4 +1146,29 @@ input[type="range"] {
   padding: 20px;
   border-radius: 10px;
   border: solid 1px black;
+}
+
+.reunete2 {
+  width: 80%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid 1px black;
+}
+
+.grideito28 {
+  display: grid;
+  grid-template-columns: calc((100% - 20px - 5px)/2) calc((100% - 20px - 5px)/2);
+  grid-template-rows: 60px 150px 40px;
+  gap: 10px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.grid_elem28{
+  padding: 10px;
+}
+
+.grid_elem29{
+  padding: 0px;
 }
