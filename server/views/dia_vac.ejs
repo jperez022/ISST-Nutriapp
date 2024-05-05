@@ -30,7 +30,7 @@
             <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
             <div>
               <button class="anade_but" onclick="reunete()"> Convocar una reunión</button>
-              <button class="anade_but" onclick="verreun( dia_mes[0], dia_mes[1]  )"> +Info de reuniones</button>
+              <button class="anade_but" onclick="verreun( <%= dia_mes[0] %>, <%= dia_mes[1] %> )"> +Info de reuniones</button>
             </div>
           </div>
           <% } else { %>
