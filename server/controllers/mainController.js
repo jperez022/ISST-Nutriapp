@@ -155,9 +155,7 @@ export const dia = async (req, res, next) => {
     myJson = response.data;
   });
   http =
-    "http://localhost:5000/calendario/reunion/" +
-    req.session.user +
-    "/" +
+    "http://localhost:5000/reunion/hay/" +
     dia_mes[1] +
     "/" +
     dia_mes[0];
@@ -663,8 +661,7 @@ export const verreunion = async (req, res, next) => {
   var myJson;
   var myJson2;
   var reunion;
-  var http = "http://localhost:5000/reunion/dia" + 
-    "/" +
+  var http = "http://localhost:5000/reunion/dia/" + 
     dia_mes[1] +
     "/" +
     dia_mes[0];

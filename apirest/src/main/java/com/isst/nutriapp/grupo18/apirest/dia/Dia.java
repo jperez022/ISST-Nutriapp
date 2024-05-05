@@ -26,7 +26,6 @@ public class Dia {
     private String nombreusuario;
     private Integer dia;
     private Integer mes;
-    private Boolean reunion;
     @ManyToMany(mappedBy = "dias", cascade = CascadeType.ALL)
     private List<Plato> platos;
 }
