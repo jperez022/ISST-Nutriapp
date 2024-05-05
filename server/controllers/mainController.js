@@ -12,7 +12,7 @@ const configOptions = {
 
 const kcAdminClient = new KcAdminClient(configOptions);
 
-async function givprem(username) {
+async function givprem(req) {
   try {
     await kcAdminClient.auth({
       grantType: 'client_credentials',
@@ -20,7 +20,7 @@ async function givprem(username) {
       clientSecret: keycloakConfig.credentials.secret,
     });
 
-    let usuario = await kcAdminClient.users.findOne({ username: username });
+    let usuario = await kcAdminClient.users.findOne({ username: req.session.user });
     let client = await kcAdminClient.clients.findOne({ clientId: keycloakConfig.resource });
     let role = await kcAdminClient.clients.findRole({ id: client[0].id, roleName: "premium" });
 
@@ -37,7 +37,7 @@ async function givprem(username) {
     var http =
       "http://localhost:5000/usuario/premium/nuevo/" + req.session.user;
     axios.get(http);
-    console.log(`Rol "premium" asignado al usuario ${username}`);
+    console.log(`Rol "premium" asignado al usuario ${req.session.user}`);
   } catch (error) {
     console.error('Error al asignar el rol "premium" al usuario:', error);
   }
@@ -312,7 +312,7 @@ export const premium = async (req, res, next) => {
 
 export const premiumcom = async (req, res, next) => {
   await acc(req);
-  await givprem(req.session.user);
+  await givprem(req);
   res.redirect("/calendario")
 };
 
