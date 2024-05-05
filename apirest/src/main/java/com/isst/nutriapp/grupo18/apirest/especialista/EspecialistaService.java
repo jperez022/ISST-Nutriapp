@@ -13,6 +13,8 @@ public class EspecialistaService {
     private final EspecialistaRepository especialistaRepo;
 
     public List<Especialista> getEspecialistas() {
+        List<Especialista> print = especialistaRepo.findAll();
+        System.err.println(print);
         return especialistaRepo.findAll();
     }
 

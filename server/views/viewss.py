@@ -19,8 +19,11 @@ ruta_platogen = ruta.replace('viewss','platogen')
 if len(sys.argv) >= 4:
     mensaje()
     sys.exit()
-if len(sys.argv) == 2:
-    old_ip = "localhost"
+if len(sys.argv) >= 2:
+    if len(sys.argv) == 3:
+        old_ip = sys.argv[2]
+    elif len(sys.argv) == 2: 
+        old_ip = "localhost"
     new_ip = sys.argv[1]
     if (new_ip == 'help'):
         mensaje()

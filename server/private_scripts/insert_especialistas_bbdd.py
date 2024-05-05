@@ -9,7 +9,7 @@ if len(sys.argv) == 4:
     movil = sys.argv[2]
     info = sys.argv[3]
     precio = sys.argv[4]
-    data = {"titulo": nombre, "descripcion": movil, "url": info, "precio": precio}
+    data = {"nombre": nombre, "movil": movil, "info": info, "precio": precio}
     requests.post("http://localhost:5000/especialista/nuevo", json = data)
 else:
     mensaje()
