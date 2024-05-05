@@ -24,6 +24,7 @@
   <div id="ocupa_dia">
     <div class="premium">
       <h1>Reunión</h1>
+      <% for (let reunion of reuniones) { %>
       <div class="reunete">
         <div class="grideito28">
           <div class="grid_elem28">
@@ -44,7 +45,7 @@
             <% if ( !autor[1]) { %>
             <img src="/images/perf.jpg" height="150px" width="150px">
             <% } else { >%
-            <img src="/images/profilePics/perfil-<%= fotico %>.jpg" height="150px" width="150px">
+              <img src="/images/profilePics/perfil-<%= fotico %>.jpg" height="150px" width="150px">
             <% } %>
           </div>
           <div class="grid_elem28">
@@ -58,8 +59,11 @@
           <a class="calc_but4"> Entrar!</a>
         </div>
       </div>
+      <% } %>
       <br>
     </div>
+    <br>
+  </div>
   </div>
   <footer>
     <p>© 2024 NutriApp. Todos los derechos reservados.</p>
