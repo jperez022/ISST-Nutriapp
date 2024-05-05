@@ -288,13 +288,7 @@ export const platogen = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  var aux = 0;
-  var elems = [];
-  for (let i = 0; i < myJson["resp"].length; i++) {
-    elems[aux.toString()] = myJson["resp"][aux].toString();
-    aux++;
-  }
-  res.render("platogen", { layout: false, platos: elems, calorias: null });
+  res.render("platogen", { layout: false, platos: myJson, calorias: null });
 };
 
 export const platogenfil = async (req, res, next) => {
@@ -308,13 +302,7 @@ export const platogenfil = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  var aux = 0;
-  var elems = [];
-  for (let i = 0; i < myJson["resp"].length; i++) {
-    elems[aux.toString()] = myJson["resp"][aux].toString();
-    aux++;
-  }
-  res.render("platogen", { layout: false, platos: elems, calorias: calorias });
+  res.render("platogen", { layout: false, platos: myJson, calorias: calorias });
 };
 
 export const premium = async (req, res, next) => {
