@@ -114,6 +114,7 @@ cd opt/keycloak/bin
 - server/views/segmodif.ejs
 - server/views/segini.ejs
 - server/views/platogen.ejs
+- server/views/reunion.ejs
 
 ### INFO ROLES
 
