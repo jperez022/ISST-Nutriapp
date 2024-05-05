@@ -638,8 +638,8 @@ export const crearreu = async (req, res, next) => {
   let titulo = req.body.nombre;
   let link = req.body.link;
   let fecha = req.body.fecha;
-  let mi_dia = parseInt(fecha[2]);
-  let mi_mes = parseInt(fecha[1]);
+  let mi_dia = parseInt(fecha.split("-")[2]);
+  let mi_mes = parseInt(fecha.split("-")[1]);
   let new_fecha = mi_dia.toString() + "_" + mi_mes.toString();
   let hora = req.body.hora;
   let autor = req.session.user;
@@ -660,20 +660,20 @@ export const verreunion = async (req, res, next) => {
   var autor = [];
   var myJson;
   var myJson2;
-  var reunion;
+  var reuniones;
   var http = "http://localhost:5000/reunion/dia/" + 
     dia_mes[1] +
     "/" +
     dia_mes[0];
   await axios.get(http).then(async (response) => {
     myJson = response.data;
-    reunion = new Array(myJson.length);
+    reuniones = new Array(myJson.length);
     for (let i = 0; i < myJson.length; i++) {
-      reunion[i] = new Array(4);
-      reunion[i][0] = myJson[i]["titulo"];
-      reunion[i][1] = myJson[i]["link"];
-      reunion[i][2] = myJson[i]["dia"].toString() + " del " + myJson[i]["mes"].toString();
-      reunion[i][3] = myJson[i]["hora"];
+      reuniones[i] = new Array(4);
+      reuniones[i][0] = myJson[i]["titulo"];
+      reuniones[i][1] = myJson[i]["link"];
+      reuniones[i][2] = myJson[i]["dia"].toString() + " del " + myJson[i]["mes"].toString();
+      reuniones[i][3] = myJson[i]["hora"];
       var http2 = "http://localhost:5000/especialista/obtener/" + req.session.user;
       await axios.get(http2).then((response2) => {
         myJson2 = response2.data;
