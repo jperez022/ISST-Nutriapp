@@ -3,7 +3,7 @@ import { convreu, crearreu } from "./../controllers/mainController.js";
 
 const router = express.Router();
 
-router.get("/spec/reunion", convreu); 
+router.get("/specs/reunion", convreu); 
 
 router.post("/specs/conv", crearreu)
 
