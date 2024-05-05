@@ -1,5 +1,6 @@
 import express from "express";
 import multer from 'multer';
+import path from 'path';
 import {
   inicio,
   calc,
@@ -32,9 +33,11 @@ function getfot() {
   return k;
 }
 
+const projectDirectory = path.resolve(__dirname);
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "/public/images/profilePics/");
+    cb(null, path.join(projectDirectory, '..', 'public', 'images', 'profilePics'));
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = getfot();
