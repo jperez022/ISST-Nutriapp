@@ -463,32 +463,16 @@ export const preparacion = async (req, res, next) => {
   } else {
     plat[1] = req.body.prep;
   }
-  var http =
-    "http://localhost:5000/plato/modificar/" +
-    req.session.user +
-    "/" +
-    plat[0] +
-    "/" +
-    plat[1] +
-    "/" +
-    plat[2].replaceAll("/", "-") +
-    "/" +
-    plat[4].replaceAll("/", "-") +
-    "/" +
-    plat[5] +
-    "/" +
-    fecha.split(",")[0] +
-    "_" +
-    fecha.split(",")[1];
+  var http = "http://localhost:5000/plato/modificar";
   await axios.post(http, {
-    "usuario": req.session.user,
-    "nombre": plat[0],
-    "preparacion": plat[1],
-    "ingredientes": plat[2].replaceAll("/", "-"),
-    "descripcion": mis_descripciones,
-    "calorias": plat[4].replaceAll("/", "-"),
-    "calorias_total": plat[5],
-    "dia_mes": fecha.split(",")[0] + "_" + fecha.split(",")[1]
+    usuario: req.session.user,
+    nombre: plat[0],
+    preparacion: plat[1],
+    ingredientes: plat[2].replaceAll("/", "-"),
+    descripcion: plat[3].replaceAll("/", "-"),
+    calorias: plat[4].replaceAll("/", "-"),
+    calorias_total: plat[5],
+    dia_mes: fecha.split(",")[0] + "_" + fecha.split(",")[1]
   });
   res.redirect(
     "/calendario/" + fecha.split(",")[0] + "1001" + fecha.split(",")[1]

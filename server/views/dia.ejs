@@ -55,7 +55,7 @@
               <form action="http://localhost:3000/calendario/preparacion" method="POST">
                 <textarea name="prep" rows="8" cols="40" placeholder="No se ha proporcionado preparación para este plato"></textarea>
                 <input name="dia_mes" type="hidden" value="<%= dia_mes %>" />
-                <input name="plat" type="hidden" value="<%= plat %>" />
+                <input name="plat" type="hidden" value="<%= Object.values(plat) %>" />
                 <div><button class="anade_but" type="submit">Añadela!!!</button></div>
               </form>
               <% } else { %>
