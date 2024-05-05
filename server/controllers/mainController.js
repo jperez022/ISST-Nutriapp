@@ -67,21 +67,21 @@ async function acc(req) {
       console.error("Hubo un problema al obtener el token de acceso:", error);
     }
   }
-  if (!req.session.isprem) {
+  if (!req.session.isprem || req.session.isprem == false) {
     let isprem = null;
     var http =
       "http://localhost:5000/usuario/premium/" + req.session.user;
     await axios.get(http).then((response) => {
-      isprem = response["resp"];
+      isprem = response.data["resp"];
     });
     req.session.isprem = isprem;
   }
-  if (!req.session.isspec) {
+  if (!req.session.isspec || req.session.isspec == false) {
     let isspec = null;
     var http =
       "http://localhost:5000/usuario/especialista/" + req.session.user;
     await axios.get(http).then((response) => {
-      isspec = response["resp"];
+      isspec = response.data["resp"];
     });
     req.session.isspec = isspec;
   }
@@ -170,7 +170,9 @@ export const educacion = async (req, res, next) => {
     "http://localhost:5000/articulo/obtener";
   await axios.get(http).then((response) => {
     myJson = response.data;
+    articulos = new Array(myJson.length);
     for (let i = 0; i < myJson.length; i++) {
+      articulos[i] = new Array(3);
       articulos[i][0] = myJson[i]["titulo"];
       articulos[i][1] = myJson[i]["descripcion"];
       articulos[i][2] = myJson[i]["url"];
@@ -621,7 +623,9 @@ export const specops = async (req, res, next) => {
     "http://localhost:5000/especialista/obtener";
   await axios.get(http).then((response) => {
     myJson = response.data;
+    articulos = new Array(myJson.length);
     for (let i = 0; i < myJson.length; i++) {
+      articulos[i] = new Array(5);
       lista_spec[i][0] = myJson[i]["nombre"];
       lista_spec[i][1] = myJson[i]["info"];
       lista_spec[i][2] = myJson[i]["valoracion"];
