@@ -26,6 +26,11 @@ public class EspecialistaController {
         return ResponseEntity.ok(especialistaService.getEspecialistas());
     }
 
+    @GetMapping("/obtener/{usuario}")
+    public ResponseEntity<Especialista> getEspecialistaUsuario(@PathVariable String usuario) {
+        return ResponseEntity.ok(especialistaService.getEspecialistaUsuario(usuario));
+    }
+
     @PostMapping("/valoracion/{nombre}/{valoracion}")
     public ResponseEntity<Void> setValoracion(@PathVariable("nombre") String nombre, @PathVariable("valoracion") Integer valoracion) {
         especialistaService.setValoracion(nombre, valoracion);
@@ -35,10 +40,11 @@ public class EspecialistaController {
     @PostMapping("/nuevo")
     public ResponseEntity<Void> createEspecialista(@RequestBody NuevoEspecialistaJSON especialistaJSON) {
         String nombre = especialistaJSON.getNombre();
+        String usuario = especialistaJSON.getUsuario();
         Integer movil = especialistaJSON.getMovil();
         String info = especialistaJSON.getInfo();
         Integer precio = especialistaJSON.getPrecio();
-        especialistaService.createEspecialista(nombre, movil, info, precio);
+        especialistaService.createEspecialista(nombre, usuario, movil, info, precio);
         return ResponseEntity.ok(null);
     }
 

@@ -1,15 +1,11 @@
-package com.isst.nutriapp.grupo18.apirest.dia;
+package com.isst.nutriapp.grupo18.apirest.reunion;
 
-import java.util.List;
-
-import com.isst.nutriapp.grupo18.apirest.plato.Plato;
+import java.sql.Time;
 
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,15 +14,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Dia {
+public class Reunion {
     @Id
     @GeneratedValue
     private Integer id;
     @Basic
-    private String nombreusuario;
+    private String titulo;
+    private String link;
     private Integer dia;
     private Integer mes;
-    private Boolean reunion;
-    @ManyToMany(mappedBy = "dias", cascade = CascadeType.ALL)
-    private List<Plato> platos;
+    private Time hora;
+    private String usuario;
 }

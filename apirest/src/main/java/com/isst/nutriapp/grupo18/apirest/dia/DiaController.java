@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
+import com.isst.nutriapp.grupo18.apirest.JSON.RespJSON;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,11 +30,19 @@ public class DiaController {
     }
 
     @GetMapping("/dia/{nombre}/{mes}/{dia}")
-    public ResponseEntity<List<PlatosJSON>> getPlatosDia(@PathVariable("nombre") String nombre, @PathVariable("mes") String mes, @PathVariable("dia") String dia) {
+    public ResponseEntity<List<PlatosJSON>> getPlatosDia(@PathVariable("nombre") String nombre, @PathVariable("mes") Integer mes, @PathVariable("dia") Integer dia) {
         if (!diaService.usuarioExiste(nombre)) {
             return ResponseEntity.status(400).body(null);
         }
         return ResponseEntity.ok(diaService.getPlatosDia(nombre, mes, dia));
+    }
+
+    @GetMapping("/reunion/{nombre}/{mes}/{dia}")
+    public ResponseEntity<RespJSON> getReunion(@PathVariable("nombre") String nombre, @PathVariable("mes") Integer mes, @PathVariable("dia") Integer dia) {
+        if (!diaService.usuarioExiste(nombre)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.ok(diaService.getReunion(nombre, mes, dia));
     }
 
 }

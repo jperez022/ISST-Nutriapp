@@ -137,6 +137,7 @@ export const calendario = async (req, res, next) => {
 
 export const dia = async (req, res, next) => {
   var myJson;
+  var hayreunion;
   await acc(req);
   var dia = req.params.dia;
   var dia_mes = dia.split("1001");
@@ -153,16 +154,23 @@ export const dia = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  // COMPLETAR
-  // HACER LLAMADA A LA API PARA VER SI HAY REUNION ESE DIA
-  // PASAR hayreunion como true o como false
+  http =
+    "http://localhost:5000/calendario/reunion/" +
+    req.session.user +
+    "/" +
+    dia_mes[1] +
+    "/" +
+    dia_mes[0];
+  await axios.get(http).then((response) => {
+    hayreunion = response.data["resp"];
+  });
   if (!myJson[0]) {
     res.render("dia_vac", {
       layout: false,
       dia_mes: dia_mes,
       isprem: req.session.isprem,
       isspec: req.session.isspec,
-      hayreunion: null,
+      hayreunion: hayreunion,
     });
   } else {
     res.render("dia", {
@@ -171,7 +179,7 @@ export const dia = async (req, res, next) => {
       platos: myJson,
       isprem: req.session.isprem,
       isspec: req.session.isspec,
-      hayreunion: null,
+      hayreunion: hayreunion,
     });
   }
 };
@@ -634,20 +642,48 @@ export const crearreu = async (req, res, next) => {
   let fecha = req.body.fecha;
   let hora = req.body.hora;
   let autor = req.session.user;
-  // COMPLETAR
-  // HACER LLAMADA A LA API PARA GUARDAR REUNION
+  var http = "http://localhost:5000/reunion/nueva";
+  await axios.post(http, {
+    titulo: titulo,
+    link: link,
+    fecha: fecha,
+    hora: hora,
+    usuario: autor
+  });
   res.redirect("/calendario");
 };
 
 export const verreunion = async (req, res, next) => {
-  // COMPLETAR
-  // HACER LLAMADA A LA API PARA TENER LOS DATOS DE LA REUNION DE ESTE DIA
-  // QUE REUNION SEA UN ARRAY Y SEA ASI
-  // reunion = [titulo, link, fecha, hora]
-  // autor = [autor, foto autor, valoracion (pasala como en perfil)]
-  let dia = req.params.dia; // AQUI TIENES LA FECHA PARA VER SI HAY REUNION O NO
-  let reunion = null;
-  let autor = null;
+  var dia = req.params.dia;
+  var dia_mes = dia.split("1001");
+  var autor = [];
+  var myJson;
+  var myJson2;
+  var reunion;
+  var http = "http://localhost:5000/reunion/dia" + 
+    "/" +
+    dia_mes[1] +
+    "/" +
+    dia_mes[0];
+  await axios.get(http).then(async (response) => {
+    myJson = response.data;
+    reunion = new Array(myJson.length);
+    for (let i = 0; i < myJson.length; i++) {
+      reunion[i] = new Array(4);
+      reunion[i][0] = myJson[i]["titulo"];
+      reunion[i][1] = myJson[i]["link"];
+      reunion[i][2] = myJson[i]["fecha"];
+      reunion[i][3] = myJson[i]["hora"];
+      var http2 = "http://localhost:5000/especialista/obtener/" + req.session.user;
+      await axios.get(http2).then((response2) => {
+        myJson2 = response2.data;
+        var aux = new Array(3);
+        aux[0] = myJson2["nombre"];
+        aux[2] = myJson2["valoracion"];
+        autor.push(aux);
+      });
+    }
+  });
   if (reunion) {
     res.render("reunver", { layout: false, reunion: reunion, autor: autor });
   } else {

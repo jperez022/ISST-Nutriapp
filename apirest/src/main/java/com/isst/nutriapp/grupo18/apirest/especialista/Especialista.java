@@ -18,6 +18,7 @@ public class Especialista {
     private Integer id;
     @Basic
     private String nombre;
+    private String usuario;
     private Integer movil;
     private String info;
     private Integer valoracion;

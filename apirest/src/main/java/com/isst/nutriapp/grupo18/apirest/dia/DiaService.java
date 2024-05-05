@@ -8,6 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
+import com.isst.nutriapp.grupo18.apirest.JSON.RespJSON;
 import com.isst.nutriapp.grupo18.apirest.plato.Plato;
 import com.isst.nutriapp.grupo18.apirest.usuario.UsuarioRepository;
 
@@ -31,6 +32,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(1);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 30; i++) {
@@ -38,6 +40,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(2);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 32; i++) {
@@ -45,6 +48,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(3);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 31; i++) {
@@ -52,6 +56,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(4);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 32; i++) {
@@ -59,6 +64,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(5);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 31; i++) {
@@ -66,6 +72,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(6);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 32; i++) {
@@ -73,6 +80,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(7);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 32; i++) {
@@ -80,6 +88,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(8);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 31; i++) {
@@ -87,6 +96,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(9);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 32; i++) {
@@ -94,6 +104,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(10);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 31; i++) {
@@ -101,6 +112,7 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(11);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
             for (int i = 1; i < 32; i++) {
@@ -108,18 +120,17 @@ public class DiaService {
                 dia.setNombreusuario(nombre);
                 dia.setDia(i);
                 dia.setMes(12);
+                dia.setReunion(false);
                 diaRepo.save(dia);
             }
         }
     }
 
-    public ArrayList<PlatosJSON> getPlatosDia(String nombre, String mes, String dia) {
-        Integer midia = Integer.parseInt(dia);
-        Integer mimes = Integer.parseInt(mes);
+    public ArrayList<PlatosJSON> getPlatosDia(String nombre, Integer mes, Integer dia) {
         Dia newdia = new Dia();
         newdia.setNombreusuario(nombre);
-        newdia.setDia(midia);
-        newdia.setMes(mimes);
+        newdia.setDia(dia);
+        newdia.setMes(mes);
         Optional<Dia> diaid = diaRepo.findOne(Example.of(newdia));
         List<Plato> platos = diaid.get().getPlatos();
         ArrayList<PlatosJSON> list = new ArrayList<PlatosJSON>();
@@ -136,6 +147,18 @@ public class DiaService {
             }
         }
         return list;
+    }
+
+    public RespJSON getReunion(String nombre, Integer mes, Integer dia) {
+        RespJSON resp = new RespJSON();
+        Dia newdia = new Dia();
+        newdia.setNombreusuario(nombre);
+        newdia.setDia(dia);
+        newdia.setMes(mes);
+        Optional<Dia> diaid = diaRepo.findOne(Example.of(newdia));
+        Boolean reunion = diaid.get().getReunion();
+        resp.setResp(reunion);
+        return resp;
     }
 
 }

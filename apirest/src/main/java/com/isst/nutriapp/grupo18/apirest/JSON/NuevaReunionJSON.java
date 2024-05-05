@@ -1,5 +1,7 @@
 package com.isst.nutriapp.grupo18.apirest.JSON;
 
+import java.sql.Time;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NuevoEspecialistaJSON {
-    private String nombre;
+public class NuevaReunionJSON {
+    private String titulo;
+    private String link;
+    private String fecha;
+    private Time hora;
     private String usuario;
-    private Integer movil;
-    private String info;
-    private Integer precio;
 }
