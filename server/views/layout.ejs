@@ -32,9 +32,10 @@
     <% if (isprem) { %>
     <button class="but_norm" onclick="specops()">Especialistas</button>
     <button class="but_norm" onclick="educacion()">Educacion</button>
+    <% } %>
+    <% if (!isprem) { %>
     <button class="but_norm" onclick="premium()">Premium</button>
     <% } %>
-
   </nav>
   <footer>
     <p>© 2024 NutriApp. Todos los derechos reservados.</p>
