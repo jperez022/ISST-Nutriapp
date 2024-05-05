@@ -33,7 +33,10 @@ public class ReunionService {
     }
 
     public List<Reunion> getReunionesDia(Integer mes, Integer dia) {
-        return reunionRepo.findAll();
+        Reunion reunion = new Reunion();
+        reunion.setDia(dia);
+        reunion.setMes(mes);
+        return reunionRepo.findAll(Example.of(reunion));
     }
 
     public RespJSON getReunion(Integer mes, Integer dia) {

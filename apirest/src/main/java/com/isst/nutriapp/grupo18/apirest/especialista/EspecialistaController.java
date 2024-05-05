@@ -31,7 +31,7 @@ public class EspecialistaController {
         return ResponseEntity.ok(especialistaService.getEspecialistaUsuario(usuario));
     }
 
-    @PostMapping("/valoracion/{nombre}/{valoracion}")
+    @GetMapping("/valoracion/{nombre}/{valoracion}")
     public ResponseEntity<Void> setValoracion(@PathVariable("nombre") String nombre, @PathVariable("valoracion") Integer valoracion) {
         especialistaService.setValoracion(nombre, valoracion);
         return ResponseEntity.ok(null);
