@@ -156,3 +156,5 @@ En este proyecto se simulará que se paga el plan de mailgun. Y todos los correo
 La cuenta de mailgun es esta: <br>
 User: nutriappreal@gmail.com <br>
 Pass: nutricionista84 <br>
+<br>
+Para añadir correos a los que enviar desde el mailgun con el plan gratuito acceder a sending/Overview y añadir los correos.
