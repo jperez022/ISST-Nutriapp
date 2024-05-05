@@ -153,14 +153,25 @@ export const dia = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-
+  // COMPLETAR
+  // HACER LLAMADA A LA API PARA VER SI HAY REUNION ESE DIA
+  // PASAR hayreunion como true o como false
   if (!myJson[0]) {
-    res.render("dia_vac", { layout: false, dia_mes: dia_mes });
+    res.render("dia_vac", {
+      layout: false,
+      dia_mes: dia_mes,
+      isprem: req.session.isprem,
+      isspec: req.session.isspec,
+      hayreunion: null,
+    });
   } else {
     res.render("dia", {
       layout: false,
       dia_mes: dia_mes,
       platos: myJson,
+      isprem: req.session.isprem,
+      isspec: req.session.isspec,
+      hayreunion: null,
     });
   }
 };
@@ -481,14 +492,14 @@ export const preparacion = async (req, res, next) => {
     "_" +
     fecha.split(",")[1];
   await axios.post(http, {
-    "usuario": req.session.user,
-    "nombre": plat[0],
-    "preparacion": plat[1],
-    "ingredientes": plat[2].replaceAll("/", "-"),
-    "descripcion": mis_descripciones,
-    "calorias": plat[4].replaceAll("/", "-"),
-    "calorias_total": plat[5],
-    "dia_mes": fecha.split(",")[0] + "_" + fecha.split(",")[1]
+    usuario: req.session.user,
+    nombre: plat[0],
+    preparacion: plat[1],
+    ingredientes: plat[2].replaceAll("/", "-"),
+    descripcion: mis_descripciones,
+    calorias: plat[4].replaceAll("/", "-"),
+    calorias_total: plat[5],
+    dia_mes: fecha.split(",")[0] + "_" + fecha.split(",")[1],
   });
   res.redirect(
     "/calendario/" + fecha.split(",")[0] + "1001" + fecha.split(",")[1]
@@ -650,7 +661,20 @@ export const crearreu = async (req, res, next) => {
   let link = req.body.link;
   let fecha = req.body.fecha;
   let hora = req.body.hora;
+  let autor = req.session.user;
   // COMPLETAR
   // HACER LLAMADA A LA API PARA GUARDAR REUNION
   res.redirect("/calendario");
+};
+
+export const verreunion = async (req, res, next) => {
+  // COMPLETAR
+  // HACER LLAMADA A LA API PARA TENER LOS DATOS DE LA REUNION DE ESTE DIA
+  // QUE REUNION SEA UN ARRAY Y SEA ASI
+  // reunion = [titulo, link, fecha, hora]
+  // autor = [autor, foto autor, valoracion autor]
+  let dia = req.params.dia;
+  let reunion = null;
+  let autor = null;
+  res.render("reunver", { layout: false, reunion: reunion, autor: autor });
 };

@@ -148,6 +148,11 @@ function reunete() {
   window.location.href = "http://localhost:3000/specs/reunion/";
 }
 
+function verreun(dia, mes) {
+  let url = "http://localhost:3000/premium/reunion/"+ dia + 1001 + mes;
+  window.location.href = url ;
+}
+
 function realizar_calendario() {
   let date = new Date();
   let year = date.getFullYear();
