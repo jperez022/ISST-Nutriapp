@@ -1,1 +1,69 @@
-<html></html>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUTRI-APP</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/script/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div id="ocupa_header">
+      <button class="but_head" onclick="calendario()">Volver</button>
+    </div>
+    <h1 id="logo">NutriApp</h1>
+    <div id="ocupa_header" class="header-buttons">
+      <button class="but_head" onclick="logout()">Logout</button>
+      <button class="but_head" onclick="perfil()">Perfil</button>
+    </div>
+  </header>
+
+  <div id="ocupa_dia">
+    <div class="premium">
+      <h1>Reunión</h1>
+      <div class="reunete">
+        <div class="grideito28">
+          <div class="grid_elem28">
+            <h3 id="nomarg8"> <%= reunion[0] %></h3>
+          </div>
+
+          <div>
+            <div class="grid_elem28">
+              <h3 id="nomarg8"><%= autor %></h3>
+            </div>
+          </div>
+          <div class="grid_elem28">
+            <h3 id="nomarg8">Fecha: <%= reunion[2] %> </h3>
+            <h3 id="nomarg8">Hora: <%= reunion[3] %></h3>
+          </div>
+
+          <div class="grid_elem29">
+            <% if ( !autor[1]) { %>
+            <img src="/server/public/images/perf.jpg" height="150px" width="150px">
+            <% } else { >%
+            <img src="/images/profilePics/perfil-<%= fotico %>.jpg" height="150px" width="150px">
+            <% } %>
+          </div>
+          <div class="grid_elem28">
+            <h3 id="nomarg8">Link: <%= reunion[1] %> </h3>
+            <div>Si no te va accede desde este link</div>
+          </div>
+          <div> <span class="val" style="background: linear-gradient(to left, gold <%= autor[2] - 5 %>%, transparent <%= autor[2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <br>
+        </div>
+        <div class="centraooo2">
+          <a class="calc_but4"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Entrar!</a>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+  <footer>
+    <p>© 2024 NutriApp. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+</html>

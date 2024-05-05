@@ -471,7 +471,7 @@ export const preparacion = async (req, res, next) => {
     descripcion: plat[3].replaceAll("/", "-"),
     calorias: plat[4].replaceAll("/", "-"),
     calorias_total: plat[5],
-    dia_mes: fecha.split(",")[0] + "_" + fecha.split(",")[1]
+    dia_mes: fecha.split(",")[0] + "_" + fecha.split(",")[1],
   });
   res.redirect(
     "/calendario/" + fecha.split(",")[0] + "1001" + fecha.split(",")[1]
@@ -644,9 +644,13 @@ export const verreunion = async (req, res, next) => {
   // HACER LLAMADA A LA API PARA TENER LOS DATOS DE LA REUNION DE ESTE DIA
   // QUE REUNION SEA UN ARRAY Y SEA ASI
   // reunion = [titulo, link, fecha, hora]
-  // autor = [autor, foto autor, valoracion autor]
-  let dia = req.params.dia;
+  // autor = [autor, foto autor, valoracion (pasala como en perfil)]
+  let dia = req.params.dia; // AQUI TIENES LA FECHA PARA VER SI HAY REUNION O NO
   let reunion = null;
   let autor = null;
-  res.render("reunver", { layout: false, reunion: reunion, autor: autor });
+  if (reunion) {
+    res.render("reunver", { layout: false, reunion: reunion, autor: autor });
+  } else {
+    res.render("reunnover", { layout: false });
+  }
 };
