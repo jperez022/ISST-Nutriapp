@@ -24,7 +24,7 @@
   <div id="ocupa_dia">
     <div class="premium">
       <h1>Reunión</h1>
-      <% for (let k = 0; k < reuniones.length() ; k++) { %>
+      <% for (let k = 0; k < reuniones.length ; k++) { %>
       <div class="reunete">
         <div class="grideito28">
           <div class="grid_elem28">
@@ -49,7 +49,7 @@
             <% } %>
           </div>
           <div class="grid_elem28">
-            <h3 id="nomarg8">Link: <%= reunion[k][1] %> </h3>
+            <h3 id="nomarg8">Link: <%= reuniones[k][1] %> </h3>
             <div>Si no te funciona accede desde este link</div>
           </div>
           <div> <span class="val" style="background: linear-gradient(to left, gold <%= autor[k][2] - 5 %>%, transparent <%= autor[k][2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
