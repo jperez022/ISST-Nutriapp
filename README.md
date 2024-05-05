@@ -128,3 +128,31 @@ Asignar en service account roles los siguientes roles
 
 > [!NOTE]
 > Modificar keycloak.json asi "verify-token-audience": false,
+
+### Email Verification
+
+Acceder a nuestro realm desde keycloak y acceder al apartado Login y marcar las siguientes casillas
+- User registration -> ON
+- Forgot password -> ON (no es estrictamente necesario)
+- Remember me -> ON (no es estrictamente necesario)
+- Login with email -> ON 
+- Verify email -> ON
+
+Acceder al apartado Login y poner los siguientes parametros
+- From: postmaster@sandbox32f08ad318774c188c016b4628c89639.mailgun.org
+- From display name: Nutriapp
+- Host: smtp.mailgun.org
+- Port: 587
+- Enable StartTLS: ON
+- Authentication: ON
+- Username: postmaster@sandbox32f08ad318774c188c016b4628c89639.mailgun.org
+- Password: 0b6c250382f93564f40ff68da3445896-86220e6a-8aa5c4b7
+
+Si se quiere testear la conexión, establer el correo de admin como nutriappreal@gmail.com
+
+Todo esta configuración se lleva a cabo gracias al plan gratuito de mailgun. Este plan nos permiter poder enviar emails de forma automatica. <br>
+Sin embargo al ser un plan gratuito no podemos enviar correos a usuarios que no hayan aceptado la solicitud previa para poder recibir correos de esta plataforma. <br> 
+En este proyecto se simulará que se paga el plan de mailgun. Y todos los correos a los que se envie link de confirmacion se habran dado de alta previamente. <br>
+La cuenta de mailgun es esta: <br>
+User: nutriappreal@gmail.com <br>
+Pass: nutricionista84 <br>
