@@ -40,18 +40,20 @@ public class PlatoController {
         return ResponseEntity.ok(null);
     }
 
-    @GetMapping("/modificar/{usuario}/{nombre}/{preparacion}/{ingredientes}/{calorias}/{calorias_total}/{dia_mes}")
-    public ResponseEntity<Void> modificarPlato(@PathVariable("usuario") String usuario, 
-    @PathVariable("nombre") String nombre, 
-    @PathVariable("preparacion") String preparacion, 
-    @PathVariable("ingredientes") String ingredientes, 
-    @PathVariable("calorias") String calorias, 
-    @PathVariable("calorias_total") Integer calorias_total, 
-    @PathVariable("dia_mes") String dia_mes) {
+    @PostMapping("/modificar")
+    public ResponseEntity<Void> modificarPlato(@RequestBody NuevoPlatoJSON platoJSON) {
+        String usuario = platoJSON.getUsuario();
         if (!platoService.usuarioExiste(usuario)) {
             return ResponseEntity.status(400).body(null);
         }
-        platoService.modificarPlato(usuario, nombre, preparacion, ingredientes, calorias, calorias_total, dia_mes);
+        String nombre = platoJSON.getNombre();
+        String preparacion = platoJSON.getPreparacion();
+        String ingredientes = platoJSON.getIngredientes();
+        String descripcion = platoJSON.getDescripcion();
+        String calorias = platoJSON.getCalorias();
+        Integer calorias_total = platoJSON.getCalorias_total();
+        String dia_mes = platoJSON.getDia_mes();
+        platoService.modificarPlato(usuario, nombre, preparacion, ingredientes, descripcion, calorias, calorias_total, dia_mes);
         return ResponseEntity.ok(null);
     }
 
