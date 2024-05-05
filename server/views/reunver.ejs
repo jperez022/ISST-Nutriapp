@@ -24,35 +24,35 @@
   <div id="ocupa_dia">
     <div class="premium">
       <h1>Reunión</h1>
-      <% for (let reunion of reuniones) { %>
+      <% for (let k = 0; k < reuniones.length() ; k++) { %>
       <div class="reunete">
         <div class="grideito28">
           <div class="grid_elem28">
-            <h3 id="nomarg8"> <%= reunion[0] %></h3>
+            <h3 id="nomarg8"> <%= reuniones[k][0] %></h3>
           </div>
 
           <div>
             <div class="grid_elem28">
-              <h3 id="nomarg8"><%= autor %></h3>
+              <h3 id="nomarg8"><%= autor[k][0] %></h3>
             </div>
           </div>
           <div class="grid_elem28">
-            <h3 id="nomarg8">Fecha: <%= reunion[2] %> </h3>
-            <h3 id="nomarg8">Hora: <%= reunion[3] %></h3>
+            <h3 id="nomarg8">Fecha: <%= reuniones[k][2] %> </h3>
+            <h3 id="nomarg8">Hora: <%= reuniones[k][3] %></h3>
           </div>
 
           <div class="grid_elem29">
-            <% if ( !autor[1]) { %>
+            <% if ( !autor[k][1]) { %>
             <img src="/images/perf.jpg" height="150px" width="150px">
             <% } else { %>
-              <img src="/images/profilePics/perfil-<%= autor[1] %>.jpg" height="150px" width="150px">
+              <img src="/images/profilePics/perfil-<%= autor[k][1] %>.jpg" height="150px" width="150px">
             <% } %>
           </div>
           <div class="grid_elem28">
-            <h3 id="nomarg8">Link: <%= reunion[1] %> </h3>
+            <h3 id="nomarg8">Link: <%= reunion[k][1] %> </h3>
             <div>Si no te funciona accede desde este link</div>
           </div>
-          <div> <span class="val" style="background: linear-gradient(to left, gold <%= autor[2] - 5 %>%, transparent <%= autor[2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+          <div> <span class="val" style="background: linear-gradient(to left, gold <%= autor[k][2] - 5 %>%, transparent <%= autor[k][2] + 5 %>%); -webkit-background-clip: text; color: transparent;">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
           <br>
         </div>
         <div class="centraooo2">
