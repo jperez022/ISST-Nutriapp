@@ -1,6 +1,5 @@
 package com.isst.nutriapp.grupo18.apirest.reunion;
 
-import java.sql.Time;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -33,7 +32,7 @@ public class ReunionController {
         String fecha = reunionJSON.getFecha();
         Integer dia = Integer.parseInt(fecha.split("_")[0]);
         Integer mes = Integer.parseInt(fecha.split("_")[1]);;
-        Time hora = reunionJSON.getHora();
+        String hora = reunionJSON.getHora();
         reunionService.nuevaReunion(titulo, link, dia, mes, hora, usuario);
         return ResponseEntity.ok(null);
     }

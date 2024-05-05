@@ -1,7 +1,5 @@
 package com.isst.nutriapp.grupo18.apirest.reunion;
 
-import java.sql.Time;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +21,6 @@ public class Reunion {
     private String link;
     private Integer dia;
     private Integer mes;
-    private Time hora;
+    private String hora;
     private String usuario;
 }
