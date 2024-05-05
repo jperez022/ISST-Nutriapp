@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,12 @@ public class EspecialistaController {
     @GetMapping("/obtener")
     public ResponseEntity<List<Especialista>> getEspecialistas() {
         return ResponseEntity.ok(especialistaService.getEspecialistas());
+    }
+
+    @PostMapping("/valoracion/{nombre}/{valoracion}")
+    public ResponseEntity<Void> setValoracion(@PathVariable("nombre") String nombre, @PathVariable("valoracion") Integer valoracion) {
+        especialistaService.setValoracion(nombre, valoracion);
+        return ResponseEntity.ok(null);
     }
 
     @PostMapping("/nuevo")

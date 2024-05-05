@@ -4,7 +4,7 @@ def mensaje():
     print("Este script esta diseñado para introducir especialistas a las BBDD.")
     print("Para ejecutar este script escriba 'python3 insert_especialistas_bbdd.py *nombre* *movil* *info* *precio*'.")
 
-if len(sys.argv) == 4:
+if len(sys.argv) == 5:
     nombre = sys.argv[1]
     movil = sys.argv[2]
     info = sys.argv[3]
