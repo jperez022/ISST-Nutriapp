@@ -486,7 +486,16 @@ export const preparacion = async (req, res, next) => {
     fecha.split(",")[0] +
     "_" +
     fecha.split(",")[1];
-  await axios.get(http);
+  await axios.post(http, {
+    "usuario": req.session.user,
+    "nombre": plat[0],
+    "preparacion": plat[1],
+    "ingredientes": plat[2].replaceAll("/", "-"),
+    "descripcion": mis_descripciones,
+    "calorias": plat[4].replaceAll("/", "-"),
+    "calorias_total": plat[5],
+    "dia_mes": fecha.split(",")[0] + "_" + fecha.split(",")[1]
+  });
   res.redirect(
     "/calendario/" + fecha.split(",")[0] + "1001" + fecha.split(",")[1]
   );

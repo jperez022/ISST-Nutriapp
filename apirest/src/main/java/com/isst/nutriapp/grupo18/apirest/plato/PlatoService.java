@@ -65,7 +65,7 @@ public class PlatoService {
     }
 
     public void modificarPlato(String usuario, String nombre, String preparacion, 
-        String ingredientes, String calorias, Integer calorias_total, String dia_mes) {
+        String ingredientes, String descripcion, String calorias, Integer calorias_total, String dia_mes) {
             String[] diaymes = dia_mes.split("_");
             Integer midia = Integer.parseInt(diaymes[0]);
             Integer mimes = Integer.parseInt(diaymes[1]);
@@ -76,10 +76,12 @@ public class PlatoService {
             Optional<Dia> diaid = diaRepo.findOne(Example.of(dia));
             List<Plato> posibles = platoRepo.findByDias_Id(diaid.get().getId());
             ingredientes = ingredientes.replace('-','/');
+            descripcion = descripcion.replace('-','/');
             calorias = calorias.replace('-','/');
             for (Plato plato : posibles) {
                 if ((plato.getNombre().equals(nombre)) && (plato.getIngredientes().equals(ingredientes)) 
-                    && (plato.getCalorias().equals(calorias)) && (plato.getCaloriasTot().equals(calorias_total))) {
+                    && (plato.getCalorias().equals(calorias)) && (plato.getCantidades().equals(descripcion))
+                    && (plato.getCaloriasTot().equals(calorias_total))) {
                         plato.setPreparacion(preparacion);
                         platoRepo.save(plato);
                         break;
