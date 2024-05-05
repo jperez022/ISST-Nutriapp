@@ -684,7 +684,7 @@ export const verreunion = async (req, res, next) => {
       });
     }
   });
-  if (reunion) {
+  if (reuniones) {
     res.render("reunver", { layout: false, reuniones: reuniones, autor: autor });
   } else {
     res.render("reunnover", { layout: false });
