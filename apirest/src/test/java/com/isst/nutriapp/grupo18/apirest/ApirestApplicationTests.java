@@ -214,3 +214,80 @@ public class EspecialistaServiceTest {
         ));
     }
 }
+public class PlatoServiceTest {
+
+    @Mock
+    private PlatoRepository platoRepository;
+
+    @Mock
+    private UsuarioRepository usuarioRepository;
+
+    @Mock
+    private DiaRepository diaRepository;
+
+    @InjectMocks
+    private PlatoService platoService;
+
+    @Test
+    public void testUsuarioExiste() {
+        when(usuarioRepository.existsByNombre("usuario1")).thenReturn(true);
+        when(usuarioRepository.existsByNombre("usuario2")).thenReturn(false);
+
+        assertTrue(platoService.usuarioExiste("usuario1"));
+        assertFalse(platoService.usuarioExiste("usuario2"));
+    }
+
+    // Test para agregar un plato
+    @Test
+    public void testAgregarPlato() {
+        // Definir datos de prueba
+        String usuario = "usuario1";
+        String nombre = "Arroz con pollo";
+        String preparacion = "Cocinar arroz, pollo y vegetales";
+        String ingredientes = "pollo, arroz, vegetales";
+        String descripcion = "500g, 300g, 200g";
+        String calorias = "500 kcal";
+        Integer caloriasTotal = 500;
+        String diaMes = "5_5";
+
+        // Simular comportamiento del repositorio
+        when(platoRepository.exists(any(Example.class))).thenReturn(false);
+
+        // Llamar al método a probar
+        platoService.agregarPlato(usuario, nombre, preparacion, ingredientes, descripcion, calorias, caloriasTotal, diaMes);
+
+        // Verificar que se haya guardado el plato correctamente
+        verify(platoRepository).save(any(Plato.class));
+    }
+
+    // Test para modificar un plato
+    @Test
+    public void testModificarPlato() {
+        // Definir datos de prueba
+        String usuario = "usuario1";
+        String nombre = "Arroz con pollo";
+        String preparacion = "Cocinar arroz, pollo y vegetales";
+        String ingredientes = "pollo, arroz, vegetales";
+        String descripcion = "500g, 300g, 200g";
+        String calorias = "500 kcal";
+        Integer caloriasTotal = 500;
+        String diaMes = "5_5";
+
+        // Simular comportamiento del repositorio
+        List<Plato> platos = new ArrayList<>();
+        Plato plato = new Plato();
+        plato.setNombre(nombre);
+        plato.setIngredientes(ingredientes);
+        plato.setCalorias(calorias);
+        plato.setCantidades(descripcion);
+        plato.setCaloriasTot(caloriasTotal);
+        platos.add(plato);
+        when(platoRepository.findByDias_Id(any(Integer.class))).thenReturn(platos);
+
+        // Llamar al método a probar
+        platoService.modificarPlato(usuario, nombre, preparacion, ingredientes, descripcion, calorias, caloriasTotal, diaMes);
+
+        // Verificar que se haya modificado el plato correctamente
+        verify(platoRepository).save(any(Plato.class));
+    }
+}
