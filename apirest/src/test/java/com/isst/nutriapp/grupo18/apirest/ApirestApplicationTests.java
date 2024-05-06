@@ -129,3 +129,88 @@ public class ReunionServiceTest {
         assertEquals(2, reunionesObtenidas.size());
     }
 }
+public class EspecialistaServiceTest {
+
+    @Mock
+    private EspecialistaRepository especialistaRepository;
+
+    @InjectMocks
+    private EspecialistaService especialistaService;
+
+    @Test
+    public void testGetEspecialistas() {
+        // Preparar datos de prueba
+        List<Especialista> especialistas = new ArrayList<>();
+        especialistas.add(new Especialista());
+        especialistas.add(new Especialista());
+
+        // Simular comportamiento del repositorio
+        when(especialistaRepository.findAll()).thenReturn(especialistas);
+
+        // Llamar al método a probar
+        List<Especialista> especialistasObtenidos = especialistaService.getEspecialistas();
+
+        // Verificar que se devuelva la lista correcta de especialistas
+        assertEquals(2, especialistasObtenidos.size());
+    }
+
+    @Test
+    public void testGetEspecialistaUsuario() {
+        // Preparar datos de prueba
+        String usuario = "usuario1";
+        Especialista especialista = new Especialista();
+        especialista.setUsuario(usuario);
+
+        // Simular comportamiento del repositorio
+        when(especialistaRepository.findByUsuario(usuario)).thenReturn(especialista);
+
+        // Llamar al método a probar
+        Especialista especialistaEncontrado = especialistaService.getEspecialistaUsuario(usuario);
+
+        // Verificar que se haya encontrado el especialista correcto
+        assertNotNull(especialistaEncontrado);
+        assertEquals(usuario, especialistaEncontrado.getUsuario());
+    }
+
+    @Test
+    public void testSetValoracion() {
+        // Preparar datos de prueba
+        String nombre = "Especialista1";
+        Integer valoracion = 4;
+        Especialista especialista = new Especialista();
+        especialista.setNombre(nombre);
+
+        // Simular comportamiento del repositorio
+        when(especialistaRepository.findByNombre(nombre)).thenReturn(especialista);
+        when(especialistaRepository.save(any(Especialista.class))).thenReturn(especialista);
+
+        // Llamar al método a probar
+        especialistaService.setValoracion(nombre, valoracion);
+
+        // Verificar que se haya establecido la valoración correctamente
+        assertEquals(valoracion, especialista.getValoracion());
+    }
+
+    @Test
+    public void testCreateEspecialista() {
+        // Preparar datos de prueba
+        String nombre = "Especialista Nuevo";
+        String usuario = "nuevoUsuario";
+        Integer movil = 123456789;
+        String info = "Especialista en algo nuevo";
+        Integer precio = 50;
+        NuevoEspecialistaJSON especialistaJSON = new NuevoEspecialistaJSON(nombre, usuario, movil, info, precio);
+
+        // Llamar al método a probar
+        especialistaService.createEspecialista(nombre, usuario, movil, info, precio);
+
+        // Verificar que se haya guardado el especialista correctamente
+        verify(especialistaRepository).save(argThat(especialista ->
+                especialista.getNombre().equals(nombre) &&
+                especialista.getUsuario().equals(usuario) &&
+                especialista.getMovil().equals(movil) &&
+                especialista.getInfo().equals(info) &&
+                especialista.getPrecio().equals(precio)
+        ));
+    }
+}
