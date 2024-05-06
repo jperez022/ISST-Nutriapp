@@ -1117,7 +1117,7 @@ input[type="range"] {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 600px;
-  grid-auto-rows: 350px;
+  grid-auto-rows: 400px;
   overflow-x: auto;
   gap: 20px;
 }
@@ -1128,7 +1128,7 @@ input[type="range"] {
 
 .textito {
   width: calc(100% - 40px);
-  height: calc(100% - 134px);
+  height: calc(100% - 170px);
   padding: 20px;
   text-align: justify;
 }
@@ -1192,7 +1192,7 @@ input[type="range"] {
 }
 
 .heigthelo{
-  height: calc(100% - 81px );
+  height: calc(100% - -88px - 170px); 
   display: flex;
   justify-content: flex-end;
   align-items: center;
