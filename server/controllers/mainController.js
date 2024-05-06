@@ -674,7 +674,7 @@ export const verreunion = async (req, res, next) => {
       reuniones[i][1] = myJson[i]["link"];
       reuniones[i][2] = myJson[i]["dia"].toString() + " del " + myJson[i]["mes"].toString();
       reuniones[i][3] = myJson[i]["hora"];
-      var http2 = "http://localhost:5000/especialista/obtener/" + req.session.user;
+      var http2 = "http://localhost:5000/especialista/obtener/" + myJson[i]["usuario"];
       await axios.get(http2).then((response2) => {
         myJson2 = response2.data;
         var aux = new Array(3);
