@@ -145,7 +145,7 @@ export const calendario = async (req, res, next) => {
     myJson = "meni";
   }
   var fechas = [];
-  var http = "http://localhost:5000/calendario/dia/platos/" + usuario;
+  var http = "http://localhost:5000/calendario/dia/platos/" + req.session.user;
   await axios.get(http).then((response) => {
     myJson = response.data;
     for (let i = 0; i < myJson.length; i++) {
@@ -173,7 +173,7 @@ export const calendario = async (req, res, next) => {
   res.render("calendario", {
     myJson: myJson,
     isprem: req.session.isprem,
-    user: req.session.user,
+    fechas: fechas,
   });
 };
 
