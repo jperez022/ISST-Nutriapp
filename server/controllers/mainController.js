@@ -262,8 +262,10 @@ export const perfil = async (req, res, next) => {
       peso = "error";
       ejer = "error";
     });
-  // API FALTA PASAR FOTO EL ID DE LA FOTO A LA VISTA
-  // COMPLETAR
+    var http = "http://localhost:5000/usuario/foto/" + req.session.user;
+    await axios.get(http).then((response) => {
+      fotico = response.data["resp"];
+    });
   res.render("perfil", {
     layout: false,
     foto: fotico,
@@ -277,8 +279,9 @@ export const chanfoto = async (req, res, next) => {
   if (!req.file) {
     return res.status(400).send("No se ha seleccionado ninguna imagen.");
   } else {
+    var http = "http://localhost:5000/usuario/foto/nueva/" + req.session.user;
+    axios.get(http);
     res.redirect("/perfil");
-    // TESTEAR FUNCIONAMIENTO
   }
 };
 
