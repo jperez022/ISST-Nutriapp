@@ -174,7 +174,7 @@ function realizar_calendario(fechas) {
     "November",
     "December",
   ];
-  const manipulate = (fechitas) => {
+  const manipulate =  (fechitas) => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -184,7 +184,7 @@ function realizar_calendario(fechas) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
 
-    for (let i = 1; i <= lastdate; i++) {
+    for (let i = 1; i <= lastdate; i++) { 
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
@@ -192,13 +192,9 @@ function realizar_calendario(fechas) {
           ? "active"
           : "";
       if (isToday != "active") {
-        for (let k = 0; k < fechitas.length; k++) {
-          if (
-            i === fechitas[k][1] &&
-            month === fechitas[k][2] - 1 &&
-            year === fechitas[k][3]
-          ) {
-            if (fechitas[k][0] === "reunion") {
+        for (let fecha of fechitas) {
+          if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
+            if (fecha[0] === "reunion") {
               isToday = "heyreunion";
             } else {
               isToday = "hayplato";
@@ -252,7 +248,7 @@ function realizar_calendarionoprem(fechas) {
     "November",
     "December",
   ];
-  const manipulate = (fechitas) => {
+  const manipulate =  (fechitas) => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -262,7 +258,8 @@ function realizar_calendarionoprem(fechas) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
 
-    for (let i = 1; i <= lastdate; i++) {
+
+    for (let i = 1; i <= lastdate; i++) { 
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
@@ -270,13 +267,10 @@ function realizar_calendarionoprem(fechas) {
           ? "active"
           : "";
       if (isToday != "active") {
-        for (let k = 0; k < fechitas.length; k++) {
-          if (
-            i === fechitas[k][1] &&
-            month === fechitas[k][2] - 1 &&
-            year === fechitas[k][3]
-          ) {
-            if (fechitas[k][0] === "reunion") {
+        for (let fecha of fechitas) {
+          if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
+            if (fecha[0] === "reunion") {
+
             } else {
               isToday = "hayplato";
             }
