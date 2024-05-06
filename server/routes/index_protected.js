@@ -28,7 +28,7 @@ import {
 } from "./../controllers/mainController.js";
 
 // NO TOCAR ESTA CUTREZ
-let k = 0;
+let k = 1;
 
 function getfot() {
   return k;
