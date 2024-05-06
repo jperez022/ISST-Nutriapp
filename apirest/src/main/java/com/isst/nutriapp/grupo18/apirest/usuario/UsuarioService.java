@@ -99,7 +99,7 @@ public class UsuarioService {
             num = 1;
         }
         Usuario usuario = usuarioRepo.findByNombre(nombre);
-        usuario.setFoto(num);
+        usuario.setFoto(num + 1);
         usuarioRepo.save(usuario);
     }
 
