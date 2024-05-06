@@ -193,7 +193,7 @@ function realizar_calendario(fechas) {
           : "";
       if (isToday != "active") {
         var fecha = fechitas.split(",");
-        var bucle = fecha.legth/4;
+        var bucle = fecha.length/4;
         for (let aux2 = 0; aux2 < bucle; aux2++) {
           var aux = 4*aux2;
           if (i === parseInt(fecha[aux+1]) && month === parseInt(fecha[aux+2]) - 1 && year === parseInt(fecha[aux+3])) {
@@ -271,7 +271,7 @@ function realizar_calendarionoprem(fechas) {
           : "";
       if (isToday != "active") {
         var fecha = fechitas.split(",");
-        var bucle = fecha.legth/4;
+        var bucle = fecha.length/4;
         for (let aux2 = 0; aux2 < bucle; aux2++) {
           var aux = 4*aux2;
           if (i === parseInt(fecha[aux+1]) && month === parseInt(fecha[aux+2]) - 1 && year === parseInt(fecha[aux+3])) {
