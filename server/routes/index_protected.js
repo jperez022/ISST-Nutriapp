@@ -62,12 +62,12 @@ async function incrementK() {
 
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
-    cb(null, path.join(projectDirectory, "..", "public", "images"));
+    cb(null, path.join(projectDirectory, "..", "public", "images" , "profilePics"));
   },
   filename: async function (req, file, cb) {
     const uniqueSuffix = await getk();
     await incrementK()
-    cb(null, file.fieldname + "" + uniqueSuffix);
+    cb(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
 
