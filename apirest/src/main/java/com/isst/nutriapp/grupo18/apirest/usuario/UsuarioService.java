@@ -93,7 +93,7 @@ public class UsuarioService {
     }
 
     public void setFoto(String nombre) {
-        Optional<Usuario> aux_usuario = usuarioRepo.findUsuarioWithMaxFoto();
+        Optional<Usuario> aux_usuario = usuarioRepo.findTopByOrderByFoto();
         Integer num = aux_usuario.get().getFoto();
         if (num == null) {
             num = 0;
