@@ -136,4 +136,15 @@ public class DiaService {
         return list;
     }
 
+    public ArrayList<Dia> getDias(String nombre) {
+        ArrayList<Dia> resp = new ArrayList<Dia>();
+        List<Dia> posibles = diaRepo.findByNombreusuario(nombre);
+        for (Dia dia : posibles) {
+            if (dia.getPlatos() != null) {
+                resp.add(dia);
+            }
+        }
+        return resp;
+    }
+
 }

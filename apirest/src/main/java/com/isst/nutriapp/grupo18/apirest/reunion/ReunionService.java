@@ -49,4 +49,8 @@ public class ReunionService {
         return resp;
     }
 
+    public List<Reunion> getDias() {
+        return reunionRepo.findAll();
+    }
+
 }

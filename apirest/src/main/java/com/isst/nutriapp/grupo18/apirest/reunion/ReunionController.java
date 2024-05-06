@@ -48,4 +48,9 @@ public class ReunionController {
         return ResponseEntity.ok(reunionService.getReunion(mes, dia));
     }
 
+    @GetMapping("/obtener")
+    public ResponseEntity<List<Reunion>> getDias() {
+        return ResponseEntity.ok(reunionService.getDias());
+    }
+
 }

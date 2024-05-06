@@ -36,4 +36,12 @@ public class DiaController {
         return ResponseEntity.ok(diaService.getPlatosDia(nombre, mes, dia));
     }
 
+    @GetMapping("/dia/platos/{nombre}")
+    public ResponseEntity<List<Dia>> getDias(@PathVariable("nombre") String nombre) {
+        if (!diaService.usuarioExiste(nombre)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.ok(diaService.getDias(nombre));
+    }
+
 }

@@ -1,3 +1,5 @@
+import axios from "axios";
+
 function login() {
   // Redirigir al servidor de autorización de Keycloak
   window.location.href = "http://localhost:3000/inicio";
@@ -153,7 +155,7 @@ function verreun(dia, mes) {
   window.location.href = url ;
 }
 
-function realizar_calendario() {
+function realizar_calendario(usuario) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -174,7 +176,7 @@ function realizar_calendario() {
     "November",
     "December",
   ];
-  const manipulate = () => {
+  const manipulate = async () => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -183,14 +185,31 @@ function realizar_calendario() {
     for (let i = dayone; i > 0; i--) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
+    var fechas = [];
+    var myJson;
     for (let i = 1; i <= lastdate; i++) {
-      // COMPLETAR
-      // LLAMAR A LA API PARA VER TODAS LAS FECHAS DE PLATOS DE UN USUARIO
-      // TAMBIEN VER QUE DIAS HAY REUNIONES
-      // QUIERO LAS FECHAS COMO UN ARRAY DE ARRAYS DE ESTA FORMA
-      // fecha = fechas[0]
-      // fecha [plato o reunion, dia,mes,año]
-      let fechas = [];
+      var http = "http://localhost:5000/calendario/dia/platos/" + usuario;
+      await axios.get(http).then((response) => {
+        myJson = response.data;
+        for (let i = 0; i < myJson.length; i++) {
+          fechas[i] = new Array(4);
+          fechas[i][0] = "fecha";
+          fechas[i][1] = myJson[i]["dia"];
+          fechas[i][2] = myJson[i]["mes"];
+          fechas[i][3] = 2024;
+        }
+      });
+      var http = "http://localhost:5000/reunion/obtener";
+      await axios.get(http).then((response) => {
+        myJson = response.data;
+        for (let i = 0; i < myJson.length; i++) {
+          fechas[i] = new Array(4);
+          fechas[i][0] = "reunion";
+          fechas[i][1] = myJson[i]["dia"];
+          fechas[i][2] = myJson[i]["mes"];
+          fechas[i][3] = 2024;
+        }
+      });
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
@@ -229,7 +248,7 @@ function realizar_calendario() {
   });
 }
 
-function realizar_calendarionoprem() {
+function realizar_calendarionoprem(usuario) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -250,7 +269,7 @@ function realizar_calendarionoprem() {
     "November",
     "December",
   ];
-  const manipulate = () => {
+  const manipulate = async () => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -259,13 +278,20 @@ function realizar_calendarionoprem() {
     for (let i = dayone; i > 0; i--) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
+    var fechas;
+    var myJson;
     for (let i = 1; i <= lastdate; i++) {
-      // COMPLETAR
-      // LLAMAR A LA API PARA VER TODAS LAS FECHAS DE PLATOS DE UN USUARIO
-      // QUIERO LAS FECHAS COMO UN ARRAY DE ARRAYS DE ESTA FORMA
-      // fecha = fechas[0]
-      // fecha [dia,mes,año]
-      let fechas = [];
+      var http = "http://localhost:5000/calendario/dia/platos/" + usuario;
+      await axios.get(http).then((response) => {
+        myJson = response.data;
+        fechas = new Array(myJson.length);
+        for (let i = 0; i < myJson.length; i++) {
+          fechas[i] = new Array(3);
+          fechas[i][0] = myJson[i]["dia"];
+          fechas[i][1] = myJson[i]["mes"];
+          fechas[i][2] = 2024;
+        }
+      });
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
