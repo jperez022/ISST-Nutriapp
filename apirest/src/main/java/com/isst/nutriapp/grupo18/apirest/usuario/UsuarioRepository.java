@@ -14,6 +14,6 @@ public interface UsuarioRepository extends JpaRepository <Usuario, Integer> {
 
     boolean existsByNombre(String nombre);
 
-    List<Usuario> findAllOrderByFotoDesc();
+    List<Usuario> findAllByOrderByFotoDesc();
 
 }
