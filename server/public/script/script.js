@@ -153,7 +153,7 @@ function verreun(dia, mes) {
   window.location.href = url ;
 }
 
-function realizar_calendario() {
+function realizar_calendario( user ) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -229,7 +229,7 @@ function realizar_calendario() {
   });
 }
 
-function realizar_calendarionoprem() {
+function realizar_calendarionoprem(user) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
