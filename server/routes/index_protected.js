@@ -33,7 +33,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectDirectory = path.resolve(__dirname);
 
-const fileName = projectDirectory + "auxiliar.txt";
+const fileName = projectDirectory + "/auxiliar.txt";
 
 async function getk() {
   return new Promise((resolve, reject) => {
@@ -59,8 +59,6 @@ async function incrementK() {
     console.error("Error al incrementar k y guardar en el archivo", error);
   }
 }
-
-
 
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
