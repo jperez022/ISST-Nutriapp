@@ -1,5 +1,3 @@
-const axios = require('axios');
-
 function login() {
   // Redirigir al servidor de autorización de Keycloak
   window.location.href = "http://localhost:3000/inicio";
@@ -155,7 +153,7 @@ function verreun(dia, mes) {
   window.location.href = url;
 }
 
-function realizar_calendario(usuario) {
+function realizar_calendario(fechas) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -185,7 +183,7 @@ function realizar_calendario(usuario) {
     for (let i = dayone; i > 0; i--) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
-    var myJson;
+
     for (let i = 1; i <= lastdate; i++) { 
       let isToday =
         i === date.getDate() &&
@@ -229,7 +227,7 @@ function realizar_calendario(usuario) {
   });
 }
 
-function realizar_calendarionoprem(usuario) {
+function realizar_calendarionoprem(fechas) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -259,20 +257,9 @@ function realizar_calendarionoprem(usuario) {
     for (let i = dayone; i > 0; i--) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
-    var fechas;
-    var myJson;
-    for (let i = 1; i <= lastdate; i++) {
-      var http = "http://localhost:5000/calendario/dia/platos/" + usuario;
-      await axios.get(http).then((response) => {
-        myJson = response.data;
-        fechas = new Array(myJson.length);
-        for (let i = 0; i < myJson.length; i++) {
-          fechas[i] = new Array(3);
-          fechas[i][0] = myJson[i]["dia"];
-          fechas[i][1] = myJson[i]["mes"];
-          fechas[i][2] = 2024;
-        }
-      });
+
+
+    for (let i = 1; i <= lastdate; i++) { 
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
@@ -281,8 +268,12 @@ function realizar_calendarionoprem(usuario) {
           : "";
       if (isToday != "active") {
         for (let fecha of fechas) {
-          if (i === fecha[0] && month === fecha[1] - 1 && year === fecha[2]) {
-            isToday = "hayplato";
+          if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
+            if (fecha[0] === "reunion") {
+
+            } else {
+              isToday = "hayplato";
+            }
             break;
           }
         }
