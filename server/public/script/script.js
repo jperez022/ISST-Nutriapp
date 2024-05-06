@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require('axios');
 
 function login() {
   // Redirigir al servidor de autorización de Keycloak
