@@ -29,7 +29,7 @@ import {
   chanfoto,
 } from "./../controllers/mainController.js";
 
-const fileName = "auxiliar.txt";
+const fileName = projectDirectory + "auxiliar.txt";
 
 async function getk() {
   return new Promise((resolve, reject) => {
