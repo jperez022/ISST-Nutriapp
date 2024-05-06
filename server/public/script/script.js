@@ -174,7 +174,7 @@ function realizar_calendario(fechas) {
     "November",
     "December",
   ];
-  const manipulate = async (fechitas) => {
+  const manipulate =  (fechitas) => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -248,7 +248,7 @@ function realizar_calendarionoprem(fechas) {
     "November",
     "December",
   ];
-  const manipulate = async (fechitas) => {
+  const manipulate =  (fechitas) => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
