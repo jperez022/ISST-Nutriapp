@@ -1,7 +1,5 @@
 package com.isst.nutriapp.grupo18.apirest.usuario;
 
-import java.sql.Blob;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,7 +21,7 @@ public class Usuario {
     private Integer id;
     @Basic
     private String nombre;
-    private Blob foto;
+    private Integer foto;
     private Integer peso_ini;
     private Integer peso_act;
     private Integer peso_obj;
