@@ -663,8 +663,8 @@ export const specops = async (req, res, next) => {
       lista_spec[i][2] = myJson[i]["valoracion"];
       lista_spec[i][3] = myJson[i]["movil"];
       lista_spec[i][4] = myJson[i]["precio"];
-      var http = "http://localhost:5000/usuario/foto/" + myJson[i]["usuario"];
-      await axios.get(http).then((response) => {
+      var http2 = "http://localhost:5000/usuario/foto/" + myJson[i]["usuario"];
+      await axios.get(http2).then((response) => {
         lista_spec[i][5] = response.data["resp"];
       });
     }
@@ -705,6 +705,7 @@ export const verreunion = async (req, res, next) => {
   var reuniones;
   var http =
     "http://localhost:5000/reunion/dia/" + dia_mes[1] + "/" + dia_mes[0];
+  //COMPLETAR
   await axios.get(http).then(async (response) => {
     myJson = response.data;
     reuniones = new Array(myJson.length);
@@ -717,11 +718,15 @@ export const verreunion = async (req, res, next) => {
       reuniones[i][3] = myJson[i]["hora"];
       var http2 =
         "http://localhost:5000/especialista/obtener/" + myJson[i]["usuario"];
-      await axios.get(http2).then((response2) => {
+      await axios.get(http2).then(async (response2) => {
         myJson2 = response2.data;
         var aux = new Array(3);
         aux[0] = myJson2["nombre"];
         aux[2] = myJson2["valoracion"];
+        var http3 = "http://localhost:5000/usuario/foto/" + myJson[i]["usuario"];
+        await axios.get(http3).then((response) => {
+          aux[1] = response.data["resp"];
+        });
         autor.push(aux);
       });
     }
