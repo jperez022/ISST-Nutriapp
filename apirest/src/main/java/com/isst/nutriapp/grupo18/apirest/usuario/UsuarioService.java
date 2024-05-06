@@ -1,7 +1,10 @@
 package com.isst.nutriapp.grupo18.apirest.usuario;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.FotoNumJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.ObjetivosJSON;
 
 import lombok.RequiredArgsConstructor;
@@ -80,6 +83,24 @@ public class UsuarioService {
             return usuario.getSpecialist();
         }
         return false;
+    }
+
+    public FotoNumJSON numFoto(String nombre) {
+        FotoNumJSON numFoto = new FotoNumJSON();
+        Usuario usuario = usuarioRepo.findByNombre(nombre);
+        numFoto.setResp(usuario.getFoto());
+        return numFoto;
+    }
+
+    public void setFoto(String nombre) {
+        Optional<Usuario> aux_usuario = usuarioRepo.findUsuarioWithMaxFoto();
+        Integer num = aux_usuario.get().getFoto();
+        if (num == null) {
+            num = 0;
+        }
+        Usuario usuario = usuarioRepo.findByNombre(nombre);
+        usuario.setFoto(num);
+        usuarioRepo.save(usuario);
     }
 
 }

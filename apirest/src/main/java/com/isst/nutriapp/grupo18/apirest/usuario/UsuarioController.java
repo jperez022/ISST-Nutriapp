@@ -2,6 +2,7 @@ package com.isst.nutriapp.grupo18.apirest.usuario;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.FotoNumJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.ObjetivosJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.RespJSON;
 
@@ -69,11 +70,28 @@ public class UsuarioController {
         return ResponseEntity.ok(null);
     }
 
-    @GetMapping("especialista/{nombre}")
+    @GetMapping("/especialista/{nombre}")
     public ResponseEntity<RespJSON> esEspecialista(@PathVariable("nombre") String nombre) {
         RespJSON resp = new RespJSON();
         resp.setResp(usuarioService.esEspecialista(nombre));
         return ResponseEntity.ok(resp);
+    }
+
+    @GetMapping("/foto/{nombre}")
+    public ResponseEntity<FotoNumJSON> numFoto(@PathVariable("nombre") String nombre) {
+        if (!usuarioService.usuarioExiste(nombre)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.ok(usuarioService.numFoto(nombre));
+    }
+    
+    @GetMapping("/foto/nueva/{nombre}")
+    public ResponseEntity<Void> setFoto(@PathVariable("nombre") String nombre) {
+        if (!usuarioService.usuarioExiste(nombre)) {
+            return ResponseEntity.status(400).body(null);
+        }
+        usuarioService.setFoto(nombre);
+        return ResponseEntity.ok(null);
     }
 
 }
