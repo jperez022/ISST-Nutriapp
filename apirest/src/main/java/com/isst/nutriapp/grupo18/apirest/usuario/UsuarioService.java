@@ -93,7 +93,7 @@ public class UsuarioService {
     }
 
     public void setFoto(String nombre) {
-        List<Usuario> aux_usuario = usuarioRepo.findAllOrderByFotoDesc();
+        List<Usuario> aux_usuario = usuarioRepo.findAllByOrderByFotoDesc();
         Integer num = aux_usuario.get(0).getFoto();
         if (num == null) {
             num = 1;
