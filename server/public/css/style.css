@@ -1192,7 +1192,7 @@ input[type="range"] {
 }
 
 .heigthelo{
-  height: calc(100% - -88px - 170px); 
+  height: calc(100% - 88px - (100% - 170px) - 40px); 
   display: flex;
   justify-content: flex-end;
   align-items: center;
