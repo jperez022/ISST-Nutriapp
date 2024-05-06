@@ -149,22 +149,24 @@ export const calendario = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
     for (let i = 0; i < myJson.length; i++) {
-      fechas[i] = new Array(4);
-      fechas[i][0] = "fecha";
-      fechas[i][1] = myJson[i]["dia"];
-      fechas[i][2] = myJson[i]["mes"];
-      fechas[i][3] = 2024;
+      var aux = new Array(4);
+      aux[0] = "fecha";
+      aux[1] = myJson[i]["dia"];
+      aux[2] = myJson[i]["mes"];
+      aux[3] = 2024;
+      fechas.push(aux);
     }
   });
   var http = "http://localhost:5000/reunion/obtener";
   await axios.get(http).then((response) => {
     myJson = response.data;
     for (let i = 0; i < myJson.length; i++) {
-      fechas[i] = new Array(4);
-      fechas[i][0] = "reunion";
-      fechas[i][1] = myJson[i]["dia"];
-      fechas[i][2] = myJson[i]["mes"];
-      fechas[i][3] = 2024;
+      var aux = new Array(4);
+      aux[0] = "reunion";
+      aux[1] = myJson[i]["dia"];
+      aux[2] = myJson[i]["mes"];
+      aux[3] = 2024;
+      fechas.push(aux);
     }
   });
 
