@@ -653,7 +653,7 @@ export const specops = async (req, res, next) => {
   var myJson;
   var lista_spec;
   var http = "http://localhost:5000/especialista/obtener";
-  await axios.get(http).then((response) => {
+  await axios.get(http).then(async (response) => {
     myJson = response.data;
     lista_spec = new Array(myJson.length);
     for (let i = 0; i < myJson.length; i++) {
@@ -663,11 +663,12 @@ export const specops = async (req, res, next) => {
       lista_spec[i][2] = myJson[i]["valoracion"];
       lista_spec[i][3] = myJson[i]["movil"];
       lista_spec[i][4] = myJson[i]["precio"];
+      var http = "http://localhost:5000/usuario/foto/" + myJson[i]["usuario"];
+      await axios.get(http).then((response) => {
+        lista_spec[i][5] = response.data["resp"];
+      });
     }
   });
-  // EJEMPLO
-  // lista_spec[1] = [Nombre, info, valoracion en numero de 0 a 100, numero, precio, idfoto]
-  // AUN FALTA CAMBIAR FOTO EN LA VISTA
   res.render("specopc", { layout: false, lista_spec: lista_spec });
 };
 
