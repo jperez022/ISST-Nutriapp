@@ -196,7 +196,7 @@ function realizar_calendario(fechas) {
         var bucle = fecha.legth/4;
         for (let aux2 = 0; aux2 < bucle; aux2++) {
           var aux = 4*aux2;
-          if (i === fecha[aux+1] && month === fecha[aux+2] - 1 && year === fecha[aux+3]) {
+          if (i === parseInt(fecha[aux+1]) && month === parseInt(fecha[aux+2]) - 1 && year === parseInt(fecha[aux+3])) {
             if (fecha[aux] === "reunion") {
               isToday = "heyreunion";
             } else {
@@ -274,7 +274,7 @@ function realizar_calendarionoprem(fechas) {
         var bucle = fecha.legth/4;
         for (let aux2 = 0; aux2 < bucle; aux2++) {
           var aux = 4*aux2;
-          if (i === fecha[aux+1] && month === fecha[aux+2] - 1 && year === fecha[aux+3]) {
+          if (i === parseInt(fecha[aux+1]) && month === parseInt(fecha[aux+2]) - 1 && year === parseInt(fecha[aux+3])) {
             if (fecha[aux] === "reunion") {
 
             } else {
