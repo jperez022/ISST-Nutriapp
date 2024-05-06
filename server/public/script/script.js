@@ -153,11 +153,7 @@ function verreun(dia, mes) {
   window.location.href = url;
 }
 
-function realizar_calendario(fechasStr) {
-  let fechas;
-  if (fechasStr.trim() !== "") {
-    fechas = JSON.parse(fechasStr);
-  }
+function realizar_calendario(fechas) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -196,9 +192,12 @@ function realizar_calendario(fechasStr) {
           ? "active"
           : "";
       if (isToday != "active") {
-        for (let fecha of fechitas) {
-          if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
-            if (fecha[0] === "reunion") {
+        var fecha = fechitas.split(",");
+        var bucle = fecha.legth/4;
+        for (let aux2 = 0; aux2 < bucle; aux2++) {
+          var aux = 4*aux2;
+          if (i === fecha[aux+1] && month === fecha[aux+2] - 1 && year === fecha[aux+3]) {
+            if (fecha[aux] === "reunion") {
               isToday = "heyreunion";
             } else {
               isToday = "hayplato";
@@ -231,11 +230,7 @@ function realizar_calendario(fechasStr) {
   });
 }
 
-function realizar_calendarionoprem(fechasStr) {
-  let fechas
-  if (fechasStr.trim() !== "") {
-    fechas = JSON.parse(fechasStr);
-  }
+function realizar_calendarionoprem(fechas) {
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -275,9 +270,12 @@ function realizar_calendarionoprem(fechasStr) {
           ? "active"
           : "";
       if (isToday != "active") {
-        for (let fecha of fechitas) {
-          if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
-            if (fecha[0] === "reunion") {
+        var fecha = fechitas.split(",");
+        var bucle = fecha.legth/4;
+        for (let aux2 = 0; aux2 < bucle; aux2++) {
+          var aux = 4*aux2;
+          if (i === fecha[aux+1] && month === fecha[aux+2] - 1 && year === fecha[aux+3]) {
+            if (fecha[aux] === "reunion") {
 
             } else {
               isToday = "hayplato";
