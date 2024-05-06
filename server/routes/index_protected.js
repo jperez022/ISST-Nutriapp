@@ -62,7 +62,7 @@ async function incrementK() {
 
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
-    cb(null, path.join(projectDirectory, "..", "public", "images", "profilePics"));
+    cb(null, path.join(projectDirectory, "..", "public", "images"));
   },
   filename: async function (req, file, cb) {
     const uniqueSuffix = await getk();
