@@ -154,7 +154,10 @@ function verreun(dia, mes) {
 }
 
 function realizar_calendario(fechasStr) {
-  const fechas = JSON.parse(fechasStr);
+  let fechas;
+  if (fechasStr.trim() !== "") {
+    fechas = JSON.parse(fechasStr);
+  }
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
@@ -229,7 +232,10 @@ function realizar_calendario(fechasStr) {
 }
 
 function realizar_calendarionoprem(fechasStr) {
-  const fechas = JSON.parse(fechasStr);
+  let fechas
+  if (fechasStr.trim() !== "") {
+    fechas = JSON.parse(fechasStr);
+  }
   let date = new Date();
   let year = date.getFullYear();
   let month = date.getMonth();
