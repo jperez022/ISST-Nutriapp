@@ -268,7 +268,7 @@ export const perfil = async (req, res, next) => {
     });
   res.render("perfil", {
     layout: false,
-    foto: fotico,
+    fotico: fotico,
     user: req.session.user,
     peso: peso,
     ejer: ejer,
