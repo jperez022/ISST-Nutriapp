@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.DiaJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
 
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class DiaController {
     }
 
     @GetMapping("/dia/platos/{nombre}")
-    public ResponseEntity<List<Dia>> getDias(@PathVariable("nombre") String nombre) {
+    public ResponseEntity<List<DiaJSON>> getDias(@PathVariable("nombre") String nombre) {
         if (!diaService.usuarioExiste(nombre)) {
             return ResponseEntity.status(400).body(null);
         }
