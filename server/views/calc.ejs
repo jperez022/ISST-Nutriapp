@@ -48,7 +48,7 @@
           <% if (lista) {%>
           <ul class="mini">
             <% for (let k = 0; k < lista.length ; k++) { %>
-            <li class="bol"><%= lista[k][0] %> : <%= lista[k][2] %> kcal <a href="http://localhost:3000/calculadora/" + <%= k %> style="color: inherit; text-decoration: none;">Quitar</a></li>
+            <li class="bol"><%= lista[k][0] %> : <%= lista[k][2] %> kcal <a href="http://localhost:3000/calculadora/<%= k %>"  style="color: inherit; text-decoration: none;">Quitar</a></li>
             <% } %>
           </ul>
           <% } else { %>
