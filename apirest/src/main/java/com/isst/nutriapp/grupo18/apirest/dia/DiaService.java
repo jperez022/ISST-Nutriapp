@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import com.isst.nutriapp.grupo18.apirest.JSON.DiaJSON;
 import com.isst.nutriapp.grupo18.apirest.JSON.PlatosJSON;
 import com.isst.nutriapp.grupo18.apirest.plato.Plato;
 import com.isst.nutriapp.grupo18.apirest.usuario.UsuarioRepository;
@@ -136,12 +137,15 @@ public class DiaService {
         return list;
     }
 
-    public ArrayList<Dia> getDias(String nombre) {
-        ArrayList<Dia> resp = new ArrayList<Dia>();
+    public ArrayList<DiaJSON> getDias(String nombre) {
+        ArrayList<DiaJSON> resp = new ArrayList<DiaJSON>();
         List<Dia> posibles = diaRepo.findByNombreusuario(nombre);
         for (Dia dia : posibles) {
-            if (dia.getPlatos() != null) {
-                resp.add(dia);
+            if (!dia.getPlatos().isEmpty()) {
+                DiaJSON aux = new DiaJSON();
+                aux.setDia(dia.getDia());
+                aux.setMes(dia.getMes());
+                resp.add(aux);
             }
         }
         return resp;
