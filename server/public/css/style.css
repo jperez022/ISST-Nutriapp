@@ -293,6 +293,10 @@ h2 {
   background: lightblue;
 }
 
+.calendar-dates li.heyreunion::before {
+  background: lightgreen;
+}
+
 .calendar-navigation {
   display: flex;
   text-align: center;

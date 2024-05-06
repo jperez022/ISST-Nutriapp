@@ -151,8 +151,8 @@ function reunete() {
 }
 
 function verreun(dia, mes) {
-  let url = "http://localhost:3000/premium/reunion/"+ dia + 1001 + mes;
-  window.location.href = url ;
+  let url = "http://localhost:3000/premium/reunion/" + dia + 1001 + mes;
+  window.location.href = url;
 }
 
 function realizar_calendario(usuario) {
@@ -218,8 +218,12 @@ function realizar_calendario(usuario) {
           : "";
       if (isToday != "active") {
         for (let fecha of fechas) {
-          if (i === fecha[0] && month === fecha[1] - 1 && year === fecha[2]) {
-            isToday = "hayplato";
+          if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
+            if (fecha[0] === "reunion") {
+              isToday = "heyreunion";
+            } else {
+              isToday = "hayplato";
+            }
             break;
           }
         }

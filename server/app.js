@@ -3,6 +3,10 @@ import Keycloak from 'keycloak-connect';
 import session from "express-session";
 import bodyParser from "body-parser";
 import express from "express";
+import { chanfoto } from './controllers/mainController.js';
+import { fileURLToPath } from "url";
+import multer from "multer";
+import path from "path";
 
 import proutes from "./routes/index_protected.js";
 import premtes from "./routes/index_premium.js";
@@ -46,6 +50,35 @@ app.use(
 const keycloak = new Keycloak({ store: memoryStore });
 app.use(keycloak.middleware());
 
+
+// NO TOCAR ESTA CUTREZ
+let k = 1;
+
+function getfot() {
+  return k;
+}
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectDirectory = path.resolve(__dirname);
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(
+      null,
+      path.join(projectDirectory, "public", "images", "profilePics")
+    );
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = getfot();
+    k = k + 1;
+    cb(null, file.fieldname + "-" + uniqueSuffix);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+app.post("/perfil/foto", upload.single("perfil"), chanfoto);
 app.get("/", broutes);
 app.get("/premium/*", keycloak.protect("premium"), premtes);
 app.post("/premium/*", keycloak.protect("premium"), premtes);

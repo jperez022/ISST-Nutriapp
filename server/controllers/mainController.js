@@ -144,7 +144,7 @@ export const calendario = async (req, res, next) => {
   } else {
     myJson = "meni";
   }
-  res.render("calendario", { myJson: myJson, isprem: req.session.isprem });
+  res.render("calendario", { myJson: myJson, isprem: req.session.isprem, user: req.session.user });
 };
 
 export const dia = async (req, res, next) => {
@@ -166,11 +166,7 @@ export const dia = async (req, res, next) => {
   await axios.get(http).then((response) => {
     myJson = response.data;
   });
-  http =
-    "http://localhost:5000/reunion/hay/" +
-    dia_mes[1] +
-    "/" +
-    dia_mes[0];
+  http = "http://localhost:5000/reunion/hay/" + dia_mes[1] + "/" + dia_mes[0];
   await axios.get(http).then((response) => {
     hayreunion = response.data["resp"];
   });
@@ -262,13 +258,13 @@ export const perfil = async (req, res, next) => {
       peso = "error";
       ejer = "error";
     });
-    var http = "http://localhost:5000/usuario/foto/" + req.session.user;
-    await axios.get(http).then((response) => {
-      fotico = response.data["resp"];
-    });
+  var http = "http://localhost:5000/usuario/foto/" + req.session.user;
+  await axios.get(http).then((response) => {
+    fotico = response.data["resp"];
+  });
   res.render("perfil", {
     layout: false,
-    foto: fotico,
+    fotico: fotico,
     user: req.session.user,
     peso: peso,
     ejer: ejer,
@@ -664,7 +660,7 @@ export const crearreu = async (req, res, next) => {
     link: link,
     fecha: new_fecha,
     hora: hora,
-    usuario: autor
+    usuario: autor,
   });
   res.redirect("/calendario");
 };
@@ -676,10 +672,8 @@ export const verreunion = async (req, res, next) => {
   var myJson;
   var myJson2;
   var reuniones;
-  var http = "http://localhost:5000/reunion/dia/" + 
-    dia_mes[1] +
-    "/" +
-    dia_mes[0];
+  var http =
+    "http://localhost:5000/reunion/dia/" + dia_mes[1] + "/" + dia_mes[0];
   await axios.get(http).then(async (response) => {
     myJson = response.data;
     reuniones = new Array(myJson.length);
@@ -687,9 +681,11 @@ export const verreunion = async (req, res, next) => {
       reuniones[i] = new Array(4);
       reuniones[i][0] = myJson[i]["titulo"];
       reuniones[i][1] = myJson[i]["link"];
-      reuniones[i][2] = myJson[i]["dia"].toString() + " del " + myJson[i]["mes"].toString();
+      reuniones[i][2] =
+        myJson[i]["dia"].toString() + " del " + myJson[i]["mes"].toString();
       reuniones[i][3] = myJson[i]["hora"];
-      var http2 = "http://localhost:5000/especialista/obtener/" + myJson[i]["usuario"];
+      var http2 =
+        "http://localhost:5000/especialista/obtener/" + myJson[i]["usuario"];
       await axios.get(http2).then((response2) => {
         myJson2 = response2.data;
         var aux = new Array(3);
@@ -700,7 +696,11 @@ export const verreunion = async (req, res, next) => {
     }
   });
   if (reuniones) {
-    res.render("reunver", { layout: false, reuniones: reuniones, autor: autor });
+    res.render("reunver", {
+      layout: false,
+      reuniones: reuniones,
+      autor: autor,
+    });
   } else {
     res.render("reunnover", { layout: false });
   }
