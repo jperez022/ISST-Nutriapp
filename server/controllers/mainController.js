@@ -127,6 +127,8 @@ export const calc3 = async (req, res, next) => {
   let suma = req.session.total;
   suma = suma - lista[ing][2];
   lista.splice(ing, 1);
+  req.session.plato = lista;
+  req.session.total = suma;
   res.redirect("/calculadora");
 };
 
