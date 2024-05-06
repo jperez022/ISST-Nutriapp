@@ -67,7 +67,7 @@ const storage = multer.diskStorage({
   filename: async function (req, file, cb) {
     const uniqueSuffix = await getk();
     await incrementK()
-    cb(null, file.fieldname + "" + uniqueSuffix);
+    cb(null, file.fieldname + "-" + uniqueSuffix);
   },
 });
 
@@ -93,7 +93,7 @@ router.get("/perfil", perfil);
 
 router.get("/plato", plato);
 
-app.post("/perfil/foto", upload.single("perfil"), chanfoto);
+router.post("/perfil/foto", upload.single("perfil"), chanfoto);
 
 router.post("/plato/gen/fil", platogenfil);
 
