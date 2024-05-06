@@ -144,7 +144,35 @@ export const calendario = async (req, res, next) => {
   } else {
     myJson = "meni";
   }
-  res.render("calendario", { myJson: myJson, isprem: req.session.isprem, user: req.session.user });
+  var fechas = [];
+  var http = "http://localhost:5000/calendario/dia/platos/" + usuario;
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+    for (let i = 0; i < myJson.length; i++) {
+      fechas[i] = new Array(4);
+      fechas[i][0] = "fecha";
+      fechas[i][1] = myJson[i]["dia"];
+      fechas[i][2] = myJson[i]["mes"];
+      fechas[i][3] = 2024;
+    }
+  });
+  var http = "http://localhost:5000/reunion/obtener";
+  await axios.get(http).then((response) => {
+    myJson = response.data;
+    for (let i = 0; i < myJson.length; i++) {
+      fechas[i] = new Array(4);
+      fechas[i][0] = "reunion";
+      fechas[i][1] = myJson[i]["dia"];
+      fechas[i][2] = myJson[i]["mes"];
+      fechas[i][3] = 2024;
+    }
+  });
+
+  res.render("calendario", {
+    myJson: myJson,
+    isprem: req.session.isprem,
+    user: req.session.user,
+  });
 };
 
 export const dia = async (req, res, next) => {

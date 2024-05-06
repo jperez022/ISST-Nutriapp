@@ -185,31 +185,8 @@ function realizar_calendario(usuario) {
     for (let i = dayone; i > 0; i--) {
       lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
     }
-    var fechas = [];
     var myJson;
-    for (let i = 1; i <= lastdate; i++) {
-      var http = "http://localhost:5000/calendario/dia/platos/" + usuario;
-      await axios.get(http).then((response) => {
-        myJson = response.data;
-        for (let i = 0; i < myJson.length; i++) {
-          fechas[i] = new Array(4);
-          fechas[i][0] = "fecha";
-          fechas[i][1] = myJson[i]["dia"];
-          fechas[i][2] = myJson[i]["mes"];
-          fechas[i][3] = 2024;
-        }
-      });
-      var http = "http://localhost:5000/reunion/obtener";
-      await axios.get(http).then((response) => {
-        myJson = response.data;
-        for (let i = 0; i < myJson.length; i++) {
-          fechas[i] = new Array(4);
-          fechas[i][0] = "reunion";
-          fechas[i][1] = myJson[i]["dia"];
-          fechas[i][2] = myJson[i]["mes"];
-          fechas[i][3] = 2024;
-        }
-      });
+    for (let i = 1; i <= lastdate; i++) { 
       let isToday =
         i === date.getDate() &&
         month === new Date().getMonth() &&
