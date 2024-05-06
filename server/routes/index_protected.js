@@ -29,6 +29,10 @@ import {
   chanfoto,
 } from "./../controllers/mainController.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectDirectory = path.resolve(__dirname);
+
 const fileName = projectDirectory + "auxiliar.txt";
 
 async function getk() {
@@ -56,9 +60,7 @@ async function incrementK() {
   }
 }
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const projectDirectory = path.resolve(__dirname);
+
 
 const storage = multer.diskStorage({
   destination: async function (req, file, cb) {
