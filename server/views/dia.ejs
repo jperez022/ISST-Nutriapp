@@ -43,7 +43,7 @@
         <% if (isprem && hayreunion) { %>
           <div class="separa2">
             <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
-            <button class="anade_but" onclick="verreun( dia_mes[0], dia_mes[1]  )"> +Info de reuniones</button>
+            <button class="anade_but" onclick="verreun( <%= dia_mes[0] %>, <%= dia_mes[1] %> )"> +Info de reuniones</button>
           </div>
           <% } else { %>
             <h2 id="dia_tit"> <%= dia_mes[0] %> del <%= dia_mes[1] %> de 2024</h2>
