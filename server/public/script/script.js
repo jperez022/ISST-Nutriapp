@@ -174,7 +174,7 @@ function realizar_calendario(fechas) {
     "November",
     "December",
   ];
-  const manipulate = async () => {
+  const manipulate = async (fechitas) => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -192,7 +192,7 @@ function realizar_calendario(fechas) {
           ? "active"
           : "";
       if (isToday != "active") {
-        for (let fecha of fechas) {
+        for (let fecha of fechitas) {
           if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
             if (fecha[0] === "reunion") {
               isToday = "heyreunion";
@@ -211,7 +211,7 @@ function realizar_calendario(fechas) {
     currdate.innerText = `${months[month]} ${year}`;
     day.innerHTML = lit;
   };
-  manipulate();
+  manipulate(fechas);
   prenexIcons.forEach((icon) => {
     icon.addEventListener("click", () => {
       month = icon.id === "calendar-prev" ? month - 1 : month + 1;
@@ -222,7 +222,7 @@ function realizar_calendario(fechas) {
       } else {
         date = new Date();
       }
-      manipulate();
+      manipulate(fechas);
     });
   });
 }
@@ -248,7 +248,7 @@ function realizar_calendarionoprem(fechas) {
     "November",
     "December",
   ];
-  const manipulate = async () => {
+  const manipulate = async (fechitas) => {
     let dayone = new Date(year, month, 1).getDay();
     let lastdate = new Date(year, month + 1, 0).getDate();
     let dayend = new Date(year, month, lastdate).getDay();
@@ -267,7 +267,7 @@ function realizar_calendarionoprem(fechas) {
           ? "active"
           : "";
       if (isToday != "active") {
-        for (let fecha of fechas) {
+        for (let fecha of fechitas) {
           if (i === fecha[1] && month === fecha[2] - 1 && year === fecha[3]) {
             if (fecha[0] === "reunion") {
 
@@ -286,7 +286,7 @@ function realizar_calendarionoprem(fechas) {
     currdate.innerText = `${months[month]} ${year}`;
     day.innerHTML = lit;
   };
-  manipulate();
+  manipulate(fechas);
   prenexIcons.forEach((icon) => {
     icon.addEventListener("click", () => {
       month = icon.id === "calendar-prev" ? month - 1 : month + 1;
@@ -297,7 +297,7 @@ function realizar_calendarionoprem(fechas) {
       } else {
         date = new Date();
       }
-      manipulate();
+      manipulate(fechas);
     });
   });
 }
