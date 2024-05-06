@@ -1128,7 +1128,7 @@ input[type="range"] {
 
 .textito {
   width: calc(100% - 40px);
-  height: calc(100% - 170px);
+  height: calc(100% - 180px);
   padding: 20px;
   text-align: justify;
 }
@@ -1192,7 +1192,7 @@ input[type="range"] {
 }
 
 .heigthelo{
-  height: calc(100% - 88px - (100% - 170px) - 40px); 
+  height: calc(100% - 88px - (100% - 160px) - 40px); 
   display: flex;
   justify-content: flex-end;
   align-items: center;
