@@ -144,7 +144,7 @@ export const calendario = async (req, res, next) => {
   } else {
     myJson = "meni";
   }
-  res.render("calendario", { myJson: myJson, isprem: req.session.isprem });
+  res.render("calendario", { myJson: myJson, isprem: req.session.isprem, user: req.session.user });
 };
 
 export const dia = async (req, res, next) => {
@@ -331,7 +331,7 @@ export const premium = async (req, res, next) => {
 export const premiumcom = async (req, res, next) => {
   await acc(req);
   await givprem(req);
-  res.redirect("/calendario", { user: req.session.user });
+  res.redirect("/calendario");
 };
 
 export const seg = async (req, res, next) => {
