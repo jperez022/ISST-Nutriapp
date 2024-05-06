@@ -1,6 +1,6 @@
 package com.isst.nutriapp.grupo18.apirest.usuario;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -14,6 +14,6 @@ public interface UsuarioRepository extends JpaRepository <Usuario, Integer> {
 
     boolean existsByNombre(String nombre);
 
-    Optional<Usuario> findTopByOrderByFoto();
+    List<Usuario> findAllOrderByFotoDesc();
 
 }

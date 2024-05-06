@@ -1,6 +1,6 @@
 package com.isst.nutriapp.grupo18.apirest.usuario;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -93,8 +93,8 @@ public class UsuarioService {
     }
 
     public void setFoto(String nombre) {
-        Optional<Usuario> aux_usuario = usuarioRepo.findTopByOrderByFoto();
-        Integer num = aux_usuario.get().getFoto();
+        List<Usuario> aux_usuario = usuarioRepo.findAllOrderByFotoDesc();
+        Integer num = aux_usuario.get(0).getFoto();
         if (num == null) {
             num = 0;
         }
