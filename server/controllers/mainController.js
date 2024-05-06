@@ -120,6 +120,16 @@ export const calc2 = async (req, res, next) => {
   res.render("calc2", { layout: false, lista: lista, suma: suma });
 };
 
+export const calc3 = async (req, res, next) => {
+  await acc(req);
+  let ing = req.params.ing;
+  let lista = req.session.plato;
+  let suma = req.session.total;
+  suma = suma - lista[ing][2];
+  lista.splice(ing, 1);
+  res.redirect("/calculadora");
+};
+
 export const calendario = async (req, res, next) => {
   await acc(req);
   var myJson = "error";

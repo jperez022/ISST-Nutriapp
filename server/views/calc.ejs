@@ -41,14 +41,14 @@
             <button class="calc_but" type="submit">Añadir</button>
           </div>
         </form>
-    
+
       </div>
       <div class="pp">
         <div class="grid4">
           <% if (lista) {%>
           <ul class="mini">
-            <% for (let elem of lista) { %>
-            <li class="bol"><%= elem[0] %> : <%= elem[2] %> kcal</li>
+            <% for (let k = 0; k < lista.length ; k++) { %>
+            <li class="bol"><%= lista[k][0] %> : <%= lista[k]elem[2] %> kcal <a href="http://localhost:3000/calculadora/<%= k %>" style="color: inherit; text-decoration: none;">Quitar</a></li>
             <% } %>
           </ul>
           <% } else { %>

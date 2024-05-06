@@ -6,6 +6,7 @@ import {
   inicio,
   calc,
   calc2,
+  calc3,
   calendario,
   dia,
   objetivos,
@@ -60,6 +61,8 @@ router.get("/inicio", inicio);
 router.get("/calculadora", calc);
 
 router.get("/calculadoratotal", calc2);
+
+router.get("/calculadora/:ing(\\d+)", calc3);
 
 router.get("/calendario", calendario);
 
