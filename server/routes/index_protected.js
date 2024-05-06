@@ -43,7 +43,7 @@ async function getk() {
         reject(err);
         return;
       }
-      const k = parseInt(data) || 1; // Si el archivo está vacío o no contiene un número válido, se usa 1 como valor predeterminado
+      const k = parseInt(data); 
       resolve(k);
     });
   });
