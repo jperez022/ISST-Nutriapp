@@ -67,7 +67,7 @@ const storage = multer.diskStorage({
   filename: async function (req, file, cb) {
     const uniqueSuffix = await getk();
     await incrementK()
-    cb(null, file.fieldname + "-" + uniqueSuffix);
+    cb(null, file.fieldname + "" + uniqueSuffix);
   },
 });
 
