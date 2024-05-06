@@ -291,3 +291,75 @@ public class PlatoServiceTest {
         verify(platoRepository).save(any(Plato.class));
     }
 }
+public class DiaServiceTest {
+
+    @Mock
+    private DiaRepository diaRepository;
+
+    @Mock
+    private UsuarioRepository usuarioRepository;
+
+    @InjectMocks
+    private DiaService diaService;
+
+    @Test
+    public void testUsuarioExiste() {
+        when(usuarioRepository.existsByNombre("usuario1")).thenReturn(true);
+        when(usuarioRepository.existsByNombre("usuario2")).thenReturn(false);
+
+        assertTrue(diaService.usuarioExiste("usuario1"));
+        assertFalse(diaService.usuarioExiste("usuario2"));
+    }
+
+    @Test
+    public void testCreateCalendario() {
+        // Definir usuario existente
+        when(diaRepository.existsByNombreusuario("usuario1")).thenReturn(true);
+
+        // Llamar al método a probar
+        diaService.createCalendario("usuario1");
+
+        // Verificar que no se haya guardado ningún día (ya que el usuario existe)
+        verify(diaRepository, never()).save(any(Dia.class));
+    }
+
+    @Test
+    public void testGetPlatosDia() {
+        // Definir datos de prueba
+        String nombre = "usuario1";
+        Integer mes = 1;
+        Integer dia = 1;
+
+        // Simular comportamiento del repositorio
+        Dia diaEntity = new Dia();
+        diaEntity.setNombreusuario(nombre);
+        diaEntity.setDia(dia);
+        diaEntity.setMes(mes);
+        Plato plato = new Plato();
+        plato.setNombre("Arroz con pollo");
+        List<Plato> platos = new ArrayList<>();
+        platos.add(plato);
+        diaEntity.setPlatos(platos);
+        when(diaRepository.findOne(any(Example.class))).thenReturn(Optional.of(diaEntity));
+
+        // Llamar al método a probar
+        ArrayList<PlatosJSON> platosDia = diaService.getPlatosDia(nombre, mes, dia);
+
+        // Verificar que se obtengan los platos correctamente
+        assertEquals(1, platosDia.size());
+        assertEquals("Arroz con pollo", platosDia.get(0).getNombre());
+    }
+
+    @Test
+    public void testGetDias() {
+        // Definir usuario existente
+        when(diaRepository.findByNombreusuario("usuario1")).thenReturn(new ArrayList<>());
+
+        // Llamar al método a probar
+        ArrayList<DiaJSON> dias = diaService.getDias("usuario1");
+
+        // Verificar que no se hayan encontrado días (ya que no hay platos asociados)
+        assertEquals(0, dias.size());
+    }
+
+}
