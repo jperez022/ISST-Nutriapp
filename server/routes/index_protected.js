@@ -1,7 +1,6 @@
-import { fileURLToPath } from "url";
 import express from "express";
-import multer from "multer";
-import path from "path";
+
+
 import {
   inicio,
   calc,
@@ -24,35 +23,7 @@ import {
   objchan,
   segsav,
   segsaveini,
-  chanfoto,
 } from "./../controllers/mainController.js";
-
-// NO TOCAR ESTA CUTREZ
-let k = 1;
-
-function getfot() {
-  return k;
-}
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const projectDirectory = path.resolve(__dirname);
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(
-      null,
-      path.join(projectDirectory, "..", "public", "images", "profilePics")
-    );
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = getfot();
-    k = k + 1;
-    cb(null, file.fieldname + "-" + uniqueSuffix);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 const router = express.Router();
 
@@ -71,8 +42,6 @@ router.get("/calendario/:dia(\\d+)", dia);
 router.get("/objetivos", objetivos);
 
 router.get("/perfil", perfil);
-
-router.post("/perfil/foto", upload.single("perfil"), chanfoto);
 
 router.get("/plato", plato);
 
